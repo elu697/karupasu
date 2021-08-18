@@ -1,0 +1,6 @@
+framework module Pods_karupasu {
+  umbrella header "Pods-karupasu-umbrella.h"
+
+  export *
+  module * { export * }
+}
