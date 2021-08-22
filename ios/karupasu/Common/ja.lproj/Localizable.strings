@@ -6,6 +6,70 @@
   
 */
 "test" = "テスト";
-
 "MuchMatch" = "マッチマッチ";
+
+"Team code" = "チームコード";
+"Team code message" = "招待されたチームコードを入力してください";
+"Team code dammy" = "0123456789";
+
+"Sign up" = "新規登録";
+"Name" = "氏名";
+"Name dammy" = "田中太郎";
+"MailAddress" = "メールアドレス";
+"MailAddress dammy" = "user@mail.com";
+"Password" = "パスワード";
+"Password dammy" = "半角英数記号6文字以上";
+"Registration" = "登録する";
+
+"Or" = "または";
+
+"Login" = "ログイン";
+
+"input keyword" = "キーワードを入力";
+
+"Search" = "探す";
+"Genre" = "ジャンル";
+"Place" = "開催方法";
+"Participant" = "参加者";
+"Applying" = "参加希望済み";
+"Online" = "オンライン";
+"Offline" = "オフライン";
+"Confirm" = "確定";
+"Event" = "企画";
+
+"remain1" = "あと";
+"people" = "人";
+"remain2" = "で開催が決定します";
+
+"Apply" = "参加したい!";
+"Cancel" = "参加をキャンセル";
+"Prefecture" = "都道府県";
+
+"Please input" = "入力してください";
+"Please select" = "選択してください";
+"Select prefectures" = "都道府県を選択";
+"Tap to select image" = "タップで画像をアップロード";
+"Select genre" = "ジャンルを選択";
+"Select place" = "開催方法を選択";
+
+"New event" = "新規作成";
+"Title" = "タイトル";
+"Number of participants" = "開催人数";
+"Venue" = "開催場所";
+"Do Check" = "確認する";
+"Check" = "確認";
+
+"Memo" = "一ヶ月間お気に入りまたは参加登録がない場合は自動で削除されます";
+
+"Fix" = "修正する";
+"Post" = "投稿する";
+
+"Favorite" = "お気に入り";
+
+"Talkroom" = "トークルーム";
+"Account" = "アカウント";
+
+
+
+
 

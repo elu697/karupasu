@@ -6,17 +6,33 @@
 //
 
 import UIKit
+import SnapKit
+import RxSwift
+import Moya
+import Kingfisher
+import SVProgressHUD
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow? = nil
-    
+    let karupasu: Karupasu = .shared
+    let disposeBag = DisposeBag()
+
+    override init() {
+        super.init()
+        karupasu.setup()
+    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window = window
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = ViewController()
+        self.window?.rootViewController = RootViewController()
+        
+        SVProgressHUD.setDefaultMaskType(.clear)
+        FirebaseApp.configure()
         return true
     }
 
@@ -36,3 +52,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
 }
 
+struct Event: Codable {
+    let id: Int?
+    let title: String?
+    let image: String?
+    let favorite: Int?
+    let participation: Int?
+
+    let participants_count: Int?
+    let maximum_participants_count: Int?
+    let holding_method: Int? //0 オンライン
+    let genre_id: Int?
+}

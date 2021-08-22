@@ -1,0 +1,66 @@
+//
+//  PrefectureModel.swift
+//  karupasu
+//
+//  Created by El You on 2021/08/24.
+//
+
+import Foundation
+import RxSwift
+import RxRelay
+
+
+class PrefectureModel {
+    struct Prefecture: Codable {
+        let id: Int
+        let name: String
+
+        private enum CodingKeys: String, CodingKey {
+            case id
+            case name
+        }
+    }
+
+    static let shared: PrefectureModel = .init()
+    private let disposeBag = DisposeBag()
+    // Action
+    func getPrefectures() -> Single<[Prefecture]> {
+        return Single<[Prefecture]>.create { (observer) -> Disposable in
+            PrefectureProvider.shared.rx.request(.getPrefectures)
+                .subscribe { (response) in
+                    if let items = try? JSONDecoder().decode([Prefecture].self, from: response.data) {
+                        observer(.success(items))
+                    } else {
+                        observer(.success([]))
+                    }
+            } onError: { (error) in
+                    observer(.success([]))
+                }.disposed(by: self.disposeBag)
+            return Disposables.create()
+        }
+    }
+
+    func getSafePrefectureTitle(id: Int) -> String {
+        if prefectures.value.count > id {
+            return prefectures.value[id-1].name
+        } else {
+            return ""
+        }
+    }
+    
+    func fetchPrefecture() {
+        getPrefectures()
+            .subscribe { [weak self] (pre) in
+                guard let self = self else { return }
+                self.prefectures.accept(pre)
+            } onError: { (error) in
+            }.disposed(by: disposeBag)
+    }
+    // Dispatcher
+    // Store
+    private(set) var prefectures = BehaviorRelay<[Prefecture]>(value: [])
+
+    private init() {
+        fetchPrefecture()
+    }
+}

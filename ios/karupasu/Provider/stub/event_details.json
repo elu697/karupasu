@@ -1,0 +1,18 @@
+{
+    "id": 1,
+    "title": "釣りに行きませんか?",
+    "image": "https://cdn.pixabay.com/photo/2018/01/09/16/11/angler-3071970_1280.jpg",
+    "favorite": 1,
+    "holding_method": 1,
+    "genre_id": 1,
+    "maximum_participants_count":2,
+    "details": [
+        {
+            "prefecture_id": 1,
+            "participation": 1,
+            "participants_count": 2,
+            "participants_names": ["大久保滉太", "皆川楓羽歌"],
+            "maximum_participants_count":2
+        }
+    ]
+}
