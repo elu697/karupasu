@@ -25,9 +25,9 @@ class UIButtonSwitch: UIButton {
     var isTapped: Bool = false {
         didSet {
             if self.isTapped {
-                self.setImage(self.offImage, for: .normal)
-            } else {
                 self.setImage(self.onImage, for: .normal)
+            } else {
+                self.setImage(self.offImage, for: .normal)
             }
         }
     }
@@ -37,7 +37,7 @@ class UIButtonSwitch: UIButton {
         self.onImage = on
         self.offImage = off
         self.isTapped = false
-        self.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+//        self.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         self.addTarget(self, action: #selector(tapButton(sender:)), for: .touchUpInside)
     }
     

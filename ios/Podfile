@@ -1,15 +1,32 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '13.0'
-
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '12.0'
 target 'karupasu' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for karupasu
   pod 'R.swift'
-  pod 'RxSwift', '~> 6.1'
-  pod 'RxCocoa', '~> 6.1'
+  pod 'RxSwift', '~> 5.0'
+  pod 'RxCocoa', '~> 5.0'
+  pod 'RxDataSources'
+#  pod 'RxAlamofire'
   pod 'SnapKit', '~> 5.0.0'
   pod 'SwifterSwift'
-  pod "Unio", :git => 'https://github.com/cats-oss/Unio.git'
+#  pod "Unio", :git => 'https://github.com/cats-oss/Unio.git'
+  pod 'Unio', '~> 0.10.0'
+#  pod 'IHKeyboardAvoiding'
+  pod "ESTabBarController-swift"
+  pod 'pop', :git => 'https://github.com/facebook/pop.git'
+  pod 'Moya/RxSwift', '~> 14.0'
+  pod 'XLPagerTabStrip'#, '~> 9.0'
+  pod 'Kingfisher'
+  pod 'SVProgressHUD'
+  
+  pod "Firebase"
+  pod 'Firebase/Analytics'
+  pod "Firebase/Storage"
+  pod 'TPKeyboardAvoiding'
+  pod 'IHKeyboardAvoiding'
 end

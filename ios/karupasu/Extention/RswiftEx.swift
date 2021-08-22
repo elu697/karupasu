@@ -7,4 +7,6 @@
 
 import Foundation
 
-
+// RSwift
+let AppText = R.string.localizable.self
+let AppImage = R.image.self

@@ -23,6 +23,7 @@ public extension UIColor {
         self.init(red: r, green: g, blue: b, alpha: CGFloat(alpha))
     }
     
+    // Hex with alpha
     convenience init(hexString: String, alpha: CGFloat = 1.0) {
         let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let scanner = Scanner(string: hexString)
@@ -72,4 +73,20 @@ public extension UIColor {
         
         return String(format: "#%06x", rgb)
     }
+    
+    // app color
+    class var appMain: UIColor {
+        return AppConstants.Color.main
+    }
+    
+    class var appGray: UIColor {
+        return AppConstants.Color.gray
+    }
+    
+    class var appWhiteGray: UIColor {
+        return AppConstants.Color.whiteGray
+    }
+    
+    class var appTextGray: UIColor {
+        return AppConstants.Color.textGray    }
 }

@@ -1,0 +1,8 @@
+{
+    "id": 1,
+    "title": "釣りに行きませんか？",
+    "image": "https://cdn.pixabay.com/photo/2018/01/09/16/11/angler-3071970_1280.jpg",
+    "maximum_participants_count": 2,
+    "holding_method": 1,
+    "genre_id": 1
+}
