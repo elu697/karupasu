@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+// Constraintsで怒られるけれど，原因不明
 class EventCreateView: UIView {
     let thumbnailImage: UIImageView = {
         let view = UIImageView()
@@ -167,7 +169,7 @@ class EventCreateView: UIView {
         thumbnailImage.addSubview(gradationView)
         thumbnailImage.addSubview(effectView)
         thumbnailImage.addSubview(tapMessageLbl)
-        thumbnailImage.addSubview(dummyTapView)
+        addSubview(dummyTapView)
 
         titleBaseView.addSubview(titleTxf)
         addSubview(titleBaseView)

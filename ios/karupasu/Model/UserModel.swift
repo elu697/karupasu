@@ -135,9 +135,12 @@ class UserModel {
                             ud.uid = uid
                             ud.client = client
                             ud.accessToken = accessToken
+                            ud.userMailAddress = mail
+                            ud.userPassword = pass
                             self.uid.accept(uid)
                             self.client.accept(client)
                             self.accessToken.accept(accessToken)
+                            self.email.accept(mail)
                             observer.onNext(true)
                         } else {
                             observer.onNext(false)
@@ -172,9 +175,11 @@ class UserModel {
                             self.accessToken.accept(accessToken)
                             observer.onNext(true)
                         } else {
+                            self.clearUserData().subscribe { _ in }.disposed(by: self.disposeBag)
                             observer.onNext(false)
                         }
                     } onError: { (errir) in
+                        self.clearUserData().subscribe { _ in }.disposed(by: self.disposeBag)
                         observer.onNext(false)
                     }.disposed(by: self.disposeBag)
             }

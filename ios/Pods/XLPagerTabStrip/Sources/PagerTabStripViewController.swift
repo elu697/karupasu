@@ -75,9 +75,9 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
     }
 
     open var swipeDirection: SwipeDirection {
-        if containerView.contentOffset.x > lastContentOffset {
+        if containerView.contentOffset.x > lastContentOffset.x {
             return .left
-        } else if containerView.contentOffset.x < lastContentOffset {
+        } else if containerView.contentOffset.x < lastContentOffset.x {
             return .right
         }
         return .none
@@ -162,12 +162,12 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
             tmpViewControllers[currentIndex] = fromChildVC
             tmpViewControllers[fromIndex] = currentChildVC
             pagerTabStripChildViewControllersForScrolling = tmpViewControllers
-            containerView.setContentOffset(CGPoint(x: pageOffsetForChild(at: fromIndex), y: 0), animated: false)
+            containerView.setContentOffset(CGPoint(x: pageOffsetForChild(at: fromIndex), y: lastContentOffset.y), animated: false)
             (navigationController?.view ?? view).isUserInteractionEnabled = !animated
-            containerView.setContentOffset(CGPoint(x: pageOffsetForChild(at: index), y: 0), animated: true)
+            containerView.setContentOffset(CGPoint(x: pageOffsetForChild(at: index), y: lastContentOffset.y), animated: true)
         } else {
             (navigationController?.view ?? view).isUserInteractionEnabled = !animated
-            containerView.setContentOffset(CGPoint(x: pageOffsetForChild(at: index), y: 0), animated: animated)
+            containerView.setContentOffset(CGPoint(x: pageOffsetForChild(at: index), y: lastContentOffset.y), animated: animated)
         }
     }
 
@@ -304,7 +304,7 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if containerView == scrollView {
             updateContent()
-            lastContentOffset = scrollView.contentOffset.x
+            lastContentOffset = scrollView.contentOffset
         }
     }
 
@@ -394,7 +394,7 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
 
     private var pagerTabStripChildViewControllersForScrolling: [UIViewController]?
     private var lastPageNumber = 0
-    private var lastContentOffset: CGFloat = 0.0
+    private var lastContentOffset: CGPoint = .zero
     private var pageBeforeRotate = 0
     private var lastSize = CGSize(width: 0, height: 0)
     internal var isViewRotating = false

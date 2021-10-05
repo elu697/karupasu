@@ -20,12 +20,14 @@ final class BookmarkTabViewController: ButtonBarPagerTabStripViewController {
 
     private lazy var bookmarkCollectionViewController: BookmarkCollectionViewController = {
         let vc = BookmarkCollectionViewController()
+        vc.preferredContentSize = self.preferredContentSize
         vc.title = AppText.favorite()
         return vc
     }()
 
     private lazy var appliedCollectionViewController: AppliedCollectionViewController = {
         let vc = AppliedCollectionViewController()
+        vc.preferredContentSize = self.preferredContentSize
         vc.title = AppText.applying()
         return vc
     }()

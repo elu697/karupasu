@@ -9,7 +9,7 @@ import RxSwift
 import UIKit
 import Unio
 import IQKeyboardManagerSwift
-
+import Photos
 
 /// イベント企画
 final class EventCreateViewController: UIViewController {
@@ -52,6 +52,7 @@ final class EventCreateViewController: UIViewController {
         pickerViewController.delegate = self
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.keyboardDistanceFromTextField = 30
 
         setLeftBackBarButtonItem(image: AppImage.navi_back_blue())
         setNavigationBarTitleString(title: AppText.newEvent())
@@ -60,7 +61,34 @@ final class EventCreateViewController: UIViewController {
         eventCreateView.dummyTapView.rx.viewTap
             .subscribe { [weak self] (_) in
                 guard let self = self else { return }
-                self.present(self.pickerViewController, animated: true, completion: nil)
+                if PHPhotoLibrary.authorizationStatus() != .authorized {
+                    PHPhotoLibrary.requestAuthorization { status in
+                        if status == .authorized {
+                            DispatchQueue.main.async {
+                                self.present(self.pickerViewController, animated: true, completion: nil)
+                            }
+                        } else if status == .denied {
+                            // フォトライブラリへのアクセスが許可されていないため、アラートを表示する
+                            let alert = UIAlertController(title: "タイトル", message: "メッセージ", preferredStyle: .alert)
+                            let settingsAction = UIAlertAction(title: "設定", style: .default, handler: { (_) -> Void in
+                                guard let settingsURL = URL(string: UIApplication.openSettingsURLString ) else {
+                                    return
+                                }
+                                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                            })
+                            let closeAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+                            alert.addAction(settingsAction)
+                            alert.addAction(closeAction)
+                            DispatchQueue.main.async {
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.present(self.pickerViewController, animated: true, completion: nil)
+                    }
+                }
             }
             .disposed(by: disposeBag)
 
@@ -134,10 +162,14 @@ extension EventCreateViewController: UIImagePickerControllerDelegate, UINavigati
         self.eventCreateView.thumbnailImage.image = images
         self.eventCreateView.tapMessageLbl.isHidden = true
         self.viewStream.input.thumbnailSet(images)
-        picker.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            picker.dismiss(animated: true, completion: nil)
+        }
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            picker.dismiss(animated: true, completion: nil)
+        }
     }
 }
