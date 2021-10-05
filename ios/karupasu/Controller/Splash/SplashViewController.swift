@@ -14,9 +14,16 @@ final class SplashViewController: UIViewController {
     let viewStream: SplashViewStreamType = SplashViewStream()
     private let disposeBag = DisposeBag()
 
+    @IBOutlet weak var logoView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UIView.animate(withDuration: 10,  animations: { [weak self] in
+            for _ in 0...100 {
+                self?.logoView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/180*180)
+                self?.logoView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/180*360)
+            }
+        })
         /*
          *  EXAMPLE:
          *

@@ -8,6 +8,7 @@
 import RxSwift
 import UIKit
 import Unio
+import SVProgressHUD
 
 
 /// スプラッシュとかログインとかホームを切り替える用のRootVC
@@ -109,8 +110,10 @@ extension RootViewController {
                 self.transitionViewController(to: vc)
                 break
             case .error:
-                let vc = loginProcessViewController
-                self.transitionViewController(to: vc)
+                let vc = tabBarMenuViewController
+//                self.transitionViewController(to: vc)
+                SVProgressHUD.showError(withStatus: "エラー")
+                SVProgressHUD.dismiss(withDelay: 5)
                 break
             case .normal:
                 let vc = tabBarMenuViewController
