@@ -51,16 +51,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 //    }
 }
-
-struct Event: Codable {
-    let id: Int?
-    let title: String?
-    let image: String?
-    let favorite: Int?
-    let participation: Int?
-
-    let participants_count: Int?
-    let maximum_participants_count: Int?
-    let holding_method: Int? //0 オンライン
-    let genre_id: Int?
-}
+//
+//struct Event: Codable {
+//    let id: Int?
+//    let title: String?
+//    let image: String?
+//    let favorite: Int?
+//    let participation: Int?
+//
+//    let participants_count: Int?
+//    let maximum_participants_count: Int?
+//    let holding_method: Int? //0 オンライン
+//    let genre_id: Int?
+//}
