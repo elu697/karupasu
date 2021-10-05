@@ -164,10 +164,10 @@ class EventCreateView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(thumbnailImage)
-        addSubview(gradationView)
-        addSubview(effectView)
-        addSubview(tapMessageLbl)
-        addSubview(dummyTapView)
+        thumbnailImage.addSubview(gradationView)
+        thumbnailImage.addSubview(effectView)
+        thumbnailImage.addSubview(tapMessageLbl)
+        thumbnailImage.addSubview(dummyTapView)
 
         titleBaseView.addSubview(titleTxf)
         addSubview(titleBaseView)

@@ -16,7 +16,6 @@ target 'karupasu' do
   pod 'SwifterSwift'
 #  pod "Unio", :git => 'https://github.com/cats-oss/Unio.git'
   pod 'Unio', '~> 0.10.0'
-#  pod 'IHKeyboardAvoiding'
   pod "ESTabBarController-swift"
   pod 'pop', :git => 'https://github.com/facebook/pop.git'
   pod 'Moya/RxSwift', '~> 14.0'
@@ -27,6 +26,8 @@ target 'karupasu' do
   pod "Firebase"
   pod 'Firebase/Analytics'
   pod "Firebase/Storage"
+  
   pod 'TPKeyboardAvoiding'
   pod 'IHKeyboardAvoiding'
+  pod 'IQKeyboardManagerSwift'
 end

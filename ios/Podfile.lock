@@ -87,6 +87,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.6.1)
   - IHKeyboardAvoiding (4.7)
+  - IQKeyboardManagerSwift (6.5.6)
   - Kingfisher (6.3.1)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
@@ -152,6 +153,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Storage
   - IHKeyboardAvoiding
+  - IQKeyboardManagerSwift
   - Kingfisher
   - Moya/RxSwift (~> 14.0)
   - pop (from `https://github.com/facebook/pop.git`)
@@ -182,6 +184,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - IHKeyboardAvoiding
+    - IQKeyboardManagerSwift
     - Kingfisher
     - Moya
     - nanopb
@@ -223,6 +226,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 3df19e3c24f7bbc291d8b5809aa6b0d41e642437
   GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
   IHKeyboardAvoiding: 4cae0880c3975feffa278495df894c5166e71ad0
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
@@ -241,6 +245,6 @@ SPEC CHECKSUMS:
   Unio: d34bbf35f9d5fa355b9d16ea4da9df9cc73fb6c7
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: a7926baeef32d101ea42ef24fdc6786c246b27e0
+PODFILE CHECKSUM: f1adffd3d33d9abce309272cde537cb16774395a
 
 COCOAPODS: 1.10.2

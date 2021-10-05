@@ -8,6 +8,7 @@
 import RxSwift
 import UIKit
 import Unio
+import IQKeyboardManagerSwift
 
 
 /// イベント企画
@@ -49,6 +50,8 @@ final class EventCreateViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         pickerViewController.delegate = self
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
 
         setLeftBackBarButtonItem(image: AppImage.navi_back_blue())
         setNavigationBarTitleString(title: AppText.newEvent())
