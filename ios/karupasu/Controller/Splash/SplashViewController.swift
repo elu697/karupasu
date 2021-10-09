@@ -13,37 +13,39 @@ final class SplashViewController: UIViewController {
 
     let viewStream: SplashViewStreamType = SplashViewStream()
     private let disposeBag = DisposeBag()
+    private var splashFlag = false
+    private let animationTime = 2
 
     @IBOutlet weak var logoView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animate(withDuration: 10,  animations: { [weak self] in
-            for _ in 0...100 {
-                self?.logoView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/180*180)
-                self?.logoView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/180*360)
+    }
+    
+    private func animation() {
+        DispatchQueue.main.async { [weak self] in
+            UIView.animate(withDuration: .init(self?.animationTime ?? 0),  animations: {
+                for _ in 0...1 {
+                    self?.logoView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/180*180)
+                    self?.logoView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/180*360)
+                }
+            })
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        splashFlag = true
+        DispatchQueue.global().async { [weak self] in
+            while self?.splashFlag ?? false {
+                self?.animation()
+                sleep(UInt32(self?.animationTime ?? 0))
             }
-        })
-        /*
-         *  EXAMPLE:
-         *
-         *  let input = viewStream.input
-         *
-         *  button.rx.tap
-         *      .bind(to: input.accept(for: \.buttonTap))
-         *      .disposed(by: disposeBag)
-         */
-
-        /*
-         *  EXAMPLE:
-         *
-         *  let output = viewStream.output
-         *
-         *  output.observable(for: \.isEnabled)
-         *      .bind(to: button.rx.isEnabled)
-         *      .disposed(by: disposeBag)
-         *
-         *  print("rawValue of isEnabled = \(output.value(for: \.isEnabled))")
-         */
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        splashFlag = false
     }
 }

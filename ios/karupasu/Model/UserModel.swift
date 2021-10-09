@@ -67,6 +67,26 @@ class UserModel {
         }
     }
 
+    
+    func logoutAccount() -> (Observable<Bool>) {
+        return .create { [weak self] (observer) -> Disposable in
+            if let self = self {
+                UsereProvider.shared.rx.request(.signOut)
+                    .subscribe { response in
+                        if response.statusCode == 200 {
+                            observer.onNext(true)
+                        } else {
+                            observer.onNext(false)
+                        }
+                    } onError: { error in
+                        observer.onNext(false)
+                    }
+                    .disposed(by: self.disposeBag)
+            }
+            return Disposables.create()
+        }
+    }
+
     func checkTeamId(teamCode: String) -> (Observable<Bool>) {
         return .create { [weak self] (observer) -> Disposable in
             if let self = self {
@@ -175,11 +195,9 @@ class UserModel {
                             self.accessToken.accept(accessToken)
                             observer.onNext(true)
                         } else {
-                            self.clearUserData().subscribe { _ in }.disposed(by: self.disposeBag)
                             observer.onNext(false)
                         }
                     } onError: { (errir) in
-                        self.clearUserData().subscribe { _ in }.disposed(by: self.disposeBag)
                         observer.onNext(false)
                     }.disposed(by: self.disposeBag)
             }

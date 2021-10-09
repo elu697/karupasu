@@ -66,6 +66,9 @@ final class RootViewController: UIViewController, UIPopoverPresentationControlle
                         me.switchViewType(type: .login)
                     case .error(let type):
                         me.switchViewType(type: .error(type: type))
+                        DispatchQueue.main.asyncAfter(deadline: .now()+5) {
+                            input.launchApp(())
+                        }
                 }
             }
             .disposed(by: disposeBag)
@@ -92,7 +95,9 @@ final class RootViewController: UIViewController, UIPopoverPresentationControlle
             }
             .disposed(by: disposeBag)
 
-        input.launchApp(())
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            input.launchApp(())
+        }
     }
 }
 
