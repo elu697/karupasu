@@ -24,8 +24,16 @@ target 'karupasu' do
   pod 'SVProgressHUD'
   
   pod "Firebase"
-  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
   pod "Firebase/Storage"
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Performance'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/InAppMessaging'
+  pod 'Firebase/AppDistribution'
+  pod 'Firebase/RemoteConfig'
   
   pod 'TPKeyboardAvoiding'
   pod 'IHKeyboardAvoiding'
