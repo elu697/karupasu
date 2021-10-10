@@ -53,7 +53,6 @@ final class EventFilterViewController: UITableViewController {
     private lazy var configureCell: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, FilterSectionModel>>.ConfigureCell = { [weak self] (dataSource, tableView, indexPath, item) in
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FilterTableViewCell else { return .init() }
         cell.selectionStyle = .none
-        cell.isCheck = false
         cell.titleLbl.text = item.title
         return cell
     }

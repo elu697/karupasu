@@ -105,7 +105,7 @@ extension EventDetailViewStream {
                         }
                 } onError: { (error) in
                     }
-                    .disposed(by: disposeBag)
+                .disposed(by: disposeBag)
             }
             .disposed(by: disposeBag)
 

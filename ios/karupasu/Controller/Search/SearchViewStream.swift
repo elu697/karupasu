@@ -86,7 +86,6 @@ extension SearchViewStream {
                 extra.karupasu.eventModel.getEvents(word: keyword, genreId: genre, holdingMethod: place)
                     .subscribe {
                         (events) in
-                        print(events)
                         eventViewstream.input.setEvents(events)
                 }
                 onError: { (error) in

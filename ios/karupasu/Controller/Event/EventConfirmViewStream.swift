@@ -77,7 +77,6 @@ extension EventConfirmViewStream {
                                 let isSuccess = event.title == data.0
                                 postResult.accept(isSuccess)
                         } onError: { (error) in
-                                print(error)
                                 postResult.accept(false)
                             }.disposed(by: disposeBag)
                     })

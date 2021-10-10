@@ -16,9 +16,9 @@ class EventModel {
         let prefecture: Int //0 オンライン
         let isJoined: Int
         let participantsCount: Int
-        let maxParticipantsCount: Int?
         let participantsNames: [String]
-
+        var maxParticipantsCount: Int? // 仕方なくvar
+        
         private enum CodingKeys: String, CodingKey {
             case prefecture = "prefecture_id"
             case isJoined = "participation"

@@ -98,7 +98,6 @@ class UserModel {
                         if response.statusCode == 200 {
                             let json = try? response.mapJSON(failsOnEmptyData: true) as? [String: Any]
                             if let teamId: Int = json?["id"] as? Int {
-                                print(teamId)
                                 var ud = AppData()
                                 ud.teamId = teamId
                                 self.teamId.accept(teamId)
