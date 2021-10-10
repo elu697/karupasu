@@ -53,14 +53,15 @@ extension EventDetailViewStream {
         let input = dependency.inputObservables
         let state = dependency.state
         let eventModel = dependency.extra.karupasu.eventModel
+        let karupasu = dependency.extra.karupasu
 
         let reloadView = PublishRelay<EventModel.Event>()
         let reloadTable = PublishRelay<EventModel.Event>()
         let showConfirm = PublishRelay<EventModel.Event>()
 
         input.setEvent
-            .withLatest(from: Karupasu.shared.prefectureModel.prefectures)
-            .withLatest(from: Karupasu.shared.genreModel.genres)
+            .withLatest(from: karupasu.prefectureModel.prefectures)
+            .withLatest(from: karupasu.genreModel.genres)
             .map { $0.0 }
             .subscribe({ (event) in
                 guard let event = event.element else { return }

@@ -98,6 +98,6 @@ extension UsereProvider: TargetType {
     }
 
     var validationType: ValidationType {
-        return .successCodes
+        return .none
     }
 }

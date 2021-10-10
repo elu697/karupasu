@@ -59,12 +59,15 @@ class UserModel {
         }
     }
 
-    func clearUserData() -> (Observable<Bool>) {
-        return .create { (observer) -> Disposable in
-            AppData.resetALL()
-            observer.onNext(true)
-            return Disposables.create()
-        }
+    func clearUserData(){
+        AppData.resetALL()
+        let ud = AppData()
+        teamId.accept(ud.teamId)
+        name.accept(ud.userName)
+        email.accept(ud.userMailAddress)
+        uid.accept(ud.uid)
+        client.accept(ud.client)
+        accessToken.accept(ud.accessToken)
     }
 
     
@@ -194,10 +197,13 @@ class UserModel {
                             self.client.accept(client)
                             self.accessToken.accept(accessToken)
                             observer.onNext(true)
+                        } else if response.statusCode == 400 || response.statusCode == 401 {
+                            self.clearUserData()
+                            observer.onNext(false)
                         } else {
                             observer.onNext(false)
                         }
-                    } onError: { (errir) in
+                    } onError: { (error) in
                         observer.onNext(false)
                     }.disposed(by: self.disposeBag)
             }

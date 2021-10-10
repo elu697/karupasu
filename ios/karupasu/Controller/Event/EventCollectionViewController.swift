@@ -138,6 +138,12 @@ class EventCollectionViewController: UICollectionViewController {
             .disposed(by: disposeBag)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        karupasu.prefectureModel.fetchPrefecture()
+        karupasu.genreModel.fetchGenre()
+    }
 
     private func showDetail(event: EventModel.Event) {
         eventDetailViewController.viewStream.input.setEvent(event)

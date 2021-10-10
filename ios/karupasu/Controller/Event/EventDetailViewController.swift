@@ -60,7 +60,7 @@ final class EventDetailViewController: UIViewController {
     private lazy var configureCell: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MemberSectionModel>>.ConfigureCell = { [weak self] (dataSource, tableView, indexPath, item) in
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MemberTableViewCell else { return .init() }
         cell.selectionStyle = .none
-        cell.titleView.prefectureLbl.text = PrefectureModel.shared.getSafePrefectureTitle(id: item.item.0.prefecture)
+        cell.titleView.prefectureLbl.text = Karupasu.shared.prefectureModel.getSafePrefectureTitle(id: item.item.0.prefecture)
         cell.titleView.memberLbl.text = "\(item.item.0.participantsCount)人/\(item.item.1)"
         cell.titleView.messageLbl.text = "あと\(item.item.1 - item.item.0.participantsCount)人で開催が決定します"
         cell.detailView.membersTextView.text = item.item.0.participantsNames.joined(separator: "\n")

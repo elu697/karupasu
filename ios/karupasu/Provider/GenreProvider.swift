@@ -18,7 +18,7 @@ enum GenreProvider {
         }
         let networkLoggerPlugin = NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))
         let plugins = [networkLoggerPlugin]
-        return MoyaProvider<GenreProvider>(stubClosure: stubClosure)
+        return MoyaProvider<GenreProvider>(stubClosure: stubClosure, plugins: plugins)
     }()
 }
 
@@ -63,6 +63,6 @@ extension GenreProvider: TargetType {
     }
 
     var validationType: ValidationType {
-        return .successCodes
+        return .none
     }
 }
