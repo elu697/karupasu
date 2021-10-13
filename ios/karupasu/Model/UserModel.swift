@@ -82,7 +82,7 @@ class UserModel {
                             observer.onNext(false)
                         }
                     } onError: { error in
-                        observer.onNext(false)
+                        observer.onError(error)
                     }
                     .disposed(by: self.disposeBag)
             }
@@ -107,7 +107,7 @@ class UserModel {
                             observer.onNext(false)
                         }
                     }, onError: { (error) in
-                        observer.onNext(false)
+                        observer.onError(error)
                     })
                     .disposed(by: self.disposeBag)
             }
@@ -134,7 +134,7 @@ class UserModel {
                                 observer.onNext(false)
                             }
                     } onError: { (error) in
-                            observer.onNext(false)
+                        observer.onError(error)
                         }.disposed(by: self.disposeBag)
                 } else {
                     observer.onNext(false)
@@ -167,8 +167,8 @@ class UserModel {
                         } else {
                             observer.onNext(false)
                         }
-                } onError: { (errir) in
-                        observer.onNext(false)
+                } onError: { (error) in
+                    observer.onError(error)
                     }.disposed(by: self.disposeBag)
             }
             return Disposables.create()
@@ -203,7 +203,7 @@ class UserModel {
                             observer.onNext(false)
                         }
                     } onError: { (error) in
-                        observer.onNext(false)
+                        observer.onError(error)
                     }.disposed(by: self.disposeBag)
             }
             return Disposables.create()

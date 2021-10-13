@@ -54,17 +54,17 @@ extension FirstTeamViewStream {
                     invalid.accept("コードを入力してください")
                     return
                 }
-                karupasu.userModel.checkTeamId(teamCode: text).subscribe { (event) in
-                    guard let isCorrect = event.element else {
-                        invalid.accept("通信エラー")
-                        return
-                    }
+                
+                karupasu.userModel.checkTeamId(teamCode: text).subscribe { isCorrect in
                     if isCorrect {
                         next.accept(())
                     } else {
                         invalid.accept("コードが無効です")
                     }
-                }.disposed(by: disposeBag)
+                } onError: { error in
+                    invalid.accept("通信エラー")
+                }
+                .disposed(by: disposeBag)
             }
             .disposed(by: disposeBag)
 
