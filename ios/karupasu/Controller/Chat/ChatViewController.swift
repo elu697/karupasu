@@ -9,9 +9,8 @@ import RxSwift
 import UIKit
 import Unio
 
-
 /// トーク画面
-final class ChatViewController: UIViewController {
+final class ChatViewController: UITableViewController {
 
     let viewStream: ChatViewStreamType = ChatViewStream()
     private let disposeBag = DisposeBag()
@@ -20,5 +19,6 @@ final class ChatViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = AppText.talkroom()
+        
     }
 }

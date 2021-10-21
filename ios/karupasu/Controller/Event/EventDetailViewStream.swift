@@ -119,8 +119,13 @@ extension EventDetailViewStream {
         input.reloadView
             .subscribe { _ in
                 guard let model = state.currentEvent.value else { return }
-                reloadView.accept(model)
-                reloadTable.accept(model)
+                eventModel.getEventDetails(eventId: model.id)
+                    .subscribe { (event) in
+                        state.currentEvent.accept(event)
+                        reloadView.accept(event)
+                        reloadTable.accept(event)
+                    } onError: { (error) in
+                    }.disposed(by: disposeBag)
             }
             .disposed(by: disposeBag)
 

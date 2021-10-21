@@ -141,7 +141,7 @@ final class EventDetailViewController: UIViewController {
         eventApplyViewController.viewStream.output.success
             .subscribe { [weak self] (event) in
                 guard let me = self, let event = event.element else { return }
-                me.viewStream.input.setEvent(event)
+                me.viewStream.input.reloadView(())
             }.disposed(by: disposeBag)
 
         // 多分RxSwiftのバグ?でLayout warningでるから応急処置
