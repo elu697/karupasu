@@ -74,11 +74,7 @@ static NSString *const kMethodNameLatestStartTime =
     if (result[@RCNExperimentTableKeyPayload]) {
       [strongSelf->_experimentPayloads removeAllObjects];
       for (NSData *experiment in result[@RCNExperimentTableKeyPayload]) {
-        NSError *error;
-        id experimentPayloadJSON = [NSJSONSerialization JSONObjectWithData:experiment
-                                                                   options:kNilOptions
-                                                                     error:&error];
-        if (!experimentPayloadJSON || error) {
+        if (![NSJSONSerialization isValidJSONObject:experiment]) {
           FIRLogWarning(kFIRLoggerRemoteConfig, @"I-RCN000031",
                         @"Experiment payload could not be parsed as JSON.");
         } else {
@@ -115,7 +111,7 @@ static NSString *const kMethodNameLatestStartTime =
   }
 }
 
-- (void)updateExperimentsWithHandler:(void (^)(NSError *_Nullable))handler {
+- (void)updateExperiments {
   FIRLifecycleEvents *lifecycleEvent = [[FIRLifecycleEvents alloc] init];
 
   // Get the last experiment start time prior to the latest payload.
@@ -124,13 +120,15 @@ static NSString *const kMethodNameLatestStartTime =
 
   // Update the last experiment start time with the latest payload.
   [self updateExperimentStartTime];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   [self.experimentController
       updateExperimentsWithServiceOrigin:kServiceOrigin
                                   events:lifecycleEvent
                                   policy:ABTExperimentPayloadExperimentOverflowPolicyDiscardOldest
                            lastStartTime:lastStartTime
-                                payloads:_experimentPayloads
-                       completionHandler:handler];
+                                payloads:_experimentPayloads];
+#pragma clang diagnostic pop
 }
 
 - (void)updateExperimentStartTime {

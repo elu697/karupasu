@@ -18,10 +18,9 @@
 
 #import <sys/utsname.h>
 
-#import <GoogleUtilities/GULAppEnvironmentUtil.h>
-#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 #import "FirebaseRemoteConfig/Sources/Private/RCNConfigSettings.h"
 #import "FirebaseRemoteConfig/Sources/RCNConfigConstants.h"
+#import "GoogleUtilities/Environment/Private/GULAppEnvironmentUtil.h"
 
 #define STR(x) STR_EXPAND(x)
 #define STR_EXPAND(x) #x
@@ -42,7 +41,7 @@ NSString *FIRRemoteConfigAppBuildVersion() {
 }
 
 NSString *FIRRemoteConfigPodVersion() {
-  return FIRFirebaseVersion();
+  return [NSString stringWithUTF8String:STR(FIRRemoteConfig_VERSION)];
 }
 
 RCNDeviceModel FIRRemoteConfigDeviceSubtype() {
@@ -60,7 +59,7 @@ NSString *FIRRemoteConfigDeviceCountry() {
   return [[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode] lowercaseString];
 }
 
-NSDictionary<NSString *, NSArray *> *FIRRemoteConfigFirebaseLocaleMap(void) {
+NSDictionary<NSString *, NSArray *> *FIRRemoteConfigFirebaseLocaleMap() {
   return @{
     // Albanian
     @"sq" : @[ @"sq_AL" ],
@@ -180,7 +179,7 @@ NSDictionary<NSString *, NSArray *> *FIRRemoteConfigFirebaseLocaleMap(void) {
   };
 }
 
-NSArray<NSString *> *FIRRemoteConfigAppManagerLocales(void) {
+NSArray<NSString *> *FIRRemoteConfigAppManagerLocales() {
   NSMutableArray *locales = [NSMutableArray array];
   NSDictionary<NSString *, NSArray *> *localesMap = FIRRemoteConfigFirebaseLocaleMap();
   for (NSString *key in localesMap) {
@@ -188,7 +187,7 @@ NSArray<NSString *> *FIRRemoteConfigAppManagerLocales(void) {
   }
   return locales;
 }
-NSString *FIRRemoteConfigDeviceLocale(void) {
+NSString *FIRRemoteConfigDeviceLocale() {
   NSArray<NSString *> *locales = FIRRemoteConfigAppManagerLocales();
   NSArray<NSString *> *preferredLocalizations =
       [NSBundle preferredLocalizationsFromArray:locales
@@ -198,7 +197,7 @@ NSString *FIRRemoteConfigDeviceLocale(void) {
   return legalDocsLanguage ? legalDocsLanguage : @"en";
 }
 
-NSString *FIRRemoteConfigTimezone(void) {
+NSString *FIRRemoteConfigTimezone() {
   NSTimeZone *timezone = [NSTimeZone systemTimeZone];
   return timezone.name;
 }

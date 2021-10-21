@@ -15,7 +15,7 @@
  */
 
 #import <TargetConditionals.h>
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS
 
 #import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 
@@ -206,4 +206,4 @@ static NSInteger const SuccessHTTPStatusCode = 200;
 
 @end
 
-#endif  // TARGET_OS_IOS || TARGET_OS_TV
+#endif  // TARGET_OS_IOS

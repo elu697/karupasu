@@ -15,7 +15,7 @@
  */
 
 #import <TargetConditionals.h>
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS
 
 #import <UIKit/UIKit.h>
 #import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
@@ -102,7 +102,7 @@ static NSString *FIRIAM_UserDefaultsKeyForNextValidClearcutUploadTimeInMills =
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
 #if defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
-    if (@available(iOS 13.0, tvOS 13.0, *)) {
+    if (@available(iOS 13.0, *)) {
       [[NSNotificationCenter defaultCenter] addObserver:self
                                                selector:@selector(scheduleNextSendFromForeground:)
                                                    name:UISceneWillEnterForegroundNotification
@@ -245,4 +245,4 @@ static NSString *FIRIAM_UserDefaultsKeyForNextValidClearcutUploadTimeInMills =
 
 @end
 
-#endif  // TARGET_OS_IOS || TARGET_OS_TV
+#endif  // TARGET_OS_IOS

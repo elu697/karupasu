@@ -39,7 +39,7 @@ NSString *const kResponseReleasesKey = @"releases";
                      FIRInstallationsAuthTokenResult *_Nullable authTokenResult,
                      NSError *_Nullable error) {
     if ([self handleError:&error
-              description:@"Failed to generate Firebase installation auth token."
+              description:@"Failed to generate Firebase Installation Auth Token."
                      code:FIRFADApiTokenGenerationFailure]) {
       FIRFADErrorLog(@"Error getting fresh auth tokens. Error: %@", [error localizedDescription]);
 
@@ -47,20 +47,20 @@ NSString *const kResponseReleasesKey = @"releases";
       return;
     }
 
-    [installations
-      installationIDWithCompletion:^(NSString *__nullable identifier, NSError *__nullable error) {
-        if ([self handleError:&error
-                  description:@"Failed to fetch Firebase Installation ID."
-                         code:FIRFADApiInstallationIdentifierError]) {
-          FIRFADErrorLog(@"Error getting installation id. Error: %@", [error localizedDescription]);
+    [installations installationIDWithCompletion:^(NSString *__nullable identifier,
+                                                  NSError *__nullable error) {
+      if ([self handleError:&error
+                description:@"Failed to fetch Firebase Installation ID."
+                       code:FIRFADApiInstallationIdentifierError]) {
+        FIRFADErrorLog(@"Error getting installation id. Error: %@", [error localizedDescription]);
 
-          completion(nil, nil, error);
+        completion(nil, nil, error);
 
-          return;
-        }
+        return;
+      }
 
-        completion(identifier, authTokenResult, nil);
-      }];
+      completion(identifier, authTokenResult, nil);
+    }];
   }];
 }
 
@@ -79,10 +79,6 @@ NSString *const kResponseReleasesKey = @"releases";
 }
 
 + (NSString *)tryParseGoogleAPIErrorFromResponse:(NSData *)data {
-  if (!data) {
-    return @"No data in response.";
-  }
-
   NSError *parseError;
   NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data
                                                                options:0
@@ -155,6 +151,7 @@ NSString *const kResponseReleasesKey = @"releases";
     return [self handleError:error
                  description:@"Unknown http error occurred"
                         code:FIRApiErrorUnknownFailure];
+    ;
   }
 
   if ([httpResponse statusCode] != 200) {

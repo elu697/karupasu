@@ -15,7 +15,7 @@
  */
 
 #import <TargetConditionals.h>
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS
 
 #import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 
@@ -262,4 +262,4 @@ static NSTimeInterval kMaxFetchWaitTimeInSeconds = 3 * 24 * 60 * 60;
 }
 @end
 
-#endif  // TARGET_OS_IOS || TARGET_OS_TV
+#endif  // TARGET_OS_IOS

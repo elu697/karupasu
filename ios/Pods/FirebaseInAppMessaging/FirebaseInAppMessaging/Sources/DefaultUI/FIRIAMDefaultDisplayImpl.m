@@ -17,6 +17,8 @@
 #import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
+#import <Foundation/Foundation.h>
+
 #import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 
 #import "FirebaseInAppMessaging/Sources/DefaultUI/Banner/FIRIAMBannerViewController.h"
@@ -28,6 +30,7 @@
 #import "FirebaseInAppMessaging/Sources/DefaultUI/Modal/FIRIAMModalViewController.h"
 #import "FirebaseInAppMessaging/Sources/Private/Util/FIRIAMTimeFetcher.h"
 #import "FirebaseInAppMessaging/Sources/Public/FirebaseInAppMessaging/FIRInAppMessaging.h"
+#import "FirebaseInAppMessaging/Sources/Public/FirebaseInAppMessaging/FIRInAppMessagingRendering.h"
 
 @implementation FIRIAMDefaultDisplayImpl
 
@@ -50,28 +53,14 @@
 + (NSBundle *)getViewResourceBundle {
   static NSBundle *resourceBundle;
   static dispatch_once_t onceToken;
-  Class myClass = [self class];
 
   dispatch_once(&onceToken, ^{
-    NSString *bundledResource;
-
-    // When using SPM, Xcode scopes resources to a target, creating a bundle.
-#if SWIFT_PACKAGE
-    // FIAM only provides default UIs for iOS. FIAM for tvOS will not attempt to provide a default
-    // display.
-    bundledResource = @"Firebase_FirebaseInAppMessaging_iOS";
-#else
-    bundledResource = @"InAppMessagingDisplayResources";
-#endif  // SWIFT_PACKAGE
-
-    NSBundle *containingBundle;
-    NSURL *bundleURL;
-    // The containing bundle is different whether FIAM is statically or dynamically linked.
-    for (containingBundle in @[ [NSBundle mainBundle], [NSBundle bundleForClass:myClass] ]) {
-      bundleURL = [containingBundle URLForResource:bundledResource withExtension:@"bundle"];
-      if (bundleURL != nil) break;
-    }
-
+    // TODO. This logic of finding the resource bundle may need to change once it's open
+    // sourced
+    NSBundle *containingBundle = [NSBundle mainBundle];
+    // This is assuming the display resource bundle is contained in the main bundle
+    NSURL *bundleURL = [containingBundle URLForResource:@"InAppMessagingDisplayResources"
+                                          withExtension:@"bundle"];
     if (bundleURL == nil) {
       FIRLogWarning(kFIRLoggerInAppMessagingDisplay, @"I-FID100007",
                     @"FIAM Display Resource bundle "
@@ -124,7 +113,7 @@
       return;
     }
 
-    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper windowForBlockingView];
+    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper UIWindowForModalView];
     displayUIWindow.rootViewController = cardVC;
     [displayUIWindow setHidden:NO];
   });
@@ -161,7 +150,7 @@
       return;
     }
 
-    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper windowForBlockingView];
+    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper UIWindowForModalView];
     displayUIWindow.rootViewController = modalVC;
     [displayUIWindow setHidden:NO];
   });
@@ -198,7 +187,7 @@
       return;
     }
 
-    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper windowForNonBlockingView];
+    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper UIWindowForBannerView];
     displayUIWindow.rootViewController = bannerVC;
     [displayUIWindow setHidden:NO];
   });
@@ -236,7 +225,7 @@
       return;
     }
 
-    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper windowForBlockingView];
+    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper UIWindowForImageOnlyView];
     displayUIWindow.rootViewController = imageOnlyVC;
     [displayUIWindow setHidden:NO];
   });

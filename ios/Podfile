@@ -7,6 +7,7 @@ target 'karupasu' do
   use_frameworks!
 
   # Pods for karupasu
+  # Core
   pod 'R.swift'
   pod 'RxSwift', '~> 5.0'
   pod 'RxCocoa', '~> 5.0'
@@ -22,7 +23,11 @@ target 'karupasu' do
   pod 'XLPagerTabStrip'#, '~> 9.0'
   pod 'Kingfisher'
   pod 'SVProgressHUD'
+  pod 'IQKeyboardManagerSwift'
+  pod 'MessageKit', '~> 3.3.0'
+  pod 'MessageInputBar'
   
+  # Firebase
   pod "Firebase"
   pod 'Firebase/Auth'
   pod "Firebase/Storage"
@@ -34,8 +39,4 @@ target 'karupasu' do
   pod 'Firebase/InAppMessaging'
   pod 'Firebase/AppDistribution'
   pod 'Firebase/RemoteConfig'
-  
-  pod 'TPKeyboardAvoiding'
-  pod 'IHKeyboardAvoiding'
-  pod 'IQKeyboardManagerSwift'
 end

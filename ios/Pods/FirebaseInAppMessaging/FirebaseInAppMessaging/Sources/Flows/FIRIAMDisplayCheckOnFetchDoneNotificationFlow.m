@@ -15,7 +15,7 @@
  */
 
 #import <TargetConditionals.h>
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS
 
 #import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 
@@ -64,4 +64,4 @@ extern NSString *const kFIRIAMFetchIsDoneNotification;
 }
 @end
 
-#endif  // TARGET_OS_IOS || TARGET_OS_TV
+#endif  // TARGET_OS_IOS

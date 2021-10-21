@@ -15,7 +15,7 @@
  */
 
 #import <TargetConditionals.h>
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS
 
 #import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 #import "FirebaseInstallations/Source/Library/Private/FirebaseInstallationsInternal.h"
@@ -55,31 +55,31 @@
     return;
   }
 
-  [self.installations
-    authTokenWithCompletion:^(FIRInstallationsAuthTokenResult *_Nullable tokenResult,
-                              NSError *_Nullable error) {
-      if (error) {
-        FIRLogWarning(kFIRLoggerInAppMessaging, @"I-IAM190006", @"Error in fetching FIS token: %@",
-                      error.localizedDescription);
-        completion(nil, nil, error);
-      } else {
-        FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM190007", @"Successfully generated FIS token");
+  [self.installations authTokenWithCompletion:^(
+                          FIRInstallationsAuthTokenResult *_Nullable tokenResult,
+                          NSError *_Nullable error) {
+    if (error) {
+      FIRLogWarning(kFIRLoggerInAppMessaging, @"I-IAM190006", @"Error in fetching FIS token: %@",
+                    error.localizedDescription);
+      completion(nil, nil, error);
+    } else {
+      FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM190007", @"Successfully generated FIS token");
 
-        [self.installations installationIDWithCompletion:^(NSString *_Nullable identifier,
-                                                           NSError *_Nullable error) {
-          if (error) {
-            FIRLogWarning(kFIRLoggerInAppMessaging, @"I-IAM190008", @"Error in fetching FID: %@",
-                          error.localizedDescription);
-            completion(nil, tokenResult.authToken, error);
-          } else {
-            FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM190009",
-                        @"Successfully in fetching both FID as %@ and FIS token as %@", identifier,
-                        tokenResult.authToken);
-            completion(identifier, tokenResult.authToken, nil);
-          }
-        }];
-      }
-    }];
+      [self.installations
+          installationIDWithCompletion:^(NSString *_Nullable identifier, NSError *_Nullable error) {
+            if (error) {
+              FIRLogWarning(kFIRLoggerInAppMessaging, @"I-IAM190008", @"Error in fetching FID: %@",
+                            error.localizedDescription);
+              completion(nil, tokenResult.authToken, error);
+            } else {
+              FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM190009",
+                          @"Successfully in fetching both FID as %@ and FIS token as %@",
+                          identifier, tokenResult.authToken);
+              completion(identifier, tokenResult.authToken, nil);
+            }
+          }];
+    }
+  }];
 }
 
 - (nullable NSString *)getDeviceLanguageCode {
@@ -127,10 +127,14 @@
   return [NSTimeZone localTimeZone].name;
 }
 
+// extract macro value into a C string
+#define STR_FROM_MACRO(x) #x
+#define STR(x) STR_FROM_MACRO(x)
+
 - (NSString *)getIAMSDKVersion {
   // FIRInAppMessaging_LIB_VERSION macro comes from pod definition
-  return FIRFirebaseVersion();
+  return [NSString stringWithUTF8String:STR(FIRInAppMessaging_LIB_VERSION)];
 }
 @end
 
-#endif  // TARGET_OS_IOS || TARGET_OS_TV
+#endif  // TARGET_OS_IOS

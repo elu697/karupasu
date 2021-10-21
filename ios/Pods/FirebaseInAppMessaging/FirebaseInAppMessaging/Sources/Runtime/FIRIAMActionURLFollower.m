@@ -15,7 +15,7 @@
  */
 
 #import <TargetConditionals.h>
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -23,7 +23,6 @@
 #import "FirebaseInAppMessaging/Sources/FIRCore+InAppMessaging.h"
 #import "FirebaseInAppMessaging/Sources/Private/Runtime/FIRIAMActionURLFollower.h"
 
-NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS extensions.")
 @interface FIRIAMActionURLFollower ()
 @property(nonatomic, readonly, nonnull, copy) NSSet<NSString *> *appCustomURLSchemesSet;
 @property(nonatomic, readonly) BOOL isOldAppDelegateOpenURLDefined;
@@ -34,7 +33,6 @@ NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS ext
 @property(nonatomic, readonly, nonnull) UIApplication *mainApplication;
 @end
 
-NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS extensions.")
 @implementation FIRIAMActionURLFollower
 
 + (FIRIAMActionURLFollower *)actionURLFollower {
@@ -158,7 +156,26 @@ NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS ext
   if (self.isNewAppDelegateOpenURLDefined) {
     FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM210008",
                 @"iOS 9+ version of App Delegate's application:openURL:options: method detected");
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
     return [self.appDelegate application:self.mainApplication openURL:url options:@{}];
+#pragma clang pop
+  }
+
+  // if we come here, we can try to trigger the older version of openURL method on the app's
+  // delegate
+  if (self.isOldAppDelegateOpenURLDefined) {
+    FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM240009",
+                @"iOS 9 below version of App Delegate's openURL method detected");
+    NSString *appBundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    BOOL handled = [self.appDelegate application:self.mainApplication
+                                         openURL:url
+                               sourceApplication:appBundleIdentifier
+                                      annotation:@{}];
+#pragma clang pop
+    return handled;
   }
 
   FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM240010",
@@ -212,6 +229,11 @@ NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS ext
           FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM240006", @"openURL result is %d", success);
           completion(success);
         }];
+  } else {
+    // fallback to the older version of openURL
+    BOOL success = [self.mainApplication openURL:url];
+    FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM240007", @"openURL result is %d", success);
+    completion(success);
   }
 }
 
@@ -227,4 +249,4 @@ NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS ext
 }
 @end
 
-#endif  // TARGET_OS_IOS || TARGET_OS_TV
+#endif  // TARGET_OS_IOS

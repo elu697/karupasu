@@ -111,8 +111,6 @@
   self.bodyTextView.text = self.cardDisplayMessage.body;
   self.bodyTextView.textColor = self.cardDisplayMessage.textColor;
 
-  self.imageView.accessibilityLabel = self.inAppMessage.campaignInfo.campaignName;
-
   [self.primaryActionButton setTitle:self.cardDisplayMessage.primaryActionButton.buttonText
                             forState:UIControlStateNormal];
   [self.primaryActionButton
@@ -148,13 +146,6 @@
 
   self.textAreaScrollView.contentSize = self.bodyTextView.frame.size;
   [self.textAreaScrollView setContentOffset:CGPointZero];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-
-  // Announce via VoiceOver that the card message has appeared. Highlight the title label.
-  UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.titleLabel);
 }
 
 @end

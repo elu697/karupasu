@@ -15,7 +15,7 @@
  */
 
 #import <TargetConditionals.h>
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS
 
 #import "FirebaseInAppMessaging/Sources/Public/FirebaseInAppMessaging/FIRInAppMessaging.h"
 
@@ -44,8 +44,15 @@ static BOOL _autoBootstrapOnFIRAppInit = YES;
   _autoBootstrapOnFIRAppInit = NO;
 }
 
+// extract macro value into a C string
+#define STR_FROM_MACRO(x) #x
+#define STR(x) STR_FROM_MACRO(x)
+
 + (void)load {
-  [FIRApp registerInternalLibrary:(Class<FIRLibrary>)self withName:@"fire-fiam"];
+  [FIRApp
+      registerInternalLibrary:(Class<FIRLibrary>)self
+                     withName:@"fire-fiam"
+                  withVersion:[NSString stringWithUTF8String:STR(FIRInAppMessaging_LIB_VERSION)]];
 }
 
 + (nonnull NSArray<FIRComponent *> *)componentsToRegister {
@@ -145,4 +152,4 @@ static BOOL _autoBootstrapOnFIRAppInit = YES;
 
 @end
 
-#endif  // TARGET_OS_IOS || TARGET_OS_TV
+#endif  // TARGET_OS_IOS

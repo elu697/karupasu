@@ -57,10 +57,4 @@ typedef NS_ENUM(NSInteger, RCNDBSource) {
                   toSource:(RCNDBSource)source
               forNamespace:(NSString *)FIRNamespace;
 
-/// Sets the fetched Personalization metadata to active.
-- (void)activatePersonalization;
-
-/// Gets the active config and Personalization metadata.
-- (NSDictionary *)getConfigAndMetadataForNamespace:(NSString *)FIRNamespace;
-
 @end

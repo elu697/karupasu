@@ -476,10 +476,17 @@
 		89D82D1926CBA61A00481B32 /* karupasu */ = {
 			isa = PBXGroup;
 			children = (
+				89D82D2326CBA61B00481B32 /* Assets.xcassets */,
 				89E991B3270C467A00B267CF /* karupasuRelease.entitlements */,
 				89E197FA270C338500CECA8B /* karupasu.entitlements */,
 				89F5A4FF26DBE787004E124B /* GoogleService-Info.plist */,
+				89D82D2826CBA61B00481B32 /* Info.plist */,
 				89D82D7126CC1E5900481B32 /* R.generated.swift */,
+				89D82D1A26CBA61A00481B32 /* AppDelegate.swift */,
+				89D82D1C26CBA61A00481B32 /* SceneDelegate.swift */,
+				89D82D1E26CBA61A00481B32 /* ViewController.swift */,
+				89D82D2026CBA61A00481B32 /* Main.storyboard */,
+				89D82D2526CBA61B00481B32 /* LaunchScreen.storyboard */,
 				89BE229A26D652B700580DDF /* Library */,
 				89D82D5326CC1AB000481B32 /* Extention */,
 				89D82D5C26CC1C7F00481B32 /* Util */,
@@ -488,13 +495,6 @@
 				89D82D6226CC1D4400481B32 /* Model */,
 				89D82D6126CC1D3B00481B32 /* View */,
 				89D82D6326CC1D4900481B32 /* Controller */,
-				89D82D1A26CBA61A00481B32 /* AppDelegate.swift */,
-				89D82D1C26CBA61A00481B32 /* SceneDelegate.swift */,
-				89D82D1E26CBA61A00481B32 /* ViewController.swift */,
-				89D82D2026CBA61A00481B32 /* Main.storyboard */,
-				89D82D2326CBA61B00481B32 /* Assets.xcassets */,
-				89D82D2526CBA61B00481B32 /* LaunchScreen.storyboard */,
-				89D82D2826CBA61B00481B32 /* Info.plist */,
 			);
 			path = karupasu;
 			sourceTree = "<group>";
@@ -678,6 +678,7 @@
 				89D82D1426CBA61A00481B32 /* Frameworks */,
 				89D82D1526CBA61A00481B32 /* Resources */,
 				1572FD1415ABBF254F14766D /* [CP] Embed Pods Frameworks */,
+				5C4DC3CC6FED6391BA56CDC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -765,6 +766,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5C4DC3CC6FED6391BA56CDC8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		89D82D3926CBA75800481B32 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -778,7 +796,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

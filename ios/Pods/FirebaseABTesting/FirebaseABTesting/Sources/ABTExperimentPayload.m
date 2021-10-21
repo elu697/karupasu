@@ -60,7 +60,7 @@ static NSString *const kExperimentPayloadKeyOngoingExperiments = @"ongoingExperi
   return dateFormatter;
 }
 
-+ (nullable instancetype)parseFromData:(NSData *)data {
++ (instancetype)parseFromData:(NSData *)data {
   NSError *error;
   NSDictionary *experimentDictionary =
       [NSJSONSerialization JSONObjectWithData:data
