@@ -21,8 +21,8 @@
 		89A4EA8326CD91EE002D0424 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA8126CD91EE002D0424 /* BaseNavigationViewController.swift */; };
 		89A4EA8426CD91EE002D0424 /* BaseNavigationViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA8226CD91EE002D0424 /* BaseNavigationViewStream.swift */; };
 		89A4EA8826CD9347002D0424 /* TabBarCenterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA8726CD9347002D0424 /* TabBarCenterItemView.swift */; };
-		89A4EA9326CDAB52002D0424 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9126CDAB52002D0424 /* ChatViewController.swift */; };
-		89A4EA9426CDAB52002D0424 /* ChatViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9226CDAB52002D0424 /* ChatViewStream.swift */; };
+		89A4EA9326CDAB52002D0424 /* TalkRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9126CDAB52002D0424 /* TalkRoomViewController.swift */; };
+		89A4EA9426CDAB52002D0424 /* TalkRoomViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9226CDAB52002D0424 /* TalkRoomViewStream.swift */; };
 		89A4EA9A26CDAB68002D0424 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9826CDAB68002D0424 /* AccountViewController.swift */; };
 		89A4EA9B26CDAB68002D0424 /* AccountViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9926CDAB68002D0424 /* AccountViewStream.swift */; };
 		89AC05D226DA1708004B8A91 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC05D126DA1708004B8A91 /* UserProvider.swift */; };
@@ -87,6 +87,10 @@
 		89BE241B26D8D4CD00580DDF /* EventGenreSelectViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE241926D8D4CD00580DDF /* EventGenreSelectViewStream.swift */; };
 		89BE241F26D8D4E300580DDF /* EventPlaceSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE241D26D8D4E300580DDF /* EventPlaceSelectViewController.swift */; };
 		89BE242026D8D4E300580DDF /* EventPlaceSelectViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE241E26D8D4E300580DDF /* EventPlaceSelectViewStream.swift */; };
+		89CCBAFA27215CB6004E6958 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAF927215CB6004E6958 /* ChatModel.swift */; };
+		89CCBAFD2721D8A9004E6958 /* TalkRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAFC2721D8A9004E6958 /* TalkRoomTableViewCell.swift */; };
+		89CCBB002723438F004E6958 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAFE2723438F004E6958 /* TalkViewController.swift */; };
+		89CCBB012723438F004E6958 /* TalkViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAFF2723438F004E6958 /* TalkViewStream.swift */; };
 		89D82D1B26CBA61A00481B32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D1A26CBA61A00481B32 /* AppDelegate.swift */; };
 		89D82D1D26CBA61A00481B32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D1C26CBA61A00481B32 /* SceneDelegate.swift */; };
 		89D82D1F26CBA61A00481B32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D1E26CBA61A00481B32 /* ViewController.swift */; };
@@ -143,8 +147,8 @@
 		89A4EA8126CD91EE002D0424 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		89A4EA8226CD91EE002D0424 /* BaseNavigationViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewStream.swift; sourceTree = "<group>"; };
 		89A4EA8726CD9347002D0424 /* TabBarCenterItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCenterItemView.swift; sourceTree = "<group>"; };
-		89A4EA9126CDAB52002D0424 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		89A4EA9226CDAB52002D0424 /* ChatViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewStream.swift; sourceTree = "<group>"; };
+		89A4EA9126CDAB52002D0424 /* TalkRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRoomViewController.swift; sourceTree = "<group>"; };
+		89A4EA9226CDAB52002D0424 /* TalkRoomViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRoomViewStream.swift; sourceTree = "<group>"; };
 		89A4EA9826CDAB68002D0424 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		89A4EA9926CDAB68002D0424 /* AccountViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewStream.swift; sourceTree = "<group>"; };
 		89AC05D126DA1708004B8A91 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
@@ -210,6 +214,10 @@
 		89BE241926D8D4CD00580DDF /* EventGenreSelectViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGenreSelectViewStream.swift; sourceTree = "<group>"; };
 		89BE241D26D8D4E300580DDF /* EventPlaceSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceSelectViewController.swift; sourceTree = "<group>"; };
 		89BE241E26D8D4E300580DDF /* EventPlaceSelectViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceSelectViewStream.swift; sourceTree = "<group>"; };
+		89CCBAF927215CB6004E6958 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		89CCBAFC2721D8A9004E6958 /* TalkRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRoomTableViewCell.swift; sourceTree = "<group>"; };
+		89CCBAFE2723438F004E6958 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
+		89CCBAFF2723438F004E6958 /* TalkViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewStream.swift; sourceTree = "<group>"; };
 		89D82D1726CBA61A00481B32 /* karupasu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = karupasu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D82D1A26CBA61A00481B32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89D82D1C26CBA61A00481B32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -346,8 +354,10 @@
 		89A4EA9026CDAB43002D0424 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				89A4EA9126CDAB52002D0424 /* ChatViewController.swift */,
-				89A4EA9226CDAB52002D0424 /* ChatViewStream.swift */,
+				89A4EA9126CDAB52002D0424 /* TalkRoomViewController.swift */,
+				89A4EA9226CDAB52002D0424 /* TalkRoomViewStream.swift */,
+				89CCBAFE2723438F004E6958 /* TalkViewController.swift */,
+				89CCBAFF2723438F004E6958 /* TalkViewStream.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -453,6 +463,14 @@
 			path = Bookmark;
 			sourceTree = "<group>";
 		};
+		89CCBAFB2721D88E004E6958 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				89CCBAFC2721D8A9004E6958 /* TalkRoomTableViewCell.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		89D82D0E26CBA61A00481B32 = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +547,7 @@
 		89D82D6126CC1D3B00481B32 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				89CCBAFB2721D88E004E6958 /* Chat */,
 				89BE232126D672EB00580DDF /* Bookmark */,
 				89BE227726D5FAFC00580DDF /* Filter */,
 				89BE221026D00F8C00580DDF /* Navigation */,
@@ -550,6 +569,7 @@
 				89BE226E26D4BE5E00580DDF /* PrefectureModel.swift */,
 				89BE227126D4BE7600580DDF /* GenreModel.swift */,
 				89BE227426D5E64900580DDF /* PlaceModel.swift */,
+				89CCBAF927215CB6004E6958 /* ChatModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -796,7 +816,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -853,7 +873,9 @@
 				89BE21E926CF7CA300580DDF /* EventCollectionViewController.swift in Sources */,
 				89D82E6826CD0E6C00481B32 /* RegistrationViewStream.swift in Sources */,
 				89D82D7526CC1E8700481B32 /* UIColorEx.swift in Sources */,
+				89CCBB012723438F004E6958 /* TalkViewStream.swift in Sources */,
 				89BE229726D64A1A00580DDF /* UIImageViewEx.swift in Sources */,
+				89CCBAFA27215CB6004E6958 /* ChatModel.swift in Sources */,
 				89BE227226D4BE7600580DDF /* GenreModel.swift in Sources */,
 				89BE23FC26D77A0C00580DDF /* MemberTitileView.swift in Sources */,
 				89BE241626D82B8F00580DDF /* OptionTableViewCell.swift in Sources */,
@@ -878,7 +900,7 @@
 				89BE22FA26D6565200580DDF /* EventOptionSelectViewController.swift in Sources */,
 				89A4EA8426CD91EE002D0424 /* BaseNavigationViewStream.swift in Sources */,
 				897CBF1826CE627C0039FA30 /* FirstTeamView.swift in Sources */,
-				89A4EA9326CDAB52002D0424 /* ChatViewController.swift in Sources */,
+				89A4EA9326CDAB52002D0424 /* TalkRoomViewController.swift in Sources */,
 				89D82E5926CCE7B500481B32 /* SearchViewStream.swift in Sources */,
 				89BE23FF26D77A1900580DDF /* MemberDetailView.swift in Sources */,
 				89D82DED26CCC7E400481B32 /* RootViewController.swift in Sources */,
@@ -904,13 +926,14 @@
 				89D82E5826CCE7B500481B32 /* SearchViewController.swift in Sources */,
 				89BE222426D011C200580DDF /* SearchNavigationBar.swift in Sources */,
 				89BE23E726D777F000580DDF /* MemberTableViewCell.swift in Sources */,
+				89CCBAFD2721D8A9004E6958 /* TalkRoomTableViewCell.swift in Sources */,
 				89BE21E226CF6ADC00580DDF /* AppDelegateEx.swift in Sources */,
 				89D82E8A26CD27BD00481B32 /* UIFontEx.swift in Sources */,
 				89D82E6726CD0E6C00481B32 /* RegistrationViewController.swift in Sources */,
 				89BE220B26CFF65B00580DDF /* EventModel.swift in Sources */,
 				89323CB526CEA0F3009B01E1 /* LoginView.swift in Sources */,
 				89BE222826D01C3700580DDF /* EventFilterViewController.swift in Sources */,
-				89A4EA9426CDAB52002D0424 /* ChatViewStream.swift in Sources */,
+				89A4EA9426CDAB52002D0424 /* TalkRoomViewStream.swift in Sources */,
 				89BE222926D01C3700580DDF /* EventFilterViewStream.swift in Sources */,
 				89BE226726D2C7DB00580DDF /* GradationView.swift in Sources */,
 				89D82D7826CC1EAE00481B32 /* UIViewControllerEx.swift in Sources */,
@@ -923,6 +946,7 @@
 				89D82D7226CC1E5900481B32 /* R.generated.swift in Sources */,
 				89D82E2626CCDCE900481B32 /* FirstTeamViewStream.swift in Sources */,
 				89BE232326D672FB00580DDF /* BookmarkTabView.swift in Sources */,
+				89CCBB002723438F004E6958 /* TalkViewController.swift in Sources */,
 				89D82E6F26CD0EDA00481B32 /* EventDetailViewController.swift in Sources */,
 				89BE241A26D8D4CD00580DDF /* EventGenreSelectViewController.swift in Sources */,
 				89BE22C926D652D400580DDF /* SemiModalDismissInteractiveTransition.swift in Sources */,

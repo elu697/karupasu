@@ -18,6 +18,7 @@ final public class Karupasu {
     private(set) lazy var prefectureModel: PrefectureModel = .shared
     private(set) lazy var genreModel: GenreModel = .shared
     private(set) lazy var placeModel: PlaceModel = .shared
+    private(set) lazy var chatModel: ChatModel = .shared
     
     private(set) lazy var screen: CGRect = UIScreen.main.bounds
     private(set) lazy var statusBarHeight = UIApplication.shared.statusBarFrame.height
@@ -31,6 +32,7 @@ final public class Karupasu {
         _ = prefectureModel
         _ = genreModel
         _ = placeModel
+        _ = chatModel
     }
 }
 
