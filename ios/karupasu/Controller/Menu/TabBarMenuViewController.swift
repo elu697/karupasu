@@ -32,10 +32,12 @@ final class TabBarMenuViewController: ESTabBarController {
 
     private lazy var talkRoomViewController = {
         return TalkRoomViewController()
+//        return RecentChatsTVC()
     }()
 
     private lazy var accountViewController = {
         return AccountViewController()
+//        return SettingsTVC()
     }()
 
     init(rootViewStream: RootViewStreamType) {

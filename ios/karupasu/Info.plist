@@ -60,10 +60,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your media library</string>
 	<key>NSCameraUsageDescription</key>
-	<string>写真の撮影のため</string>
+	<string>$(PRODUCT_NAME) would like to use your camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your location</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your mic</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>投稿用写真の選択のため</string>
+	<string>$(PRODUCT_NAME) would like to use your photo library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansJP-Regular.otf</string>
@@ -71,8 +77,10 @@
 	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents - 2</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

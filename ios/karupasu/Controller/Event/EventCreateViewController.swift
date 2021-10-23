@@ -10,6 +10,7 @@ import UIKit
 import Unio
 import IQKeyboardManagerSwift
 import Photos
+import SVProgressHUD
 
 /// イベント企画
 final class EventCreateViewController: UIViewController {
@@ -57,6 +58,7 @@ final class EventCreateViewController: UIViewController {
         setLeftBackBarButtonItem(image: AppImage.navi_back_blue())
         setNavigationBarTitleString(title: AppText.newEvent())
         eventCreateView.gradationView.setGradation()
+        setSwipeBack()
 
         eventCreateView.dummyTapView.rx.viewTap
             .subscribe { [weak self] (_) in
@@ -150,6 +152,14 @@ final class EventCreateViewController: UIViewController {
                 guard let data = event.element else { return }
                 self.eventConfirmViewController.viewStream.input.setData(data)
                 self.navigationController?.pushViewController(self.eventConfirmViewController, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        viewStream.output.showError
+            .subscribe { [weak self] (event) in
+                guard let errorDis = event.element else { return }
+                SVProgressHUD.showError(withStatus: errorDis)
+                SVProgressHUD.dismiss(withDelay: 1)
             }
             .disposed(by: disposeBag)
     }

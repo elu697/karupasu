@@ -9,7 +9,7 @@ import RxSwift
 import UIKit
 import Unio
 import SVProgressHUD
-import FirebaseAppDistribution
+//import FirebaseAppDistribution
 
 /// スプラッシュとかログインとかホームを切り替える用のRootVC
 final class RootViewController: UIViewController, UIPopoverPresentationControllerDelegate {
@@ -111,23 +111,23 @@ extension RootViewController {
     }
     
     private func checkFirebase(ok: @escaping (Bool) -> ()) {
-        AppDistribution.appDistribution().checkForUpdate(completion: { release, error in
-            guard let release = release else {
-                return
-            }
-            let title = "New Version Available"
-            let message = "Version \(release.displayVersion)(\(release.buildVersion)) is available."
-            let uialert = UIAlertController(title: title,message: message, preferredStyle: .alert)
-            
-            uialert.addAction(UIAlertAction(title: "Update", style: UIAlertAction.Style.default) {
-                _ in
-                UIApplication.shared.open(release.downloadURL)
-            })
-            uialert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
-                _ in
-            })
-            self.present(uialert, animated: true, completion: nil)
-        })
+//        AppDistribution.appDistribution().checkForUpdate(completion: { release, error in
+//            guard let release = release else {
+//                return
+//            }
+//            let title = "New Version Available"
+//            let message = "Version \(release.displayVersion)(\(release.buildVersion)) is available."
+//            let uialert = UIAlertController(title: title,message: message, preferredStyle: .alert)
+//            
+//            uialert.addAction(UIAlertAction(title: "Update", style: UIAlertAction.Style.default) {
+//                _ in
+//                UIApplication.shared.open(release.downloadURL)
+//            })
+//            uialert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
+//                _ in
+//            })
+//            self.present(uialert, animated: true, completion: nil)
+//        })
         ok(true)
     }
 

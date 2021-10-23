@@ -2,7 +2,7 @@
 //  TalkViewStream.swift
 //  karupasu
 //
-//  Created by El You on 2021/10/23.
+//  Created by El You on 2021/10/24.
 //
 
 import RxCocoa

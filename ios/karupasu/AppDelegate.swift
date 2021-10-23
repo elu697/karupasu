@@ -18,23 +18,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow? = nil
     let karupasu: Karupasu = .shared
     let disposeBag = DisposeBag()
+    var firstRun: Bool?
 
     override init() {
         super.init()
-        karupasu.setup()
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        SVProgressHUD.setDefaultMaskType(.clear)
+        karupasu.setup()
+        
         // Override point for customization after application launch.
         let window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window = window
         self.window?.makeKeyAndVisible()
         self.window?.rootViewController = RootViewController()
-        
-        SVProgressHUD.setDefaultMaskType(.clear)
-        FirebaseApp.configure()
+
         return true
     }
+    
 
 //
 //    // MARK: UISceneSession Lifecycle

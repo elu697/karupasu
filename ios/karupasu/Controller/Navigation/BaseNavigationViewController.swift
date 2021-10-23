@@ -29,6 +29,7 @@ final class BaseNavigationViewController: UINavigationController {
         }
         
         super.viewDidLoad()
+        self.isNavigationBarHidden = false
         self.navigationBar.barTintColor = .white
         self.navigationBar.backgroundColor = .white
         self.navigationBar.titleTextAttributes = [

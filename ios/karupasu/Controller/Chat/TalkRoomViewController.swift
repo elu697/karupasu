@@ -12,7 +12,6 @@ import UIKit
 import Unio
 
 
-
 enum RoomSectionModel: IdentifiableType, Equatable {
     case room(data: ChatModel.Room)
     
@@ -59,6 +58,11 @@ final class TalkRoomViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -96,8 +100,14 @@ final class TalkRoomViewController: UITableViewController {
     }
     
     func showTalk(room: ChatModel.Room) {
-        let viewController = TalkViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+
+        // Chatは実装コスト間に合わなそうだからとりあえずOSS使う．
+        // データはRxで流してbindする
+        let vc = TalkViewController(roomId: String(room.roomId))
+        vc.setNavigationBarTitleString(title: room.title)
+        hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+        hidesBottomBarWhenPushed = false
     }
 }
 

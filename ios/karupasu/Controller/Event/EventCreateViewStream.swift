@@ -36,6 +36,7 @@ extension EventCreateViewStream {
 
     struct Output: OutputType {
         let checkData: Observable<(String, Int, PlaceModel.Place, GenreModel.Genre, UIImage)>
+        let showError: Observable<String>
     }
 
     struct State: StateType {
@@ -51,6 +52,7 @@ extension EventCreateViewStream {
         let state = dependency.state
 
         let checkData = PublishRelay<(String, Int, PlaceModel.Place, GenreModel.Genre, UIImage)>()
+        let showError = PublishRelay<String>()
 
         Observable.combineLatest(input.titleEdit.asObservable(),
                                  input.memberEdit.asObservable(),
@@ -74,10 +76,13 @@ extension EventCreateViewStream {
                     let member = event.element?.1,
                     let place = event.element?.2,
                     let genre = event.element?.3,
-                    let thumbnail = event.element?.4 else { return }
+                    let thumbnail = event.element?.4 else {
+                        showError.accept("全項目を埋めてください")
+                        return }
                 checkData.accept((title, member, place, genre, thumbnail))
             }.disposed(by: disposeBag)
         return Output(
-            checkData: checkData.asObservable())
+            checkData: checkData.asObservable(),
+            showError: showError.asObservable())
     }
 }

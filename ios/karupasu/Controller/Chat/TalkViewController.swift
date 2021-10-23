@@ -2,258 +2,49 @@
 //  TalkViewController.swift
 //  karupasu
 //
-//  Created by El You on 2021/10/23.
+//  Created by El You on 2021/10/24.
 //
 
 import RxSwift
 import UIKit
 import Unio
 import MessageKit
+import MessageInputBar
 import InputBarAccessoryView
+import CoreLocation
 
 
-class TalkViewController: MessagesViewController {
+private struct LocationMessageItem: LocationItem {
     
-    var messageList: [MockMessage] = [] {
-        didSet {
-            // messagesCollectionViewをリロード
-            self.messagesCollectionView.reloadData()
-            // 一番下までスクロールする
-            self.messagesCollectionView.scrollToLastItem()
-        }
-    }
+    var location: CLLocation
+    var size: CGSize
     
-    lazy var formatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.locale = Locale(identifier: "ja_JP")
-        return formatter
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        DispatchQueue.main.async {
-            // モックデータを取得
-            self.messageList = MockMessage.getMessages()
-        }
-        
-        
-        messagesCollectionView.messagesDataSource = self
-        messagesCollectionView.messagesLayoutDelegate = self
-        messagesCollectionView.messagesDisplayDelegate = self
-        messagesCollectionView.messageCellDelegate = self
-        messageInputBar.delegate = self
-        
-        setupInput()
-        setupButton()
-        // 背景の色を指定
-        messagesCollectionView.backgroundColor = .darkGray
-        
-        // メッセージ入力時に一番下までスクロール
-        scrollsToLastItemOnKeyboardBeginsEditing = true
-        maintainPositionOnKeyboardFrameChanged = true
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    private func setupInput(){
-        // プレースホルダーの指定
-        messageInputBar.inputTextView.placeholder = "入力"
-        // 入力欄のカーソルの色を指定
-        messageInputBar.inputTextView.tintColor = .red
-        // 入力欄の色を指定
-        messageInputBar.inputTextView.backgroundColor = .white
-    }
-    
-    private func setupButton(){
-        // ボタンの変更
-        messageInputBar.sendButton.title = "送信"
-        // 送信ボタンの色を指定
-        messageInputBar.sendButton.tintColor = .lightGray
+    init(location: CLLocation) {
+        self.location = location
+        self.size = CGSize(width: 240, height: 240)
     }
 }
 
-// MARK: - MessagesDataSource
-extension TalkViewController: MessagesDataSource {
-    func currentSender() -> SenderType {
-        return userType.me.data
-    }
+private struct MediaMessageItem: MediaItem {
     
-    func otherSender() -> SenderType {
-        return userType.you.data
-    }
+    var url: URL?
+    var image: UIImage?
+    var placeholderImage: UIImage
+    var size: CGSize
     
-    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return messageList.count
-    }
-    
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return messageList[indexPath.section]
-    }
-    
-    // メッセージの上に文字を表示
-    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        if indexPath.section % 3 == 0 {
-            return NSAttributedString(
-                string: MessageKitDateFormatter.shared.string(from: message.sentDate),
-                attributes: [
-                    .font: UIFont.boldSystemFont(ofSize: 10),
-                    .foregroundColor: UIColor.darkGray
-                ]
-            )
-        }
-        return nil
-    }
-    
-    // メッセージの上に文字を表示（名前）
-    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        let name = message.sender.displayName
-        return NSAttributedString(string: name, attributes: [.font: UIFont.preferredFont(forTextStyle: .caption1)])
-    }
-    
-    // メッセージの下に文字を表示（日付）
-    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        let dateString = formatter.string(from: message.sentDate)
-        return NSAttributedString(string: dateString, attributes: [.font: UIFont.preferredFont(forTextStyle: .caption2)])
+    init(image: UIImage) {
+        self.image = image
+        self.size = CGSize(width: 240, height: 240)
+        self.placeholderImage = UIImage()
     }
 }
 
-// MARK: - MessagesDisplayDelegate
-extension TalkViewController: MessagesDisplayDelegate {
-    
-    // メッセージの色を変更
-    func textColor(
-        for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView
-    ) -> UIColor {
-        isFromCurrentSender(message: message) ? .white : .darkText
-    }
-    
-    // メッセージの背景色を変更している
-    func backgroundColor(
-        for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView
-    ) -> UIColor {
-        isFromCurrentSender(message: message) ? .darkGray : .cyan
-    }
-    
-    // メッセージの枠にしっぽを付ける
-    func messageStyle(
-        for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView
-    ) -> MessageStyle {
-        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-        return .bubbleTail(corner, .curved)
-    }
-    
-    // アイコンをセット
-    func configureAvatarView(
-        _ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView
-    ) {
-        avatarView.set( avatar: Avatar(initials: message.sender.senderId == "001" ? "😊" : "🥳") )
-    }
-}
-
-
-// 各ラベルの高さを設定（デフォルト0なので必須）
-// MARK: - MessagesLayoutDelegate
-extension TalkViewController: MessagesLayoutDelegate {
-    
-    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        indexPath.section % 3 == 0 ? 10 : 0
-    }
-    
-    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        16
-    }
-    
-    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        16
-    }
-}
-
-// MARK: - MessageCellDelegate
-extension TalkViewController: MessageCellDelegate {
-    
-    //MARK: - Cellのバックグラウンドをタップした時の処理
-    func didTapBackground(in cell: MessageCollectionViewCell) {
-        print("バックグラウンドタップ")
-        closeKeyboard()
-    }
-    
-    //MARK: - メッセージをタップした時の処理
-    func didTapMessage(in cell: MessageCollectionViewCell) {
-        print("メッセージタップ")
-        closeKeyboard()
-    }
-    
-    //MARK: - アバターをタップした時の処理
-    func didTapAvatar(in cell: MessageCollectionViewCell) {
-        print("アバタータップ")
-        closeKeyboard()
-    }
-    
-    //MARK: - メッセージ上部をタップした時の処理
-    func didTapMessageTopLabel(in cell: MessageCollectionViewCell) {
-        print("メッセージ上部タップ")
-        closeKeyboard()
-    }
-    
-    //MARK: - メッセージ下部をタップした時の処理
-    func didTapMessageBottomLabel(in cell: MessageCollectionViewCell) {
-        print("メッセージ下部タップ")
-        closeKeyboard()
-    }
-}
-
-// MARK: - InputBarAccessoryViewDelegate
-extension TalkViewController: InputBarAccessoryViewDelegate {
-    // 送信ボタンをタップした時の挙動
-    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        let attributedText = NSAttributedString(
-            string: text, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.white])
-        let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-        self.messageList.append(message)
-        
-        self.messageInputBar.inputTextView.text = String()
-        self.messageInputBar.invalidatePlugins()
-        self.messagesCollectionView.scrollToLastItem()
-    }
-    
-}
-
-extension TalkViewController {
-    func closeKeyboard(){
-        self.messageInputBar.inputTextView.resignFirstResponder()
-        self.messagesCollectionView.scrollToLastItem()
-    }
-}
-
-struct User: SenderType {
-    var senderId: String
-    let displayName: String
-}
-
-enum userType {
-    case me
-    case you
-    
-    var data: SenderType {
-        switch self {
-            case .me:
-                return User(senderId: "001", displayName: "Me")
-            case .you:
-                return User(senderId: "002", displayName: "You")
-        }
-    }
-}
-
-struct MockMessage: MessageType {
-    
-    var messageId: String
+fileprivate struct Message: MessageType {
     var sender: SenderType
+    var messageId: String
     var sentDate: Date
     var kind: MessageKind
+    // opt
     
     private init(kind: MessageKind, sender: SenderType, messageId: String, date: Date) {
         self.kind = kind
@@ -270,22 +61,333 @@ struct MockMessage: MessageType {
         self.init(kind: .attributedText(attributedText), sender: sender, messageId: messageId, date: date)
     }
     
-    // サンプル用に適当なメッセージ
-    static func getMessages() -> [MockMessage] {
-        return [
-            createMessage(text: "おはよう", user: .me),
-            createMessage(text: "wwwwww", user: .me),
-            createMessage(text: "おはようございます", user: .you),
-            createMessage(text: "wwww", user: .me),
-            createMessage(text: "草", user: .you),
-        ]
+    init(image: UIImage, sender: SenderType, messageId: String, date: Date) {
+        let mediaItem = MediaMessageItem(image: image)
+        self.init(kind: .photo(mediaItem), sender: sender, messageId: messageId, date: date)
     }
     
-    static func createMessage(text: String, user: userType) -> MockMessage {
-        let attributedText = NSAttributedString(
-            string: text,
-            attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.black]
-        )
-        return MockMessage(attributedText: attributedText, sender: user.data, messageId: UUID().uuidString, date: Date())
+    init(thumbnail: UIImage, sender: SenderType, messageId: String, date: Date) {
+        let mediaItem = MediaMessageItem(image: thumbnail)
+        self.init(kind: .video(mediaItem), sender: sender, messageId: messageId, date: date)
     }
+    
+    init(location: CLLocation, sender: SenderType, messageId: String, date: Date) {
+        let locationItem = LocationMessageItem(location: location)
+        self.init(kind: .location(locationItem), sender: sender, messageId: messageId, date: date)
+    }
+    
+    init(emoji: String, sender: SenderType, messageId: String, date: Date) {
+        self.init(kind: .emoji(emoji), sender: sender, messageId: messageId, date: date)
+    }
+}
+
+fileprivate struct Sender: SenderType {
+    public let senderId: String
+    public let displayName: String
+//    var userImagePath: String
+}
+
+// 時間無いのでアーキテクチャ無視．
+final class TalkViewController: MessagesViewController {
+    let viewStream: TalkViewStreamType = TalkViewStream()
+    private let disposeBag = DisposeBag()
+    private var messages: [Message] = []
+    
+    init(roomId: String) {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        setLeftBackBarButtonItem(image: AppImage.navi_back_blue())
+        setSwipeBack()
+
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
+        messagesCollectionView.messageCellDelegate = self
+        messageInputBar.delegate = self
+        messageInputBar.sendButton.title = ""
+        messageInputBar.sendButton.image = AppImage.button_send()
+//        messageInputBar.toolbarPlaceholder = "メッセージを入力"
+        // メッセージ入力時に一番下までスクロール
+        scrollsToBottomOnKeyboardBeginsEditing = true
+        scrollsToLastItemOnKeyboardBeginsEditing = true
+        maintainPositionOnKeyboardFrameChanged = true // default false
+        let msg = NSAttributedString(
+            string: "おめでとうございます!\n参加者が集まったため開催が決定しました!",
+            attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14),
+                         NSAttributedString.Key.foregroundColor: UIColor.appMain]
+        )
+        messages.append(.init(attributedText: msg, sender: Sender(senderId: "admin", displayName: "マッチマッチ"), messageId: UUID().uuidString, date: .init()))
+        
+        messages.append(.init(text: "よろしくお願いします!", sender: Sender(senderId: "coffee", displayName: "珈琲"), messageId: UUID().uuidString, date: .init()))
+    }
+}
+
+// messagesDataSource
+extension TalkViewController: MessagesDataSource {
+    func currentSender() -> SenderType {
+        let id = karupasu.userModel.uid.value
+        let name = karupasu.userModel.name.value
+        return Sender(senderId: id, displayName: name)
+    }
+
+    func isFromCurrentSender(message: MessageType) -> Bool {
+        return message.sender.senderId == karupasu.userModel.uid.value
+    }
+
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        return messages[indexPath.section]
+    }
+
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+        return messages.count
+    }
+
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        if indexPath.section % 3 == 0 {
+            return NSAttributedString(
+                string: MessageKitDateFormatter.shared.string(from: message.sentDate),
+                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
+                             NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+            )
+        }
+        return nil
+    }
+
+    func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        return nil
+    }
+
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        let name = message.sender.displayName
+        return NSAttributedString(string: name,
+                                  attributes: [NSAttributedString.Key.font: UIFont.appFontBoldOfSize(9)])
+    }
+
+    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        return nil
+    }
+
+    func messageTimestampLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        return nil
+    }
+
+//    func customCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
+//
+//    }
+
+//    func typingIndicator(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
+//
+//    }
+
+}
+
+// messagesLayoutDelegate
+extension TalkViewController: MessagesLayoutDelegate {
+//    func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//
+//    }
+
+//    func footerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//
+//    }
+
+//    func typingIndicatorViewSize(in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//
+//    }
+
+//    func typingIndicatorViewTopInset(in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+//
+//    }
+
+    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if indexPath.section % 3 == 0 { return 10 }
+        return 0
+    }
+
+//    func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+//
+//    }
+
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 16
+    }
+
+    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 16
+    }
+
+//    func customCellSizeCalculator(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CellSizeCalculator {
+//
+//    }
+
+}
+
+extension TalkViewController: MessagesDisplayDelegate {
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+        return .bubbleTail(corner, .curved)
+    }
+
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return isFromCurrentSender(message: message) ? .appMain : .appWhiteGray
+    }
+    
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return isFromCurrentSender(message: message) ? .white : .black
+    }
+
+//    func messageHeaderView(for indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageReusableView {
+//
+//    }
+
+//    func messageFooterView(for indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageReusableView {
+//
+//    }
+
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        let avatar = Avatar(initials: message.sender.displayName.first?.description ?? "?")
+        avatarView.set(avatar: avatar)
+    }
+
+//    func configureAccessoryView(_ accessoryView: UIView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+//
+//    }
+
+    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
+        return [.date, .address, .phoneNumber, .transitInformation, .url]
+    }
+
+//    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key : Any] {
+//
+//    }
+
+//    func snapshotOptionsForLocation(message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> LocationMessageSnapshotOptions {
+//
+//    }
+
+//    func annotationViewForLocation(message: MessageType, at indexPath: IndexPath, in messageCollectionView: MessagesCollectionView) -> MKAnnotationView? {
+        
+//    }
+
+//    func animationBlockForLocation(message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> ((UIImageView) -> Void)? {
+//
+//    }
+
+//    func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+//
+//    }
+
+//    func configureAudioCell(_ cell: AudioMessageCell, message: MessageType) {
+//
+//    }
+
+//    func audioTintColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+//
+//    }
+
+//    func audioProgressTextFormat(_ duration: Float, for audioCell: AudioMessageCell, in messageCollectionView: MessagesCollectionView) -> String {
+//
+//    }
+
+//    func configureLinkPreviewImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+//
+//    }
+
+}
+
+extension TalkViewController: MessageCellDelegate {
+//    func didTapBackground(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapMessage(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapAvatar(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapCellTopLabel(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapCellBottomLabel(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapMessageTopLabel(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapMessageBottomLabel(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapAccessoryView(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapImage(in cell: MessageCollectionViewCell) {
+//
+//    }
+//
+//    func didTapPlayButton(in cell: AudioMessageCell) {
+//
+//    }
+//
+//    func didStartAudio(in cell: AudioMessageCell) {
+//
+//    }
+//
+//    func didPauseAudio(in cell: AudioMessageCell) {
+//
+//    }
+//
+//    func didStopAudio(in cell: AudioMessageCell) {
+//
+//    }
+}
+
+extension TalkViewController: InputBarAccessoryViewDelegate {
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        for component in inputBar.inputTextView.components {
+            if let image = component as? UIImage {
+                
+                let imageMessage = Message(image: image, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                messages.append(imageMessage)
+                messagesCollectionView.insertSections([messages.count - 1])
+                
+            } else if let text = component as? String {
+                
+                let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15),
+                                                                                   .foregroundColor: UIColor.white])
+                let message = Message(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                messages.append(message)
+                messagesCollectionView.insertSections([messages.count - 1])
+            }
+        }
+        inputBar.inputTextView.text = String()
+        messagesCollectionView.scrollToBottom()
+    }
+//
+//    func inputBar(_ inputBar: InputBarAccessoryView, didChangeIntrinsicContentTo size: CGSize) {
+//
+//    }
+//
+//    func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
+//
+//    }
+//
+//    func inputBar(_ inputBar: InputBarAccessoryView, didSwipeTextViewWith gesture: UISwipeGestureRecognizer) {
+//
+//    }
 }

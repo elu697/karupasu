@@ -24,19 +24,31 @@ target 'karupasu' do
   pod 'Kingfisher'
   pod 'SVProgressHUD'
   pod 'IQKeyboardManagerSwift'
+
+  # Chat 実装コスト的にOSS参考
+  # https://github.com/instamobile/messenger-iOS-chat-swift-firestore
+  # https://github.com/artyommihailovich/ChatApp
+  # https://github.com/1amageek/Muni
+  # https://github.com/abdoelbattawy/ChatApp
   pod 'MessageKit', '~> 3.3.0'
   pod 'MessageInputBar'
-  
+  pod 'InputBarAccessoryView'
+  pod 'Gallery'
+#  pod 'RealmSwift'
+  pod 'SKPhotoBrowser'
+
   # Firebase
   pod "Firebase"
+  pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod "Firebase/Storage"
   pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Analytics'
   pod 'Firebase/Performance'
   pod 'Firebase/Messaging'
   pod 'Firebase/InAppMessaging'
-  pod 'Firebase/AppDistribution'
+#  pod 'Firebase/AppDistribution'
   pod 'Firebase/RemoteConfig'
 end

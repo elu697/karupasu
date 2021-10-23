@@ -89,14 +89,10 @@
 		89BE242026D8D4E300580DDF /* EventPlaceSelectViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE241E26D8D4E300580DDF /* EventPlaceSelectViewStream.swift */; };
 		89CCBAFA27215CB6004E6958 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAF927215CB6004E6958 /* ChatModel.swift */; };
 		89CCBAFD2721D8A9004E6958 /* TalkRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAFC2721D8A9004E6958 /* TalkRoomTableViewCell.swift */; };
-		89CCBB002723438F004E6958 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAFE2723438F004E6958 /* TalkViewController.swift */; };
-		89CCBB012723438F004E6958 /* TalkViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAFF2723438F004E6958 /* TalkViewStream.swift */; };
 		89D82D1B26CBA61A00481B32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D1A26CBA61A00481B32 /* AppDelegate.swift */; };
 		89D82D1D26CBA61A00481B32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D1C26CBA61A00481B32 /* SceneDelegate.swift */; };
 		89D82D1F26CBA61A00481B32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D1E26CBA61A00481B32 /* ViewController.swift */; };
-		89D82D2226CBA61A00481B32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89D82D2026CBA61A00481B32 /* Main.storyboard */; };
 		89D82D2426CBA61B00481B32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89D82D2326CBA61B00481B32 /* Assets.xcassets */; };
-		89D82D2726CBA61B00481B32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89D82D2526CBA61B00481B32 /* LaunchScreen.storyboard */; };
 		89D82D4F26CC1A2900481B32 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89D82D5126CC1A2900481B32 /* Localizable.strings */; };
 		89D82D5526CC1AE100481B32 /* RswiftEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D5426CC1AE100481B32 /* RswiftEx.swift */; };
 		89D82D5926CC1C3500481B32 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D5826CC1C3500481B32 /* AppConstants.swift */; };
@@ -128,6 +124,9 @@
 		89D82E9326CD344A00481B32 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89D82E9026CD344A00481B32 /* SplashViewController.storyboard */; };
 		89D82E9426CD344A00481B32 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82E9126CD344A00481B32 /* SplashViewController.swift */; };
 		89D82E9526CD344A00481B32 /* SplashViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82E9226CD344A00481B32 /* SplashViewStream.swift */; };
+		89E8FA0227247A8500B62280 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89E8FA0127247A8500B62280 /* Launch Screen.storyboard */; };
+		89E8FAD627258A7A00B62280 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8FAD427258A7A00B62280 /* TalkViewController.swift */; };
+		89E8FAD727258A7A00B62280 /* TalkViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8FAD527258A7A00B62280 /* TalkViewStream.swift */; };
 		89F5A50026DBE787004E124B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89F5A4FF26DBE787004E124B /* GoogleService-Info.plist */; };
 		89F5A50326DBED4C004E124B /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F5A50226DBED4C004E124B /* StringEx.swift */; };
 /* End PBXBuildFile section */
@@ -216,16 +215,12 @@
 		89BE241E26D8D4E300580DDF /* EventPlaceSelectViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceSelectViewStream.swift; sourceTree = "<group>"; };
 		89CCBAF927215CB6004E6958 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		89CCBAFC2721D8A9004E6958 /* TalkRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRoomTableViewCell.swift; sourceTree = "<group>"; };
-		89CCBAFE2723438F004E6958 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
-		89CCBAFF2723438F004E6958 /* TalkViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewStream.swift; sourceTree = "<group>"; };
 		89D82D1726CBA61A00481B32 /* karupasu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = karupasu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D82D1A26CBA61A00481B32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89D82D1C26CBA61A00481B32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		89D82D1E26CBA61A00481B32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		89D82D2326CBA61B00481B32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89D82D2826CBA61B00481B32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		89D82D4926CC19DA00481B32 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Main.storyboard; sourceTree = "<group>"; };
-		89D82D4A26CC19DC00481B32 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89D82D5026CC1A2900481B32 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		89D82D5426CC1AE100481B32 /* RswiftEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RswiftEx.swift; sourceTree = "<group>"; };
 		89D82D5826CC1C3500481B32 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -258,6 +253,9 @@
 		89D82E9126CD344A00481B32 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		89D82E9226CD344A00481B32 /* SplashViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewStream.swift; sourceTree = "<group>"; };
 		89E197FA270C338500CECA8B /* karupasu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = karupasu.entitlements; sourceTree = "<group>"; };
+		89E8FA0127247A8500B62280 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		89E8FAD427258A7A00B62280 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
+		89E8FAD527258A7A00B62280 /* TalkViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewStream.swift; sourceTree = "<group>"; };
 		89E991B3270C467A00B267CF /* karupasuRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = karupasuRelease.entitlements; sourceTree = "<group>"; };
 		89F5A4FF26DBE787004E124B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		89F5A50226DBED4C004E124B /* StringEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
@@ -356,8 +354,8 @@
 			children = (
 				89A4EA9126CDAB52002D0424 /* TalkRoomViewController.swift */,
 				89A4EA9226CDAB52002D0424 /* TalkRoomViewStream.swift */,
-				89CCBAFE2723438F004E6958 /* TalkViewController.swift */,
-				89CCBAFF2723438F004E6958 /* TalkViewStream.swift */,
+				89E8FAD427258A7A00B62280 /* TalkViewController.swift */,
+				89E8FAD527258A7A00B62280 /* TalkViewStream.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -503,8 +501,7 @@
 				89D82D1A26CBA61A00481B32 /* AppDelegate.swift */,
 				89D82D1C26CBA61A00481B32 /* SceneDelegate.swift */,
 				89D82D1E26CBA61A00481B32 /* ViewController.swift */,
-				89D82D2026CBA61A00481B32 /* Main.storyboard */,
-				89D82D2526CBA61B00481B32 /* LaunchScreen.storyboard */,
+				89E8FA0127247A8500B62280 /* Launch Screen.storyboard */,
 				89BE229A26D652B700580DDF /* Library */,
 				89D82D5326CC1AB000481B32 /* Extention */,
 				89D82D5C26CC1C7F00481B32 /* Util */,
@@ -753,16 +750,15 @@
 				89BE22C526D652D400580DDF /* LICENSE in Resources */,
 				89AC05EC26DAA246004B8A91 /* genres.json in Resources */,
 				89AC05EE26DAA246004B8A91 /* events_participants.json in Resources */,
-				89D82D2726CBA61B00481B32 /* LaunchScreen.storyboard in Resources */,
 				89D82D4F26CC1A2900481B32 /* Localizable.strings in Resources */,
 				89AC05E826DAA246004B8A91 /* event_details.json in Resources */,
 				89F5A50026DBE787004E124B /* GoogleService-Info.plist in Resources */,
+				89E8FA0227247A8500B62280 /* Launch Screen.storyboard in Resources */,
 				89D82D2426CBA61B00481B32 /* Assets.xcassets in Resources */,
 				89AC05EB26DAA246004B8A91 /* prefectures.json in Resources */,
 				89AC05EA26DAA246004B8A91 /* events_favorites.json in Resources */,
 				89D82E9326CD344A00481B32 /* SplashViewController.storyboard in Resources */,
 				89AC05ED26DAA246004B8A91 /* event_create.json in Resources */,
-				89D82D2226CBA61A00481B32 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,6 +854,7 @@
 				89D82E7D26CD116300481B32 /* EventConfirmViewController.swift in Sources */,
 				89323CAC26CE8EE2009B01E1 /* PaddingTextField.swift in Sources */,
 				89BE230626D6632500580DDF /* AppliedCollectionViewStream.swift in Sources */,
+				89E8FAD727258A7A00B62280 /* TalkViewStream.swift in Sources */,
 				89BE230526D6632500580DDF /* AppliedCollectionViewController.swift in Sources */,
 				89D82E2526CCDCE900481B32 /* FirstTeamViewController.swift in Sources */,
 				89BE228026D5FBE600580DDF /* FilterTableViewCell.swift in Sources */,
@@ -873,7 +870,6 @@
 				89BE21E926CF7CA300580DDF /* EventCollectionViewController.swift in Sources */,
 				89D82E6826CD0E6C00481B32 /* RegistrationViewStream.swift in Sources */,
 				89D82D7526CC1E8700481B32 /* UIColorEx.swift in Sources */,
-				89CCBB012723438F004E6958 /* TalkViewStream.swift in Sources */,
 				89BE229726D64A1A00580DDF /* UIImageViewEx.swift in Sources */,
 				89CCBAFA27215CB6004E6958 /* ChatModel.swift in Sources */,
 				89BE227226D4BE7600580DDF /* GenreModel.swift in Sources */,
@@ -928,6 +924,7 @@
 				89BE23E726D777F000580DDF /* MemberTableViewCell.swift in Sources */,
 				89CCBAFD2721D8A9004E6958 /* TalkRoomTableViewCell.swift in Sources */,
 				89BE21E226CF6ADC00580DDF /* AppDelegateEx.swift in Sources */,
+				89E8FAD627258A7A00B62280 /* TalkViewController.swift in Sources */,
 				89D82E8A26CD27BD00481B32 /* UIFontEx.swift in Sources */,
 				89D82E6726CD0E6C00481B32 /* RegistrationViewController.swift in Sources */,
 				89BE220B26CFF65B00580DDF /* EventModel.swift in Sources */,
@@ -946,7 +943,6 @@
 				89D82D7226CC1E5900481B32 /* R.generated.swift in Sources */,
 				89D82E2626CCDCE900481B32 /* FirstTeamViewStream.swift in Sources */,
 				89BE232326D672FB00580DDF /* BookmarkTabView.swift in Sources */,
-				89CCBB002723438F004E6958 /* TalkViewController.swift in Sources */,
 				89D82E6F26CD0EDA00481B32 /* EventDetailViewController.swift in Sources */,
 				89BE241A26D8D4CD00580DDF /* EventGenreSelectViewController.swift in Sources */,
 				89BE22C926D652D400580DDF /* SemiModalDismissInteractiveTransition.swift in Sources */,
@@ -963,22 +959,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		89D82D2026CBA61A00481B32 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				89D82D4926CC19DA00481B32 /* ja */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		89D82D2526CBA61B00481B32 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				89D82D4A26CC19DC00481B32 /* ja */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		89D82D5126CC1A2900481B32 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1114,10 +1094,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = karupasu/karupasu.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = karupasu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1140,11 +1121,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = karupasu/karupasuRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = karupasu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1152,7 +1134,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tech.miraito.app.karupasu.release;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.miraito.app.karupasu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

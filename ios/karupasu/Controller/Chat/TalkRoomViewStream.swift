@@ -50,7 +50,7 @@ extension TalkRoomViewStream {
             .bind(to: state.currentRooms)
             .disposed(by: disposeBag)
         
-        state.currentRooms.accept([.init(roomId: 1, title: "AA", prefecture: "関東", participantsCount: 1, imageUrl: "", users: [])])
+        state.currentRooms.accept([.init(roomId: 1, title: "富士山行きたい", prefecture: "関東", participantsCount: 2, imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/FujiSunriseKawaguchiko2025WP.jpg/275px-FujiSunriseKawaguchiko2025WP.jpg", users: [])])
         
         state.currentRooms
             .bind(to: reloadDatasource)
