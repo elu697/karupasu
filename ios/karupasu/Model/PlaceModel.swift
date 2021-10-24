@@ -26,6 +26,12 @@ class PlaceModel {
     // Action
     // Dispatcher
     // Store
+    func getModel(id: Int) -> PlaceModel.Place? {
+        return places.value.filter { palce in
+            palce.id == id
+        }.first
+    }
+    
     private(set) var places = BehaviorRelay<[Place]>(value: [])
     
     private init() {

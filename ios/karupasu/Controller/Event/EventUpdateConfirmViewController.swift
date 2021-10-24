@@ -1,5 +1,5 @@
 //
-//  EventConfirmViewController.swift
+//  EventUpdateConfirmViewController.swift
 //  karupasu
 //
 //  Created by El You on 2021/08/18.
@@ -12,18 +12,18 @@ import SVProgressHUD
 
 
 /// イベント企画確認
-final class EventConfirmViewController: UIViewController {
+final class EventUpdateConfirmViewController: UIViewController {
 
-    let viewStream: EventConfirmViewStreamType = EventConfirmViewStream()
+    let viewStream: EventUpdateConfirmViewStreamType = EventUpdateConfirmViewStream()
     private let disposeBag = DisposeBag()
 
-    private lazy var eventConfirmView: EventConfirmView = {
+    private lazy var eventUpdateConfirmView: EventConfirmView = {
         return .init(frame: self.view.frame)
     }()
 
     override func loadView() {
         super.loadView()
-        self.view = eventConfirmView
+        self.view = eventUpdateConfirmView
     }
 
     override func viewDidLoad() {
@@ -33,13 +33,13 @@ final class EventConfirmViewController: UIViewController {
         setNavigationBarTitleString(title: AppText.check())
         setSwipeBack()
 
-        eventConfirmView.fixBtn.rx.tap
+        eventUpdateConfirmView.fixBtn.rx.tap
             .subscribe { [weak self] (event) in
                 guard let self = self else { return }
                 self.navigationController?.popViewController(animated: true)
             }.disposed(by: disposeBag)
 
-        eventConfirmView.postBtn.rx.tap
+        eventUpdateConfirmView.postBtn.rx.tap
             .subscribe { [weak self] (event) in
                 guard let self = self else { return }
                 SVProgressHUD.show()
@@ -59,11 +59,11 @@ final class EventConfirmViewController: UIViewController {
             .subscribe { [weak self] (event) in
                 guard let self = self else { return }
                 guard let data = event.element else { return }
-                self.eventConfirmView.thumbnailImage.image = data.4
-                self.eventConfirmView.titleLbl.text = data.0
-                self.eventConfirmView.memberLbl.text = String(data.1)
-                self.eventConfirmView.placeLbl.text = data.2.name
-                self.eventConfirmView.genreLbl.text = data.3.name
+                self.eventUpdateConfirmView.thumbnailImage.image = data.4
+                self.eventUpdateConfirmView.titleLbl.text = data.0
+                self.eventUpdateConfirmView.memberLbl.text = String(data.1)
+                self.eventUpdateConfirmView.placeLbl.text = data.2.name
+                self.eventUpdateConfirmView.genreLbl.text = data.3.name
             }.disposed(by: disposeBag)
     }
 

@@ -16,6 +16,10 @@
 		89323CC326CEB828009B01E1 /* RxSwiftEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89323CC226CEB828009B01E1 /* RxSwiftEx.swift */; };
 		89645C3E26CD69D200F32152 /* TabBarMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89645C3B26CD69D200F32152 /* TabBarMenuViewController.swift */; };
 		89645C3F26CD69D200F32152 /* TabBarMenuViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89645C3C26CD69D200F32152 /* TabBarMenuViewStream.swift */; };
+		89756F602725D67E00250763 /* EventEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F5E2725D67D00250763 /* EventEditViewController.swift */; };
+		89756F612725D67E00250763 /* EventEditViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F5F2725D67D00250763 /* EventEditViewStream.swift */; };
+		89756F642725EACE00250763 /* EventUpdateConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F622725EACD00250763 /* EventUpdateConfirmViewController.swift */; };
+		89756F652725EACE00250763 /* EventUpdateConfirmViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F632725EACD00250763 /* EventUpdateConfirmViewStream.swift */; };
 		897CBF1826CE627C0039FA30 /* FirstTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897CBF1726CE627C0039FA30 /* FirstTeamView.swift */; };
 		89A4EA5C26CD84B7002D0424 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA5B26CD84B7002D0424 /* TabBarItemView.swift */; };
 		89A4EA8326CD91EE002D0424 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA8126CD91EE002D0424 /* BaseNavigationViewController.swift */; };
@@ -141,6 +145,10 @@
 		89323CC226CEB828009B01E1 /* RxSwiftEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftEx.swift; sourceTree = "<group>"; };
 		89645C3B26CD69D200F32152 /* TabBarMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMenuViewController.swift; sourceTree = "<group>"; };
 		89645C3C26CD69D200F32152 /* TabBarMenuViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMenuViewStream.swift; sourceTree = "<group>"; };
+		89756F5E2725D67D00250763 /* EventEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEditViewController.swift; sourceTree = "<group>"; };
+		89756F5F2725D67D00250763 /* EventEditViewStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEditViewStream.swift; sourceTree = "<group>"; };
+		89756F622725EACD00250763 /* EventUpdateConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUpdateConfirmViewController.swift; sourceTree = "<group>"; };
+		89756F632725EACD00250763 /* EventUpdateConfirmViewStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUpdateConfirmViewStream.swift; sourceTree = "<group>"; };
 		897CBF1726CE627C0039FA30 /* FirstTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTeamView.swift; sourceTree = "<group>"; };
 		89A4EA5B26CD84B7002D0424 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		89A4EA8126CD91EE002D0424 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
@@ -658,8 +666,12 @@
 				89D82E6D26CD0EDA00481B32 /* EventDetailViewStream.swift */,
 				89D82E7326CD10AA00481B32 /* EventCreateViewController.swift */,
 				89D82E7426CD10AA00481B32 /* EventCreateViewStream.swift */,
+				89756F5E2725D67D00250763 /* EventEditViewController.swift */,
+				89756F5F2725D67D00250763 /* EventEditViewStream.swift */,
 				89D82E7A26CD116300481B32 /* EventConfirmViewController.swift */,
 				89D82E7B26CD116300481B32 /* EventConfirmViewStream.swift */,
+				89756F622725EACD00250763 /* EventUpdateConfirmViewController.swift */,
+				89756F632725EACD00250763 /* EventUpdateConfirmViewStream.swift */,
 				89BE22F326D655E700580DDF /* EventApplyViewController.swift */,
 				89BE22F426D655E700580DDF /* EventApplyViewStream.swift */,
 				89BE22F826D6565200580DDF /* EventOptionSelectViewController.swift */,
@@ -880,6 +892,7 @@
 				89BE231F26D66CD000580DDF /* BookmarkTabViewStream.swift in Sources */,
 				89D82E7E26CD116300481B32 /* EventConfirmViewStream.swift in Sources */,
 				89AC05DB26DA1753004B8A91 /* GenreProvider.swift in Sources */,
+				89756F652725EACE00250763 /* EventUpdateConfirmViewStream.swift in Sources */,
 				89D82D1F26CBA61A00481B32 /* ViewController.swift in Sources */,
 				89BE22F526D655E700580DDF /* EventApplyViewController.swift in Sources */,
 				89AC05D226DA1708004B8A91 /* UserProvider.swift in Sources */,
@@ -902,8 +915,10 @@
 				89D82DED26CCC7E400481B32 /* RootViewController.swift in Sources */,
 				89BE226C26D2DC8700580DDF /* EventConfirmView.swift in Sources */,
 				89D82D7B26CC1EDE00481B32 /* UIButtonEx.swift in Sources */,
+				89756F612725D67E00250763 /* EventEditViewStream.swift in Sources */,
 				89D82E9526CD344A00481B32 /* SplashViewStream.swift in Sources */,
 				89BE242026D8D4E300580DDF /* EventPlaceSelectViewStream.swift in Sources */,
+				89756F602725D67E00250763 /* EventEditViewController.swift in Sources */,
 				89D82D1D26CBA61A00481B32 /* SceneDelegate.swift in Sources */,
 				89BE21F326CF81AC00580DDF /* BookmarkCollectionViewStream.swift in Sources */,
 				89BE22CA26D652D400580DDF /* SemiModalPresenter.swift in Sources */,
@@ -916,6 +931,7 @@
 				89D82E7026CD0EDA00481B32 /* EventDetailViewStream.swift in Sources */,
 				89BE232626D67F9700580DDF /* UIViewEx.swift in Sources */,
 				89AC05D526DA171E004B8A91 /* EventProvider.swift in Sources */,
+				89756F642725EACE00250763 /* EventUpdateConfirmViewController.swift in Sources */,
 				89D82DEE26CCC7E400481B32 /* RootViewStream.swift in Sources */,
 				89D82D5526CC1AE100481B32 /* RswiftEx.swift in Sources */,
 				89BE22CD26D652D400580DDF /* SemiModalPresentationController.swift in Sources */,

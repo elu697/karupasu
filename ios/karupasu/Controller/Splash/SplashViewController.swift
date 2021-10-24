@@ -38,7 +38,9 @@ final class SplashViewController: UIViewController {
         splashFlag = true
         DispatchQueue.global().async { [weak self] in
             while self?.splashFlag ?? false {
-                self?.animation()
+                DispatchQueue.global().async {
+                    self?.animation()
+                }
                 sleep(UInt32(self?.animationTime ?? 0))
             }
         }

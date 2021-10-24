@@ -87,6 +87,19 @@ class EventDetailView: UIView {
         btn.isHidden = true
         return btn
     }()
+    
+    let editBtn: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.backgroundColor = .white
+        btn.titleLabel?.font = .appFontBoldOfSize(14)
+        btn.setTitle(AppText.edit(), for: .normal)
+        btn.setTitleColor(.gray, for: .normal)
+        btn.layer.borderWidth = 1
+        btn.layer.cornerRadius = 24
+        btn.layer.borderColor = UIColor.gray.cgColor
+        btn.isHidden = true
+        return btn
+    }()
 
     let barView: UIView = {
         let view = UIView()
@@ -128,6 +141,7 @@ class EventDetailView: UIView {
         addSubview(titleLbl)
         addSubview(applyBtn)
         addSubview(cancelBtn)
+        addSubview(editBtn)
         addSubview(barView)
         addSubview(memberLbl)
         addSubview(memberTableView)
@@ -179,6 +193,13 @@ class EventDetailView: UIView {
             make.edges.equalTo(applyBtn)
         }
         
+        editBtn.snp.makeConstraints { make in
+            make.width.equalTo(343)
+            make.height.equalTo(48)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(applyBtn.snp.bottom).offset(16)
+        }
+        
         barView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.height.equalTo(1)
@@ -203,6 +224,24 @@ class EventDetailView: UIView {
         let navigationHeight = safeAreaInsets.top
         thumbnailImage.snp.updateConstraints { (make) in
             make.top.equalTo(navigationHeight)
+        }
+    }
+    
+    func setEditBtn(isHidden: Bool) {
+        editBtn.isHidden = isHidden
+        barView.snp.removeConstraints()
+        if isHidden {
+            barView.snp.makeConstraints { (make) in
+                make.left.right.equalToSuperview()
+                make.height.equalTo(1)
+                make.top.equalTo(cancelBtn.snp.bottom).offset(24)
+            }
+        } else {
+            barView.snp.makeConstraints { (make) in
+                make.left.right.equalToSuperview()
+                make.height.equalTo(1)
+                make.top.equalTo(editBtn.snp.bottom).offset(24)
+            }
         }
     }
 

@@ -12,7 +12,6 @@ import UIKit
 import Unio
 
 
-
 /// イベント一覧表示
 struct EventCellModel: IdentifiableType, Equatable {
     static func == (lhs: EventCellModel, rhs: EventCellModel) -> Bool {
@@ -21,7 +20,7 @@ struct EventCellModel: IdentifiableType, Equatable {
 
     typealias Identity = String
     var identity: String {
-        return String(event.id) + "\(event.isBookmark ?? 0)\(event.participantsCount ?? 0)\(event.isJoined ?? 0)"
+        return String(event.id) + "\(event.title)\(event.isBookmark ?? 0)\(event.participantsCount ?? 0)\(event.isJoined ?? 0)"
     }
     let event: EventModel.Event
 }

@@ -45,6 +45,12 @@ class GenreModel {
         }.first?.name ?? ""
     }
     
+    func getModel(id: Int) -> GenreModel.Genre? {
+        return genres.value.filter { genre in
+            genre.id == id
+        }.first
+    }
+    
     func fetchGenre() {
         getGenres()
             .subscribe { [weak self] (gen) in
