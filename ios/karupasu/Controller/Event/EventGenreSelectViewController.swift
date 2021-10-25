@@ -108,6 +108,7 @@ final class EventGenreSelectViewController: UIViewController {
             .subscribe { [weak self] (_) in
                 guard let me = self else { return }
                 me.karupasu.genreModel.fetchGenre()
+                me.eventOptionSelectView.optionTableView.scrollToRow(at: .init(row: 0, section: 0), at: .bottom, animated: false)
             }
             .disposed(by: disposeBag)
     }

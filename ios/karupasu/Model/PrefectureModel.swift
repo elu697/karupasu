@@ -28,24 +28,20 @@ class PrefectureModel {
         return Single<[Prefecture]>.create { (observer) -> Disposable in
             PrefectureProvider.shared.rx.request(.getPrefectures)
                 .subscribe { (response) in
-                    if let items = try? JSONDecoder().decode([Prefecture].self, from: response.data) {
+                    if let items = try? JSONDecoder().decode([Prefecture].self, from: response.data), !items.isEmpty {
                         observer(.success(items))
-                    } else {
-                        observer(.success([]))
                     }
             } onError: { (error) in
-                    observer(.success([]))
+                observer(.error(error))
                 }.disposed(by: self.disposeBag)
             return Disposables.create()
         }
     }
 
     func getSafePrefectureTitle(id: Int) -> String {
-        if prefectures.value.count > id {
-            return prefectures.value[id-1].name
-        } else {
-            return ""
-        }
+        return prefectures.value.filter { genre in
+            genre.id == id
+        }.first?.name ?? ""
     }
     
     func fetchPrefecture() {

@@ -16,9 +16,9 @@ class EventModel {
         let prefecture: Int //0 オンライン
         let isJoined: Int
         let participantsCount: Int
-        let maxParticipantsCount: Int?
         let participantsNames: [String]
-
+        var maxParticipantsCount: Int? // 仕方なくvar
+        
         private enum CodingKeys: String, CodingKey {
             case prefecture = "prefecture_id"
             case isJoined = "participation"
@@ -38,6 +38,7 @@ class EventModel {
         let isBookmark: Int?
         let participantsCount: Int?
         let maxParticipantsCount: Int
+        let isHost: Int?
         let details: [EventDetail]?
 
 
@@ -51,6 +52,7 @@ class EventModel {
             case isBookmark = "favorite"
             case participantsCount = "participants_count"
             case maxParticipantsCount = "maximum_participants_count"
+            case isHost = "is_host"
             case details = "details"
         }
     }
@@ -90,6 +92,12 @@ class EventModel {
             .map(EventModel.Event.self)
             .asSingle()
     }
+    
+    func updateEvent(id: Int, title: String, imageUrl: String, maxMember: Int, place: Int, genreId: Int) -> Single<EventModel.Event> {
+        return EventProvider.shared.rx.request(.putEvent(eventId: id, title: title, imageUrl: imageUrl, maxMember: maxMember, place: place, genreId: genreId)).asObservable()
+            .map(EventModel.Event.self)
+            .asSingle()
+    }
 
     func applyEvent(eventId: Int, prefectureId: Int) -> Single<Bool> {
         return Single<Bool>.create { (observer) -> Disposable in
@@ -109,6 +117,19 @@ class EventModel {
                     let isSuccess = response.statusCode == 200
                     observer(.success(isSuccess))
             } onError: { (error) in
+                    observer(.success(false))
+                }.disposed(by: self.disposeBag)
+            return Disposables.create()
+        }
+    }
+    
+    func deleteEvent(eventId: Int) -> Single<Bool> {
+        return Single<Bool>.create { (observer) -> Disposable in
+            EventProvider.shared.rx.request(.deleteEvent(eventId: eventId)).asObservable()
+                .subscribe { (response) in
+                    let isSuccess = response.statusCode == 200
+                    observer(.success(isSuccess))
+                } onError: { (error) in
                     observer(.success(false))
                 }.disposed(by: self.disposeBag)
             return Disposables.create()

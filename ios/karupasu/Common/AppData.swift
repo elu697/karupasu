@@ -21,6 +21,9 @@ struct AppData {
     @UserDefault("userName", default: "")
     var userName: String
     
+    @UserDefault("userPassword", default: "")
+    var userPassword: String
+    
     @UserDefault("uid", default: "")
     var uid: String
     

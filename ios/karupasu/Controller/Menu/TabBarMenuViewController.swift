@@ -30,12 +30,14 @@ final class TabBarMenuViewController: ESTabBarController {
         return UIViewController()
     }()
 
-    private lazy var chatViewController = {
-        return ChatViewController()
+    private lazy var talkRoomViewController = {
+        return TalkRoomViewController()
+//        return RecentChatsTVC()
     }()
 
     private lazy var accountViewController = {
         return AccountViewController()
+//        return SettingsTVC()
     }()
 
     init(rootViewStream: RootViewStreamType) {
@@ -83,7 +85,7 @@ final class TabBarMenuViewController: ESTabBarController {
                                           tag: 3)
 //        v3.title = ""
 
-        let v4 = chatViewController
+        let v4 = talkRoomViewController
         v4.tabBarItem = ESTabBarItem.init(TabBarItemView(),
                                           title: nil,
                                           image: AppImage.tab_icon_chat_gray(),

@@ -53,7 +53,6 @@ final class EventFilterViewController: UITableViewController {
     private lazy var configureCell: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, FilterSectionModel>>.ConfigureCell = { [weak self] (dataSource, tableView, indexPath, item) in
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FilterTableViewCell else { return .init() }
         cell.selectionStyle = .none
-        cell.isCheck = false
         cell.titleLbl.text = item.title
         return cell
     }
@@ -109,7 +108,9 @@ final class EventFilterViewController: UITableViewController {
             .disposed(by: disposeBag)
         
         rx.viewWillAppear
-            .subscribe { (_) in
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                self.tableView.scrollToRow(at: .init(row: 0, section: 0), at: .bottom, animated: false)
                 Karupasu.shared.genreModel.fetchGenre()
             }
             .disposed(by: disposeBag)

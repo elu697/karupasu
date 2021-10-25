@@ -31,7 +31,7 @@ extension FirstTeamViewStream {
 
     struct Output: OutputType {
         let next: Observable<Void>
-        let invalid: Observable<Void>
+        let invalid: Observable<String>
     }
 
     struct State: StateType {
@@ -46,19 +46,25 @@ extension FirstTeamViewStream {
         let karupasu = dependency.extra.karupasu
 
         let next = PublishRelay<Void>()
-        let invalid = PublishRelay<Void>()
+        let invalid = PublishRelay<String>()
 
         input.tapEnter
             .subscribe { text in
-                guard let text = text.element else { return }
-                karupasu.userModel.checkTeamId(teamCode: text).subscribe { (event) in
-                    guard let isCorrect = event.element else { return }
+                guard let text = text.element, !text.isEmpty else {
+                    invalid.accept("コードを入力してください")
+                    return
+                }
+                
+                karupasu.userModel.checkTeamId(teamCode: text).subscribe { isCorrect in
                     if isCorrect {
                         next.accept(())
                     } else {
-                        invalid.accept(())
+                        invalid.accept("コードが無効です")
                     }
-                }.disposed(by: disposeBag)
+                } onError: { error in
+                    invalid.accept("通信エラー")
+                }
+                .disposed(by: disposeBag)
             }
             .disposed(by: disposeBag)
 

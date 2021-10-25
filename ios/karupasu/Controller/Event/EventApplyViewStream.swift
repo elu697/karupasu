@@ -35,6 +35,7 @@ extension EventApplyViewStream {
     struct Output: OutputType {
         let showOption: Observable<EventModel.Event>
         let success: Observable<EventModel.Event>
+        let updateEvent: Observable<EventModel.Event>
     }
 
     struct State: StateType {
@@ -85,6 +86,7 @@ extension EventApplyViewStream {
 
         return Output(
             showOption: showOption.asObservable(),
-            success: success.asObservable())
+            success: success.asObservable(),
+            updateEvent: state.currenEvent.filterNil().asObservable())
     }
 }

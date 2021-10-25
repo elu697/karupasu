@@ -7,6 +7,7 @@ target 'karupasu' do
   use_frameworks!
 
   # Pods for karupasu
+  # Core
   pod 'R.swift'
   pod 'RxSwift', '~> 5.0'
   pod 'RxCocoa', '~> 5.0'
@@ -16,15 +17,40 @@ target 'karupasu' do
   pod 'SwifterSwift'
 #  pod "Unio", :git => 'https://github.com/cats-oss/Unio.git'
   pod 'Unio', '~> 0.10.0'
-#  pod 'IHKeyboardAvoiding'
   pod "ESTabBarController-swift"
   pod 'pop', :git => 'https://github.com/facebook/pop.git'
   pod 'Moya/RxSwift', '~> 14.0'
   pod 'XLPagerTabStrip'#, '~> 9.0'
   pod 'Kingfisher'
   pod 'SVProgressHUD'
-  
+  pod 'IQKeyboardManagerSwift'
+
+  pod 'paper-onboarding'
+  # Chat 実装コスト的にOSS参考
+  # https://github.com/instamobile/messenger-iOS-chat-swift-firestore
+  # https://github.com/artyommihailovich/ChatApp
+  # https://github.com/1amageek/Muni
+  # https://github.com/abdoelbattawy/ChatApp
+  pod 'MessageKit', '~> 3.3.0'
+  pod 'MessageInputBar'
+  pod 'InputBarAccessoryView'
+  pod 'Gallery'
+#  pod 'RealmSwift'
+  pod 'SKPhotoBrowser'
+
+  # Firebase
   pod "Firebase"
-  pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
   pod "Firebase/Storage"
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
+  pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Performance'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/InAppMessaging'
+#  pod 'Firebase/AppDistribution'
+  pod 'Firebase/RemoteConfig'
+  
 end

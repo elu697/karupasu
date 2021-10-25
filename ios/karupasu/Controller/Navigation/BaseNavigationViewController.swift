@@ -17,7 +17,19 @@ final class BaseNavigationViewController: UINavigationController {
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.appMain,
+                NSAttributedString.Key.font: UIFont.appFontBoldOfSize(16)
+            ]
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
+        
         super.viewDidLoad()
+        self.isNavigationBarHidden = false
         self.navigationBar.barTintColor = .white
         self.navigationBar.backgroundColor = .white
         self.navigationBar.titleTextAttributes = [

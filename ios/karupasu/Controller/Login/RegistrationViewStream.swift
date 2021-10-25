@@ -68,24 +68,29 @@ extension RegistrationViewStream {
             .subscribe { (name, mail, pass) in
                 guard let name = name,
                     let mail = mail,
-                    let pass = pass else {
-                        showError.accept("Input Fail")
+                    let pass = pass,
+                      !name.isEmpty, !mail.isEmpty, !pass.isEmpty else {
+                        showError.accept("情報を入力してください")
                         return
                 }
                 karupasu.userModel.registerAccount(name: name, mail: mail, pass: pass).subscribe { (event) in
-                    guard let isRegister = event.element else { return }
+                    guard let isRegister = event.element else {
+                        showError.accept("通信エラー")
+                        return }
                     if isRegister {
                         karupasu.userModel.loginAccount(mail: mail, pass: pass).subscribe { (event2) in
-                            guard let isLogin = event2.element else { return }
+                            guard let isLogin = event2.element else {
+                                showError.accept("登録に成功しましたが\nログインに失敗しました")
+                                return }
                             if isLogin {
                                 end.accept(())
                                 karupasu.userModel.saveUserData().subscribe().disposed(by: disposeBag)
                             } else {
-                                showError.accept("Login Fail")
+                                showError.accept("登録に成功しましたが\nログインに失敗しました")
                             }
                         }.disposed(by: disposeBag)
                     } else {
-                        showError.accept("Registration Fail")
+                        showError.accept("登録に失敗しました")
                     }
                 }.disposed(by: disposeBag)
             }

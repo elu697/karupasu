@@ -18,23 +18,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow? = nil
     let karupasu: Karupasu = .shared
     let disposeBag = DisposeBag()
+    var firstRun: Bool?
 
     override init() {
         super.init()
-        karupasu.setup()
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        SVProgressHUD.setDefaultMaskType(.clear)
+        karupasu.setup()
+        
         // Override point for customization after application launch.
         let window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window = window
         self.window?.makeKeyAndVisible()
         self.window?.rootViewController = RootViewController()
-        
-        SVProgressHUD.setDefaultMaskType(.clear)
-        FirebaseApp.configure()
+
         return true
     }
+    
 
 //
 //    // MARK: UISceneSession Lifecycle
@@ -50,17 +53,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
 //        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 //    }
-}
-
-struct Event: Codable {
-    let id: Int?
-    let title: String?
-    let image: String?
-    let favorite: Int?
-    let participation: Int?
-
-    let participants_count: Int?
-    let maximum_participants_count: Int?
-    let holding_method: Int? //0 オンライン
-    let genre_id: Int?
 }

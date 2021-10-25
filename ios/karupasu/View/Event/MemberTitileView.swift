@@ -18,6 +18,7 @@ class MemberTitleView: UIView {
 //        lbl.autoresizesSubviews = true
 //        lbl.autoresizingMask = .flexibleHeight
         lbl.textAlignment = .left
+        lbl.adjustsFontSizeToFitWidth = true
         return lbl
     }()
 

@@ -103,6 +103,7 @@ class EventConfirmView: UIView {
     
     let messageLbl: UILabel = {
         let lbl = UILabel()
+        lbl.numberOfLines = 0
         lbl.text = AppText.memo()
         lbl.font = .appFontOfSize(11)
         lbl.textColor = .appTextGray

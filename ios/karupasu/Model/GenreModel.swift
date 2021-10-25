@@ -28,10 +28,9 @@ class GenreModel {
         return Single<[Genre]>.create { (observer) -> Disposable in
             GenreProvider.shared.rx.request(.getGenres)
                 .subscribe { (response) in
-                    if let items = try? JSONDecoder().decode([Genre].self, from: response.data) {
+                    if let items = try? JSONDecoder().decode([Genre].self, from: response.data), !items.isEmpty {
                         observer(.success(items))
                     } else {
-                        observer(.success([]))
                     }
             } onError: { (error) in
                 observer(.error(error))
@@ -41,11 +40,15 @@ class GenreModel {
     }
     
     func getSafeGenreTitle(id: Int) -> String {
-        if genres.value.count > id {
-            return genres.value[id-1].name
-        } else {
-            return ""
-        }
+        return genres.value.filter { genre in
+            genre.id == id
+        }.first?.name ?? ""
+    }
+    
+    func getModel(id: Int) -> GenreModel.Genre? {
+        return genres.value.filter { genre in
+            genre.id == id
+        }.first
     }
     
     func fetchGenre() {

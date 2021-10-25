@@ -63,7 +63,14 @@ extension RootViewStream {
                 karupasu.userModel.checkUserData().subscribe({ (event) in
                     guard let isRegistered = event.element else { return }
                     if isRegistered {
-                        initializedApp.accept(.success)
+                        karupasu.userModel.autoLoginAccount().subscribe { event in
+                            let isLogin = event.element ?? false
+                            if isLogin {
+                                initializedApp.accept(.success)
+                            } else {
+                                initializedApp.accept(.error(type: .login))
+                            }
+                        }.disposed(by: disposeBag)
                     } else {
                         initializedApp.accept(.notLogin)
                     }

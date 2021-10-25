@@ -52,7 +52,6 @@ extension BookmarkCollectionViewStream {
                 extra.karupasu.eventModel.getFavoriteEvents()
                     .subscribe {
                         (events) in
-                        print(events)
                         eventViewstream.input.setEvents(events)
                 }
                 onError: { (error) in

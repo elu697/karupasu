@@ -18,7 +18,7 @@ enum PrefectureProvider {
         }
         let networkLoggerPlugin = NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))
         let plugins = [networkLoggerPlugin]
-        return MoyaProvider<PrefectureProvider>(stubClosure: stubClosure)
+        return MoyaProvider<PrefectureProvider>(stubClosure: stubClosure, plugins: plugins)
     }()
 }
 
@@ -63,6 +63,6 @@ extension PrefectureProvider: TargetType {
     }
     
     var validationType: ValidationType {
-        return .successCodes
+        return .none
     }
 }

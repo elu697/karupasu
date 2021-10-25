@@ -31,6 +31,7 @@ final class EventConfirmViewController: UIViewController {
         view.backgroundColor = .white
         setLeftBackBarButtonItem(image: AppImage.navi_back_blue())
         setNavigationBarTitleString(title: AppText.check())
+        setSwipeBack()
 
         eventConfirmView.fixBtn.rx.tap
             .subscribe { [weak self] (event) in

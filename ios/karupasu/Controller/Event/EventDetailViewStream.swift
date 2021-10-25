@@ -29,6 +29,7 @@ extension EventDetailViewStream {
         let setEvent = PublishRelay<EventModel.Event>()
         let tapApplyButton = PublishRelay<Void>()
         let tapCancelButton = PublishRelay<Void>()
+        let tapEditButton = PublishRelay<Void>()
         let tapBookmark = PublishRelay<Void>()
         let reloadTable = PublishRelay<Void>()
         let reloadView = PublishRelay<Void>()
@@ -37,7 +38,9 @@ extension EventDetailViewStream {
     struct Output: OutputType {
         let reloadView: Observable<EventModel.Event>
         let reloadTable: Observable<EventModel.Event>
-        let showConfirm: Observable<EventModel.Event>
+        let showApply: Observable<EventModel.Event>
+        let showEditBtn: Observable<Void>
+        let showEdit: Observable<EventModel.Event>
     }
 
     struct State: StateType {
@@ -53,14 +56,16 @@ extension EventDetailViewStream {
         let input = dependency.inputObservables
         let state = dependency.state
         let eventModel = dependency.extra.karupasu.eventModel
+        let karupasu = dependency.extra.karupasu
 
         let reloadView = PublishRelay<EventModel.Event>()
         let reloadTable = PublishRelay<EventModel.Event>()
-        let showConfirm = PublishRelay<EventModel.Event>()
-
+        let showApply = PublishRelay<EventModel.Event>()
+        let showEdit = PublishRelay<EventModel.Event>()
+        let showEditBtn = PublishRelay<Void>()
         input.setEvent
-            .withLatest(from: Karupasu.shared.prefectureModel.prefectures)
-            .withLatest(from: Karupasu.shared.genreModel.genres)
+            .withLatest(from: karupasu.prefectureModel.prefectures)
+            .withLatest(from: karupasu.genreModel.genres)
             .map { $0.0 }
             .subscribe({ (event) in
                 guard let event = event.element else { return }
@@ -69,6 +74,10 @@ extension EventDetailViewStream {
                         state.currentEvent.accept(event)
                         reloadView.accept(event)
                         reloadTable.accept(event)
+                        
+                        if event.isHost ?? 0 == 1 {
+                            showEditBtn.accept(())
+                        }
                 } onError: { (error) in
                     }.disposed(by: disposeBag)
                 state.currentEvent.accept(event)
@@ -78,14 +87,21 @@ extension EventDetailViewStream {
         input.tapApplyButton
             .subscribe { _ in
                 guard let event = state.currentEvent.value else { return }
-                showConfirm.accept(event)
+                showApply.accept(event)
             }
             .disposed(by: disposeBag)
 
         input.tapCancelButton
             .subscribe { _ in
                 guard let event = state.currentEvent.value else { return }
-                showConfirm.accept(event)
+                showApply.accept(event)
+            }
+            .disposed(by: disposeBag)
+        
+        input.tapEditButton
+            .subscribe { _ in
+                guard let event = state.currentEvent.value else { return }
+                showEdit.accept(event)
             }
             .disposed(by: disposeBag)
 
@@ -104,7 +120,7 @@ extension EventDetailViewStream {
                         }
                 } onError: { (error) in
                     }
-                    .disposed(by: disposeBag)
+                .disposed(by: disposeBag)
             }
             .disposed(by: disposeBag)
 
@@ -118,8 +134,13 @@ extension EventDetailViewStream {
         input.reloadView
             .subscribe { _ in
                 guard let model = state.currentEvent.value else { return }
-                reloadView.accept(model)
-                reloadTable.accept(model)
+                eventModel.getEventDetails(eventId: model.id)
+                    .subscribe { (event) in
+                        state.currentEvent.accept(event)
+                        reloadView.accept(event)
+                        reloadTable.accept(event)
+                    } onError: { (error) in
+                    }.disposed(by: disposeBag)
             }
             .disposed(by: disposeBag)
 
@@ -134,7 +155,9 @@ extension EventDetailViewStream {
         return Output(
             reloadView: reloadView.asObservable(),
             reloadTable: reloadTable.asObservable(),
-            showConfirm: showConfirm.asObservable()
+            showApply: showApply.asObservable(),
+            showEditBtn: showEditBtn.asObservable(),
+            showEdit: showEdit.asObservable()
         )
     }
 }

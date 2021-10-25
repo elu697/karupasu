@@ -52,7 +52,6 @@ extension AppliedCollectionViewStream {
                 extra.karupasu.eventModel.getParticipantEvents()
                     .subscribe {
                         (events) in
-                        print(events)
                         eventViewstream.input.setEvents(events)
                 }
                 onError: { (error) in

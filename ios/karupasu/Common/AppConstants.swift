@@ -28,7 +28,7 @@ struct AppConstants {
     struct API {
         /// api base
 //        static let base = "http://localhost:3001/\(v)"
-        static let base = "http://karupasu.miraito.tech/\(v)"
+        static let base = "http://mc.miraito.tech/\(v)"
         static let v = "v1"
     }
 }

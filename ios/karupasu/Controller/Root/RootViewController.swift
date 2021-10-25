@@ -8,7 +8,8 @@
 import RxSwift
 import UIKit
 import Unio
-
+import SVProgressHUD
+//import FirebaseAppDistribution
 
 /// スプラッシュとかログインとかホームを切り替える用のRootVC
 final class RootViewController: UIViewController, UIPopoverPresentationControllerDelegate {
@@ -65,6 +66,9 @@ final class RootViewController: UIViewController, UIPopoverPresentationControlle
                         me.switchViewType(type: .login)
                     case .error(let type):
                         me.switchViewType(type: .error(type: type))
+                        DispatchQueue.main.asyncAfter(deadline: .now()+5) {
+                            input.launchApp(())
+                        }
                 }
             }
             .disposed(by: disposeBag)
@@ -90,8 +94,12 @@ final class RootViewController: UIViewController, UIPopoverPresentationControlle
                 me.switchViewType(type: type)
             }
             .disposed(by: disposeBag)
-
-        input.launchApp(())
+        
+        checkFirebase { ok in
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                input.launchApp(())
+            }
+        }
     }
 }
 
@@ -101,6 +109,27 @@ extension RootViewController {
             self.transitionCurrentViewController(to: vc)
         }
     }
+    
+    private func checkFirebase(ok: @escaping (Bool) -> ()) {
+//        AppDistribution.appDistribution().checkForUpdate(completion: { release, error in
+//            guard let release = release else {
+//                return
+//            }
+//            let title = "New Version Available"
+//            let message = "Version \(release.displayVersion)(\(release.buildVersion)) is available."
+//            let uialert = UIAlertController(title: title,message: message, preferredStyle: .alert)
+//            
+//            uialert.addAction(UIAlertAction(title: "Update", style: UIAlertAction.Style.default) {
+//                _ in
+//                UIApplication.shared.open(release.downloadURL)
+//            })
+//            uialert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
+//                _ in
+//            })
+//            self.present(uialert, animated: true, completion: nil)
+//        })
+        ok(true)
+    }
 
     private func switchViewType(type: presentViewType) {
         switch type {
@@ -109,8 +138,10 @@ extension RootViewController {
                 self.transitionViewController(to: vc)
                 break
             case .error:
-                let vc = loginProcessViewController
-                self.transitionViewController(to: vc)
+                let vc = tabBarMenuViewController
+//                self.transitionViewController(to: vc)
+                SVProgressHUD.showError(withStatus: "通信エラーです\n再試行します")
+                SVProgressHUD.dismiss(withDelay: 2)
                 break
             case .normal:
                 let vc = tabBarMenuViewController

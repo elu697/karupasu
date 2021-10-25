@@ -69,8 +69,22 @@ final class EventApplyViewController: UIViewController {
                 let message = prefectures.count == 0 ?
                 "\(AppText.pleaseSelect())": "\(prefectures.map { $0.name }.joined(separator: "・"))"
                 me.eventApplyView.prefectureLbl.text = message
+            }
+            .disposed(by: disposeBag)
+        
+        optionViewStream.output.confirmOption
+            .subscribe { [weak self] event in
+                guard let prefectures = event.element else { return }
+                guard let me = self else { return }
                 me.prefectureSelectViewController.dismiss(animated: true, completion: nil)
                 me.viewStream.input.setOption(prefectures)
+            }
+            .disposed(by: disposeBag)
+        
+        viewStream.output.updateEvent
+            .subscribe { (event) in
+                guard let event = event.element else { return }
+                optionViewStream.input.setEvent(event)
             }
             .disposed(by: disposeBag)
     }

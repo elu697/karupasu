@@ -54,13 +54,18 @@ final class EventDetailViewController: UIViewController {
         let vc = EventApplyViewController()
         return vc
     }()
+    
+    private var eventEditViewController: EventEditViewController {
+        let vc = EventEditViewController()
+        return vc
+    }
 
     private lazy var dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MemberSectionModel>>(configureCell: configureCell)
 
     private lazy var configureCell: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MemberSectionModel>>.ConfigureCell = { [weak self] (dataSource, tableView, indexPath, item) in
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MemberTableViewCell else { return .init() }
         cell.selectionStyle = .none
-        cell.titleView.prefectureLbl.text = PrefectureModel.shared.getSafePrefectureTitle(id: item.item.0.prefecture)
+        cell.titleView.prefectureLbl.text = Karupasu.shared.prefectureModel.getSafePrefectureTitle(id: item.item.0.prefecture)
         cell.titleView.memberLbl.text = "\(item.item.0.participantsCount)人/\(item.item.1)"
         cell.titleView.messageLbl.text = "あと\(item.item.1 - item.item.0.participantsCount)人で開催が決定します"
         cell.detailView.membersTextView.text = item.item.0.participantsNames.joined(separator: "\n")
@@ -77,12 +82,11 @@ final class EventDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        
         setLeftBackBarButtonItem(image: AppImage.navi_back_blue())
-        setNavigationBarTitleString(title: AppText.event())
-
+        setNavigationBarTitleString(title: AppText.detail())
+        setSwipeBack()
         eventDetailView.memberTableView.register(MemberTableViewCell.self, forCellReuseIdentifier: "Cell")
-
         let input = viewStream.input
         let output = viewStream.output
 
@@ -96,6 +100,10 @@ final class EventDetailViewController: UIViewController {
 
         eventDetailView.cancelBtn.rx.tap
             .bind(to: input.tapCancelButton)
+            .disposed(by: disposeBag)
+        
+        eventDetailView.editBtn.rx.tap
+            .bind(to: input.tapEditButton)
             .disposed(by: disposeBag)
 
         eventDetailView.memberTableView.rx.setDelegate(self).disposed(by: disposeBag)
@@ -115,15 +123,16 @@ final class EventDetailViewController: UIViewController {
                 me.eventDetailView.titleLbl.text = event.title
                 me.eventDetailView.genreLbl.text = "\(AppText.genre()): \(Karupasu.shared.genreModel.getSafeGenreTitle(id: event.genreId))"
                 me.eventDetailView.placeLbl.text = Karupasu.shared.placeModel.places.value[event.place].name
-
+                let isHost = event.isHost ?? 0 == 1
+                me.eventDetailView.setEditBtn(isHidden: !isHost)
             }
             .disposed(by: disposeBag)
 
-        output.showConfirm
+        output.showApply
             .subscribe { [weak self] (event) in
                 guard let me = self else { return }
                 guard let event = event.element else { return }
-                me.showConfirm(event: event)
+                me.showApply(event: event)
             }
             .disposed(by: disposeBag)
 
@@ -137,11 +146,26 @@ final class EventDetailViewController: UIViewController {
             }
             .bind(to: eventDetailView.memberTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        output.showEditBtn
+            .subscribe { [weak self] (event) in
+                guard let me = self else { return }
+                me.eventDetailView.setEditBtn(isHidden: false)
+            }
+            .disposed(by: disposeBag)
+        
+        output.showEdit
+            .subscribe { [weak self] (event) in
+                guard let me = self else { return }
+                guard let event = event.element else { return }
+                me.showEdit(event: event)
+            }
+            .disposed(by: disposeBag)
 
         eventApplyViewController.viewStream.output.success
             .subscribe { [weak self] (event) in
                 guard let me = self, let event = event.element else { return }
-                me.viewStream.input.setEvent(event)
+                me.viewStream.input.reloadView(())
             }.disposed(by: disposeBag)
 
         // 多分RxSwiftのバグ?でLayout warningでるから応急処置
@@ -154,14 +178,16 @@ final class EventDetailViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    private func showConfirm(event: EventModel.Event) {
+    private func showApply(event: EventModel.Event) {
         semiModalPresenter.viewController = eventApplyViewController
         eventApplyViewController.viewStream.input.setEvent(event)
         present(eventApplyViewController, animated: true, completion: nil)
+    }
+    
+    private func showEdit(event: EventModel.Event) {
+        let vc = eventEditViewController
+        navigationController?.pushViewController(vc, animated: true)
+        vc.event = event
     }
 }
 

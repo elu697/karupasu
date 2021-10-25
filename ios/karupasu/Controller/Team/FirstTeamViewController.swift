@@ -41,11 +41,15 @@ final class FirstTeamViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.backgroundColor = .appMain
         firstTeamView.teamCodeTxf.keyboardType = .alphabet
         firstTeamView.teamCodeTxf.returnKeyType = .go
-        firstTeamView.teamCodeTxf.becomeFirstResponder()
+        
+        let vc = OnboardingViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true, completion: nil)
 
         let input = viewStream.input
         let output = viewStream.output
@@ -64,5 +68,19 @@ final class FirstTeamViewController: UIViewController {
                 me.navigationController?.pushViewController(me.nextViewController, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        output.invalid
+            .subscribe { text in
+                SVProgressHUD.showError(withStatus: text.element ?? "")
+                SVProgressHUD.dismiss(withDelay: 1)
+            }
+            .disposed(by: disposeBag)
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        firstTeamView.teamCodeTxf.becomeFirstResponder()
     }
 }

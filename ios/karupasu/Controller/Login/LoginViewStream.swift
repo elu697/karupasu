@@ -57,17 +57,20 @@ extension LoginViewStream {
             .withLatest(from: input.editPassword)
             .subscribe { (mail, pass) in
                 guard let mail = mail,
-                    let pass = pass else {
-                        showError.accept("Login Fail")
+                      let pass = pass,
+                      !mail.isEmpty, !pass.isEmpty else {
+                        showError.accept("情報を入力してください")
                         return
                 }
                 karupasu.userModel.loginAccount(mail: mail, pass: pass).subscribe { (event2) in
-                    guard let isLogin = event2.element else { return }
+                    guard let isLogin = event2.element else {
+                        showError.accept("通信エラー")
+                        return }
                     if isLogin {
                         end.accept(())
                         karupasu.userModel.saveUserData().subscribe().disposed(by: disposeBag)
                     } else {
-                        showError.accept("Login Fail")
+                        showError.accept("ログインに失敗しました")
                     }
                 }.disposed(by: disposeBag)
             }

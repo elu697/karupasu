@@ -52,11 +52,12 @@ final class EventOptionSelectViewController: UIViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? OptionTableViewCell else { return .init() }
         cell.selectionStyle = .none
         cell.titleLbl.text = item.item.0.name
-        if let current = item.item.1?.participantsCount,
-            let max = item.item.1?.maxParticipantsCount,
-            let isJoin = item.item.1?.isJoined {
-            cell.subTitle.text = "\(current)人/\(max)"
-            cell.isCheck = isJoin == 1
+        let current = item.item.1?.participantsCount ?? 0
+        let max = item.item.1?.maxParticipantsCount ?? 0
+        let isJoin = (item.item.1?.isJoined ?? 0) == 1
+        cell.subTitle.text = (max == 0) ? "" : "\(current)人/\(max)"
+        if isJoin {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
         return cell
     }
@@ -93,7 +94,6 @@ final class EventOptionSelectViewController: UIViewController {
                 let items = indexPaths.map { indexPath in
                     me.dataSource.sectionModels[indexPath.section].items[indexPath.row].item.0
                 }
-                print(items)
                 me.viewStream.input.selectOption(items)
             }
             .disposed(by: disposeBag)
@@ -115,6 +115,7 @@ final class EventOptionSelectViewController: UIViewController {
             .subscribe { [weak self] (_) in
                 guard let me = self else { return }
                 me.viewStream.input.reloadView(())
+                me.eventOptionSelectView.optionTableView.scrollToRow(at: .init(row: 0, section: 0), at: .bottom, animated: false)
             }
             .disposed(by: disposeBag)
     }
