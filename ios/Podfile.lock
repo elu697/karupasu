@@ -421,6 +421,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - paper-onboarding (6.1.5)
   - pop (1.0.11)
   - PromisesObjC (1.2.12)
   - Protobuf (3.19.0)
@@ -491,6 +492,7 @@ DEPENDENCIES:
   - MessageInputBar
   - MessageKit (~> 3.3.0)
   - Moya/RxSwift (~> 14.0)
+  - paper-onboarding
   - pop (from `https://github.com/facebook/pop.git`)
   - R.swift
   - RxCocoa (~> 5.0)
@@ -542,6 +544,7 @@ SPEC REPOS:
     - MessageKit
     - Moya
     - nanopb
+    - paper-onboarding
     - PromisesObjC
     - Protobuf
     - R.swift
@@ -604,6 +607,7 @@ SPEC CHECKSUMS:
   MessageKit: 1f07618183be6d92b648ba7a384aafa097362a00
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  paper-onboarding: fede1799b1da6988f3788e3b71654583c6f3bce1
   pop: ae3ae187018759968252242e175c21f7f9be5dd2
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: e9b99dd5da72f665ec503b19191f245a22188b4d
@@ -620,6 +624,6 @@ SPEC CHECKSUMS:
   Unio: d34bbf35f9d5fa355b9d16ea4da9df9cc73fb6c7
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 5f49b7f853a4079eae81f409f5b031df1c8e8312
+PODFILE CHECKSUM: 65e1d71f97b1f1dbb345b32b7ebb1444c92c967f
 
 COCOAPODS: 1.11.2

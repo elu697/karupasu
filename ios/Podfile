@@ -25,6 +25,7 @@ target 'karupasu' do
   pod 'SVProgressHUD'
   pod 'IQKeyboardManagerSwift'
 
+  pod 'paper-onboarding'
   # Chat 実装コスト的にOSS参考
   # https://github.com/instamobile/messenger-iOS-chat-swift-firestore
   # https://github.com/artyommihailovich/ChatApp
@@ -51,4 +52,5 @@ target 'karupasu' do
   pod 'Firebase/InAppMessaging'
 #  pod 'Firebase/AppDistribution'
   pod 'Firebase/RemoteConfig'
+  
 end

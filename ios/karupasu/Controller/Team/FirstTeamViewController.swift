@@ -46,6 +46,10 @@ final class FirstTeamViewController: UIViewController {
         view.backgroundColor = .appMain
         firstTeamView.teamCodeTxf.keyboardType = .alphabet
         firstTeamView.teamCodeTxf.returnKeyType = .go
+        
+        let vc = OnboardingViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true, completion: nil)
 
         let input = viewStream.input
         let output = viewStream.output
@@ -71,10 +75,12 @@ final class FirstTeamViewController: UIViewController {
                 SVProgressHUD.dismiss(withDelay: 1)
             }
             .disposed(by: disposeBag)
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        firstTeamView.teamCodeTxf.becomeFirstResponder()
+//        firstTeamView.teamCodeTxf.becomeFirstResponder()
     }
 }

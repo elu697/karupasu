@@ -20,6 +20,8 @@
 		89756F612725D67E00250763 /* EventEditViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F5F2725D67D00250763 /* EventEditViewStream.swift */; };
 		89756F642725EACE00250763 /* EventUpdateConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F622725EACD00250763 /* EventUpdateConfirmViewController.swift */; };
 		89756F652725EACE00250763 /* EventUpdateConfirmViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F632725EACD00250763 /* EventUpdateConfirmViewStream.swift */; };
+		89756F692725F26C00250763 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F672725F26C00250763 /* OnboardingViewController.swift */; };
+		89756F6A2725F26C00250763 /* OnboardingViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F682725F26C00250763 /* OnboardingViewStream.swift */; };
 		897CBF1826CE627C0039FA30 /* FirstTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897CBF1726CE627C0039FA30 /* FirstTeamView.swift */; };
 		89A4EA5C26CD84B7002D0424 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA5B26CD84B7002D0424 /* TabBarItemView.swift */; };
 		89A4EA8326CD91EE002D0424 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA8126CD91EE002D0424 /* BaseNavigationViewController.swift */; };
@@ -149,6 +151,8 @@
 		89756F5F2725D67D00250763 /* EventEditViewStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEditViewStream.swift; sourceTree = "<group>"; };
 		89756F622725EACD00250763 /* EventUpdateConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUpdateConfirmViewController.swift; sourceTree = "<group>"; };
 		89756F632725EACD00250763 /* EventUpdateConfirmViewStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUpdateConfirmViewStream.swift; sourceTree = "<group>"; };
+		89756F672725F26C00250763 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		89756F682725F26C00250763 /* OnboardingViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewStream.swift; sourceTree = "<group>"; };
 		897CBF1726CE627C0039FA30 /* FirstTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTeamView.swift; sourceTree = "<group>"; };
 		89A4EA5B26CD84B7002D0424 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		89A4EA8126CD91EE002D0424 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +329,15 @@
 				89A4EA8726CD9347002D0424 /* TabBarCenterItemView.swift */,
 			);
 			path = TabVar;
+			sourceTree = "<group>";
+		};
+		89756F662725F24B00250763 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				89756F672725F26C00250763 /* OnboardingViewController.swift */,
+				89756F682725F26C00250763 /* OnboardingViewStream.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		897CBF1526CE62590039FA30 /* Team */ = {
@@ -582,6 +595,7 @@
 		89D82D6326CC1D4900481B32 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				89756F662725F24B00250763 /* Onboarding */,
 				89A4EA9726CDAB5B002D0424 /* Account */,
 				89A4EA9026CDAB43002D0424 /* Chat */,
 				89A4EA8A26CDAB20002D0424 /* Bookmark */,
@@ -890,6 +904,7 @@
 				89AC05D826DA1734004B8A91 /* PrefectureProvider.swift in Sources */,
 				89BE224326D2738E00580DDF /* EventCreateView.swift in Sources */,
 				89BE231F26D66CD000580DDF /* BookmarkTabViewStream.swift in Sources */,
+				89756F692725F26C00250763 /* OnboardingViewController.swift in Sources */,
 				89D82E7E26CD116300481B32 /* EventConfirmViewStream.swift in Sources */,
 				89AC05DB26DA1753004B8A91 /* GenreProvider.swift in Sources */,
 				89756F652725EACE00250763 /* EventUpdateConfirmViewStream.swift in Sources */,
@@ -969,6 +984,7 @@
 				89323CB126CE901C009B01E1 /* LoginProcessTextField.swift in Sources */,
 				89A4EA8326CD91EE002D0424 /* BaseNavigationViewController.swift in Sources */,
 				89D82E7626CD10AA00481B32 /* EventCreateViewController.swift in Sources */,
+				89756F6A2725F26C00250763 /* OnboardingViewStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
