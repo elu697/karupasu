@@ -11,7 +11,7 @@ import RxRelay
 import FirebaseAuth
 
 class UserModel {
-    struct User: Codable {
+    struct User: Hashable, Codable {
         let name: String
         let email: String
         let teamId: Int

@@ -39,7 +39,7 @@ final class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: PaperOnboardingDelegate {
     func onboardingWillTransitonToLeaving() {
-        dissmissView()
+        dismissView()
     }
     
     func onboardingConfigurationItem(_ item: OnboardingContentViewItem, index: Int) {

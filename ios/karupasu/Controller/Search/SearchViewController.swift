@@ -47,12 +47,18 @@ final class SearchViewController: EventCollectionViewController {
 
         collectionView.refreshControl = self.refreshControll
         collectionView.refreshControl?.rx.controlEvent(.valueChanged)
-            .subscribe({ (_) in
+            .subscribe({ [weak self] (_) in
                 input.reload(())
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.refreshControll.endRefreshing()
                 }
             })
+            .disposed(by: disposeBag)
+        
+        collectionView.rx.didScroll
+            .subscribe { [weak self] _ in
+                self?.searchBar?.resignFirstResponder()
+            }
             .disposed(by: disposeBag)
 
         searchBar?.rx.searchButtonClicked

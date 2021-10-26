@@ -206,7 +206,7 @@ class EventCollectionViewCell: UICollectionViewCell {
             self.isBookmarked = isBookmark == 1
         }
         self.memberLbl.text = "\(AppText.participant()) \(model.participantsCount ?? 0)/\(model.maxParticipantsCount)"
-        self.placeLbl.text = model.place == 0 ? AppText.online() : AppText.offline()
+        self.placeLbl.text = Karupasu.shared.placeModel.getModel(id: model.place)?.name ?? ""
         self.titleLbl.text = model.title
     }
 

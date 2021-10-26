@@ -11,7 +11,7 @@ import RxRelay
 
 
 class PlaceModel {
-    struct Place: Codable {
+    struct Place: Hashable, Codable {
         let id: Int
         let name: String
         

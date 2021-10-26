@@ -23,6 +23,7 @@
 		89756F692725F26C00250763 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F672725F26C00250763 /* OnboardingViewController.swift */; };
 		89756F6A2725F26C00250763 /* OnboardingViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756F682725F26C00250763 /* OnboardingViewStream.swift */; };
 		897CBF1826CE627C0039FA30 /* FirstTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897CBF1726CE627C0039FA30 /* FirstTeamView.swift */; };
+		8997C1872727C852006AFF30 /* RoomProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997C1862727C851006AFF30 /* RoomProvider.swift */; };
 		89A4EA5C26CD84B7002D0424 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA5B26CD84B7002D0424 /* TabBarItemView.swift */; };
 		89A4EA8326CD91EE002D0424 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA8126CD91EE002D0424 /* BaseNavigationViewController.swift */; };
 		89A4EA8426CD91EE002D0424 /* BaseNavigationViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA8226CD91EE002D0424 /* BaseNavigationViewStream.swift */; };
@@ -31,6 +32,9 @@
 		89A4EA9426CDAB52002D0424 /* TalkRoomViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9226CDAB52002D0424 /* TalkRoomViewStream.swift */; };
 		89A4EA9A26CDAB68002D0424 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9826CDAB68002D0424 /* AccountViewController.swift */; };
 		89A4EA9B26CDAB68002D0424 /* AccountViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A4EA9926CDAB68002D0424 /* AccountViewStream.swift */; };
+		89AB8EE52727B7E200B469C2 /* ScreenOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AB8EE32727B7E200B469C2 /* ScreenOverViewController.swift */; };
+		89AB8EE62727B7E200B469C2 /* ScreenOverViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AB8EE42727B7E200B469C2 /* ScreenOverViewStream.swift */; };
+		89AB8EE92727BC7100B469C2 /* ScreenOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AB8EE82727BC7100B469C2 /* ScreenOverView.swift */; };
 		89AC05D226DA1708004B8A91 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC05D126DA1708004B8A91 /* UserProvider.swift */; };
 		89AC05D526DA171E004B8A91 /* EventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC05D426DA171E004B8A91 /* EventProvider.swift */; };
 		89AC05D826DA1734004B8A91 /* PrefectureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC05D726DA1734004B8A91 /* PrefectureProvider.swift */; };
@@ -93,7 +97,7 @@
 		89BE241B26D8D4CD00580DDF /* EventGenreSelectViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE241926D8D4CD00580DDF /* EventGenreSelectViewStream.swift */; };
 		89BE241F26D8D4E300580DDF /* EventPlaceSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE241D26D8D4E300580DDF /* EventPlaceSelectViewController.swift */; };
 		89BE242026D8D4E300580DDF /* EventPlaceSelectViewStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE241E26D8D4E300580DDF /* EventPlaceSelectViewStream.swift */; };
-		89CCBAFA27215CB6004E6958 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAF927215CB6004E6958 /* ChatModel.swift */; };
+		89CCBAFA27215CB6004E6958 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAF927215CB6004E6958 /* RoomModel.swift */; };
 		89CCBAFD2721D8A9004E6958 /* TalkRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBAFC2721D8A9004E6958 /* TalkRoomTableViewCell.swift */; };
 		89D82D1B26CBA61A00481B32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D1A26CBA61A00481B32 /* AppDelegate.swift */; };
 		89D82D1D26CBA61A00481B32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D82D1C26CBA61A00481B32 /* SceneDelegate.swift */; };
@@ -154,6 +158,7 @@
 		89756F672725F26C00250763 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		89756F682725F26C00250763 /* OnboardingViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewStream.swift; sourceTree = "<group>"; };
 		897CBF1726CE627C0039FA30 /* FirstTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTeamView.swift; sourceTree = "<group>"; };
+		8997C1862727C851006AFF30 /* RoomProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomProvider.swift; sourceTree = "<group>"; };
 		89A4EA5B26CD84B7002D0424 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		89A4EA8126CD91EE002D0424 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		89A4EA8226CD91EE002D0424 /* BaseNavigationViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewStream.swift; sourceTree = "<group>"; };
@@ -162,6 +167,9 @@
 		89A4EA9226CDAB52002D0424 /* TalkRoomViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRoomViewStream.swift; sourceTree = "<group>"; };
 		89A4EA9826CDAB68002D0424 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		89A4EA9926CDAB68002D0424 /* AccountViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewStream.swift; sourceTree = "<group>"; };
+		89AB8EE32727B7E200B469C2 /* ScreenOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenOverViewController.swift; sourceTree = "<group>"; };
+		89AB8EE42727B7E200B469C2 /* ScreenOverViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenOverViewStream.swift; sourceTree = "<group>"; };
+		89AB8EE82727BC7100B469C2 /* ScreenOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenOverView.swift; sourceTree = "<group>"; };
 		89AC05D126DA1708004B8A91 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		89AC05D426DA171E004B8A91 /* EventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProvider.swift; sourceTree = "<group>"; };
 		89AC05D726DA1734004B8A91 /* PrefectureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefectureProvider.swift; sourceTree = "<group>"; };
@@ -225,7 +233,7 @@
 		89BE241926D8D4CD00580DDF /* EventGenreSelectViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGenreSelectViewStream.swift; sourceTree = "<group>"; };
 		89BE241D26D8D4E300580DDF /* EventPlaceSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceSelectViewController.swift; sourceTree = "<group>"; };
 		89BE241E26D8D4E300580DDF /* EventPlaceSelectViewStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceSelectViewStream.swift; sourceTree = "<group>"; };
-		89CCBAF927215CB6004E6958 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		89CCBAF927215CB6004E6958 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		89CCBAFC2721D8A9004E6958 /* TalkRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRoomTableViewCell.swift; sourceTree = "<group>"; };
 		89D82D1726CBA61A00481B32 /* karupasu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = karupasu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D82D1A26CBA61A00481B32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -390,6 +398,23 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		89AB8EE22727B7A000B469C2 /* Over */ = {
+			isa = PBXGroup;
+			children = (
+				89AB8EE32727B7E200B469C2 /* ScreenOverViewController.swift */,
+				89AB8EE42727B7E200B469C2 /* ScreenOverViewStream.swift */,
+			);
+			path = Over;
+			sourceTree = "<group>";
+		};
+		89AB8EE72727BC5400B469C2 /* Over */ = {
+			isa = PBXGroup;
+			children = (
+				89AB8EE82727BC7100B469C2 /* ScreenOverView.swift */,
+			);
+			path = Over;
+			sourceTree = "<group>";
+		};
 		89AC05DD26DA8D03004B8A91 /* stub */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +463,7 @@
 				89AC05D426DA171E004B8A91 /* EventProvider.swift */,
 				89AC05D726DA1734004B8A91 /* PrefectureProvider.swift */,
 				89AC05DA26DA1753004B8A91 /* GenreProvider.swift */,
+				8997C1862727C851006AFF30 /* RoomProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -514,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				89D82D2326CBA61B00481B32 /* Assets.xcassets */,
+				89D82D5126CC1A2900481B32 /* Localizable.strings */,
 				89E991B3270C467A00B267CF /* karupasuRelease.entitlements */,
 				89E197FA270C338500CECA8B /* karupasu.entitlements */,
 				89F5A4FF26DBE787004E124B /* GoogleService-Info.plist */,
@@ -565,6 +592,7 @@
 		89D82D6126CC1D3B00481B32 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				89AB8EE72727BC5400B469C2 /* Over */,
 				89CCBAFB2721D88E004E6958 /* Chat */,
 				89BE232126D672EB00580DDF /* Bookmark */,
 				89BE227726D5FAFC00580DDF /* Filter */,
@@ -587,7 +615,7 @@
 				89BE226E26D4BE5E00580DDF /* PrefectureModel.swift */,
 				89BE227126D4BE7600580DDF /* GenreModel.swift */,
 				89BE227426D5E64900580DDF /* PlaceModel.swift */,
-				89CCBAF927215CB6004E6958 /* ChatModel.swift */,
+				89CCBAF927215CB6004E6958 /* RoomModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -595,6 +623,7 @@
 		89D82D6326CC1D4900481B32 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				89AB8EE22727B7A000B469C2 /* Over */,
 				89756F662725F24B00250763 /* Onboarding */,
 				89A4EA9726CDAB5B002D0424 /* Account */,
 				89A4EA9026CDAB43002D0424 /* Chat */,
@@ -616,7 +645,6 @@
 			children = (
 				89D82E0E26CCDA5000481B32 /* AppData.swift */,
 				89D82D5826CC1C3500481B32 /* AppConstants.swift */,
-				89D82D5126CC1A2900481B32 /* Localizable.strings */,
 				89BE21DC26CF64FE00580DDF /* Karupasu.swift */,
 			);
 			path = Common;
@@ -897,8 +925,10 @@
 				89D82E6826CD0E6C00481B32 /* RegistrationViewStream.swift in Sources */,
 				89D82D7526CC1E8700481B32 /* UIColorEx.swift in Sources */,
 				89BE229726D64A1A00580DDF /* UIImageViewEx.swift in Sources */,
-				89CCBAFA27215CB6004E6958 /* ChatModel.swift in Sources */,
+				89AB8EE62727B7E200B469C2 /* ScreenOverViewStream.swift in Sources */,
+				89CCBAFA27215CB6004E6958 /* RoomModel.swift in Sources */,
 				89BE227226D4BE7600580DDF /* GenreModel.swift in Sources */,
+				89AB8EE92727BC7100B469C2 /* ScreenOverView.swift in Sources */,
 				89BE23FC26D77A0C00580DDF /* MemberTitileView.swift in Sources */,
 				89BE241626D82B8F00580DDF /* OptionTableViewCell.swift in Sources */,
 				89AC05D826DA1734004B8A91 /* PrefectureProvider.swift in Sources */,
@@ -924,6 +954,7 @@
 				89BE22FA26D6565200580DDF /* EventOptionSelectViewController.swift in Sources */,
 				89A4EA8426CD91EE002D0424 /* BaseNavigationViewStream.swift in Sources */,
 				897CBF1826CE627C0039FA30 /* FirstTeamView.swift in Sources */,
+				8997C1872727C852006AFF30 /* RoomProvider.swift in Sources */,
 				89A4EA9326CDAB52002D0424 /* TalkRoomViewController.swift in Sources */,
 				89D82E5926CCE7B500481B32 /* SearchViewStream.swift in Sources */,
 				89BE23FF26D77A1900580DDF /* MemberDetailView.swift in Sources */,
@@ -949,6 +980,7 @@
 				89756F642725EACE00250763 /* EventUpdateConfirmViewController.swift in Sources */,
 				89D82DEE26CCC7E400481B32 /* RootViewStream.swift in Sources */,
 				89D82D5526CC1AE100481B32 /* RswiftEx.swift in Sources */,
+				89AB8EE52727B7E200B469C2 /* ScreenOverViewController.swift in Sources */,
 				89BE22CD26D652D400580DDF /* SemiModalPresentationController.swift in Sources */,
 				89D82E5826CCE7B500481B32 /* SearchViewController.swift in Sources */,
 				89BE222426D011C200580DDF /* SearchNavigationBar.swift in Sources */,

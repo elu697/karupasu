@@ -12,7 +12,7 @@ import FirebaseStorage
 
 
 class EventModel {
-    struct EventDetail: Codable {
+    struct EventDetail: Hashable, Codable {
         let prefecture: Int //0 オンライン
         let isJoined: Int
         let participantsCount: Int
@@ -28,7 +28,7 @@ class EventModel {
         }
     }
 
-    struct Event: Codable {
+    struct Event: Hashable, Codable {
         let id: Int
         let title: String
         let imageUrl: String

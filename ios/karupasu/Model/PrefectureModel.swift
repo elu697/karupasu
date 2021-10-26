@@ -11,7 +11,7 @@ import RxRelay
 
 
 class PrefectureModel {
-    struct Prefecture: Codable {
+    struct Prefecture: Hashable, Codable {
         let id: Int
         let name: String
 

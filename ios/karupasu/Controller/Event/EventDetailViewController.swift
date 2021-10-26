@@ -139,7 +139,8 @@ final class EventDetailViewController: UIViewController {
         output.reloadTable
             .map { (event) -> [MemberSectionModel] in
                 guard let detail = event.details else { return [] }
-                return detail.map { MemberSectionModel.detail(data: $0, maxMember: event.maxParticipantsCount) }
+                let unique = detail.unique()
+                return unique.map { MemberSectionModel.detail(data: $0, maxMember: event.maxParticipantsCount) }
             }
             .map { (event) in
                 [AnimatableSectionModel<String, MemberSectionModel>(model: AppText.genre(), items: event)]

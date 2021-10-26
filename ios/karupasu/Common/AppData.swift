@@ -33,6 +33,10 @@ struct AppData {
     @UserDefault("accessToken", default: "")
     var accessToken: String
     
+    @UserDefault("roomCount", default: 0)
+    var roomCount: Int
+    
+    
     
     static func resetALL() {
         let keys = UserDefaults.standard.dictionaryRepresentation().keys

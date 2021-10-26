@@ -20,7 +20,8 @@ struct EventCellModel: IdentifiableType, Equatable {
 
     typealias Identity = String
     var identity: String {
-        return String(event.id) + "\(event.title)\(event.isBookmark ?? 0)\(event.participantsCount ?? 0)\(event.isJoined ?? 0)"
+        return String(event.id) +
+        "\(event.title)\(event.isBookmark ?? 0)\(event.participantsCount ?? 0)\(event.maxParticipantsCount)\(event.isJoined ?? 0)"
     }
     let event: EventModel.Event
 }
@@ -67,6 +68,7 @@ class EventCollectionViewController: UICollectionViewController {
         collectionView.isScrollEnabled = true
         collectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: "MainCell")
         collectionView.register(EventGenreCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeader")
+        
 
         let input = viewStream.input
         let output = viewStream.output

@@ -95,9 +95,19 @@ final class RootViewController: UIViewController, UIPopoverPresentationControlle
             }
             .disposed(by: disposeBag)
         
+        output.showOver
+            .subscribe { [weak self] _ in
+                guard let me = self else { return }
+                let vc = ScreenOverViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                me.getTopViewController()?.present(vc, animated: true, completion: nil)
+            }
+            .disposed(by: disposeBag)
+        
         checkFirebase { ok in
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 input.launchApp(())
+                input.observe(())
             }
         }
     }
@@ -178,8 +188,8 @@ extension RootViewController {
         from?.removeFromParent()
     }
 
-    private func presentModal(to: UIViewController) {
-        to.modalPresentationStyle = .fullScreen
+    private func presentModal(to: UIViewController, style: UIModalPresentationStyle = .fullScreen) {
+        to.modalPresentationStyle = style
         currentViewController?.present(to, animated: true, completion: nil)
     }
 

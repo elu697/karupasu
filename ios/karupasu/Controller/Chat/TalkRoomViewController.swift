@@ -13,7 +13,7 @@ import Unio
 
 
 enum RoomSectionModel: IdentifiableType, Equatable {
-    case room(data: ChatModel.Room)
+    case room(data: RoomModel.Room)
     
     var identity: Int {
         switch self {
@@ -22,7 +22,7 @@ enum RoomSectionModel: IdentifiableType, Equatable {
         }
     }
     
-    var model: ChatModel.Room {
+    var model: RoomModel.Room {
         switch self {
             case .room(let data):
                 return data
@@ -94,12 +94,12 @@ final class TalkRoomViewController: UITableViewController {
         rx.viewWillAppear
             .subscribe { [weak self] (_) in
                 guard let self = self else { return }
-                
+                self.karupasu.roomModel.fetchRoom()
             }
             .disposed(by: disposeBag)
     }
     
-    func showTalk(room: ChatModel.Room) {
+    func showTalk(room: RoomModel.Room) {
 
         // Chatは実装コスト間に合わなそうだからとりあえずOSS使う．
         // データはRxで流してbindする

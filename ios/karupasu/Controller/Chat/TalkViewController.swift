@@ -14,7 +14,7 @@ import InputBarAccessoryView
 import CoreLocation
 
 
-private struct LocationMessageItem: LocationItem {
+fileprivate struct LocationMessageItem: LocationItem {
     
     var location: CLLocation
     var size: CGSize
@@ -25,7 +25,7 @@ private struct LocationMessageItem: LocationItem {
     }
 }
 
-private struct MediaMessageItem: MediaItem {
+fileprivate struct MediaMessageItem: MediaItem {
     
     var url: URL?
     var image: UIImage?
@@ -126,7 +126,12 @@ final class TalkViewController: MessagesViewController {
         )
         messages.append(.init(attributedText: msg, sender: Sender(senderId: "admin", displayName: "マッチマッチ"), messageId: UUID().uuidString, date: .init()))
         
-        messages.append(.init(text: "よろしくお願いします!", sender: Sender(senderId: "coffee", displayName: "珈琲"), messageId: UUID().uuidString, date: .init()))
+        DispatchQueue.global().asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.messages.append(.init(text: "よろしくお願いします!", sender: Sender(senderId: "shirakami", displayName: "白上 有希"), messageId: UUID().uuidString, date: .init()))
+            DispatchQueue.main.async {
+                self?.messagesCollectionView.reloadData()
+            }
+        }
     }
 }
 

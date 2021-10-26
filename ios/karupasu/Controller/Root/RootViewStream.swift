@@ -29,6 +29,7 @@ extension RootViewStream {
         let launchApp = PublishRelay<Void>()
         let eventCreate = PublishRelay<Void>()
         let switchView = PublishRelay<RootViewController.presentViewType>()
+        let observe = PublishRelay<Void>()
     }
 
     struct Output: OutputType {
@@ -36,6 +37,7 @@ extension RootViewStream {
         let showLoginProcess: Observable<Void>
         let initializedApp: Observable<RootViewController.initializeStatus>
         let switchView: Observable<RootViewController.presentViewType>
+        let showOver: Observable<Void>
 //        let isFirstLaunch: Observable<Bool>
     }
 
@@ -56,8 +58,9 @@ extension RootViewStream {
         let karupasu = extra.karupasu
         let showLoginProcess = PublishRelay<Void>()
         let initializedApp = PublishRelay<RootViewController.initializeStatus>()
+        let showOver = PublishRelay<Void>()
 //        let isFirstisFirstLaunch = BehaviorRelay<Bool>(value: AppData().firstLunch)
-
+//        karupasu.eventModel.deleteEvent(eventId: 13)
         input.launchApp
             .subscribe { _ in
                 karupasu.userModel.checkUserData().subscribe({ (event) in
@@ -77,12 +80,40 @@ extension RootViewStream {
                 }).disposed(by: disposeBag)
             }
             .disposed(by: disposeBag)
+        
+        input.observe
+            .subscribe { _ in
+                DispatchQueue.global().async {
+                    while true {
+                        //脳筋実装 firestoreを使ってやる
+                        karupasu.roomModel.fetchRoom()
+                        sleep(5)
+                    }
+                }
+                
+                karupasu.roomModel.rooms
+                    .skip(1)
+                    .subscribe { rooms in
+                        guard let rooms = rooms.element else { return }
+                        var ud = AppData()
+                        print("DEBUGGGGG \(rooms.count)\(ud.roomCount)")
+                        print(rooms.count, ud.roomCount)
+                        if rooms.count > ud.roomCount {
+                            showOver.accept(())
+                        }
+                        ud.roomCount = rooms.count
+                    }
+                    .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
 
 
         return Output(
             eventCreate: input.eventCreate.asObservable(),
             showLoginProcess: showLoginProcess.asObservable(),
             initializedApp: initializedApp.asObservable(),
-            switchView: input.switchView.asObservable())
+            switchView: input.switchView.asObservable(),
+            showOver: showOver.asObservable()
+        )
     }
 }

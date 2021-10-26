@@ -90,7 +90,7 @@ class TalkRoomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setModel(model: ChatModel.Room) {
+    func setModel(model: RoomModel.Room) {
         thumbnailImage.setImageByKingfisher(with: .init(string: model.imageUrl))
         placeLbl.text = "\(model.prefecture) \(model.participantsCount)人"
         titleLbl.text = "\(model.title)"
