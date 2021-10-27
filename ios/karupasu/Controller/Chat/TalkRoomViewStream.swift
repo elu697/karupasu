@@ -47,6 +47,12 @@ extension TalkRoomViewStream {
         let reloadDatasource = BehaviorRelay<[RoomModel.Room]>(value: [])
         
         karupasu.roomModel.rooms
+            .map({ rooms in
+                rooms.filter { room in
+                    let ud = AppData()
+                    return ud.roomIds.contains(room.roomId)
+                }
+            })
             .bind(to: state.currentRooms)
             .disposed(by: disposeBag)
         

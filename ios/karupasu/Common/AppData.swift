@@ -33,8 +33,8 @@ struct AppData {
     @UserDefault("accessToken", default: "")
     var accessToken: String
     
-    @UserDefault("roomCount", default: 0)
-    var roomCount: Int
+    @UserDefault("roomIds", default: [])
+    var roomIds: [Int]
     
     
     

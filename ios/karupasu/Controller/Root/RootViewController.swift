@@ -105,7 +105,7 @@ final class RootViewController: UIViewController, UIPopoverPresentationControlle
             .disposed(by: disposeBag)
         
         checkFirebase { ok in
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
+            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 input.launchApp(())
                 input.observe(())
             }

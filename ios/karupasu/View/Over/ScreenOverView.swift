@@ -11,7 +11,7 @@ class ScreenOverView: UIView {
     let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .appMain
-        view.alpha = 0.8
+        view.alpha = 0.9
         return view
     }()
     

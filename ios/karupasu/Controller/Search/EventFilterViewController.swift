@@ -111,7 +111,7 @@ final class EventFilterViewController: UITableViewController {
             .subscribe { [weak self] (_) in
                 guard let self = self else { return }
                 self.tableView.scrollToRow(at: .init(row: 0, section: 0), at: .bottom, animated: false)
-                Karupasu.shared.genreModel.fetchGenre()
+//                Karupasu.shared.genreModel.fetchGenre()
             }
             .disposed(by: disposeBag)
     }

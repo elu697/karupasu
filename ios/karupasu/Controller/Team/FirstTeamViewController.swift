@@ -47,9 +47,6 @@ final class FirstTeamViewController: UIViewController {
         firstTeamView.teamCodeTxf.keyboardType = .alphabet
         firstTeamView.teamCodeTxf.returnKeyType = .go
         
-        let vc = OnboardingViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true, completion: nil)
 
         let input = viewStream.input
         let output = viewStream.output
@@ -76,11 +73,20 @@ final class FirstTeamViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            let vc = OnboardingViewController()
+            vc.modalPresentationStyle = .fullScreen
+            self?.present(vc, animated: true, completion: nil)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        firstTeamView.teamCodeTxf.becomeFirstResponder()
+        firstTeamView.teamCodeTxf.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        firstTeamView.teamCodeTxf.resignFirstResponder()
     }
 }

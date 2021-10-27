@@ -96,12 +96,34 @@ extension RootViewStream {
                     .subscribe { rooms in
                         guard let rooms = rooms.element else { return }
                         var ud = AppData()
-                        print("DEBUGGGGG \(rooms.count)\(ud.roomCount)")
-                        print(rooms.count, ud.roomCount)
-                        if rooms.count > ud.roomCount {
-                            showOver.accept(())
+                        let diff = rooms.map{$0.roomId}.difference(from: ud.roomIds)
+                        for change in diff {
+                            switch change {
+                                case let .remove(offset, _, _):
+                                    ud.roomIds.remove(at: offset)
+                                    break
+                                case let .insert(_, newElement, _):
+                                    let room = rooms.first { room in
+                                        room.roomId == newElement
+                                    }
+                                    guard let roomTitle = room?.title else { return }
+                                    
+                                    karupasu.eventModel.getEvents(word: roomTitle, genreId: nil, holdingMethod: nil)
+                                        .subscribe { events in
+                                            events.forEach({ event in
+                                                if event.maxParticipantsCount == room?.participantsCount {
+                                                    showOver.accept(())
+                                                    print(ud.roomIds, rooms, diff)
+                                                    ud.roomIds.append(newElement)
+                                                    return
+                                                }
+                                            })
+                                        } onError: { error in
+                                        }
+                                        .disposed(by: disposeBag)
+                                    break
+                            }
                         }
-                        ud.roomCount = rooms.count
                     }
                     .disposed(by: disposeBag)
             }

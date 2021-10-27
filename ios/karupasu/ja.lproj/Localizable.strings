@@ -35,9 +35,9 @@
 "Participant" = "参加者";
 "Applying" = "参加希望済み";
 "Online" = "オンライン";
-"Offline" = "オフライン";
+"Offline" = "対面";
 "Confirm" = "確定";
-"Event" = "企画";
+//"Event" = "企画";
 
 "Detail" = "詳細";
 

@@ -20,7 +20,8 @@ final class ScreenOverViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-//        self.modalPresentationStyle = .overFullScreen
+        self.modalPresentationStyle = .overFullScreen
+        self.modalTransitionStyle = .crossDissolve
     }
     
     required init?(coder: NSCoder) {
