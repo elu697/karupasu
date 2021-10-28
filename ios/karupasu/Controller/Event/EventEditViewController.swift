@@ -187,7 +187,7 @@ final class EventEditViewController: UIViewController {
         viewStream.output.dissmissEvent
             .subscribe { [weak self] (event) in
                 guard let self = self else { return }
-                self.dissmissView()
+                self.dismissView()
             }
             .disposed(by: disposeBag)
     }

@@ -11,7 +11,7 @@ import RxRelay
 
 
 class GenreModel {
-    struct Genre: Codable {
+    struct Genre: Hashable, Codable {
         let id: Int
         let name: String
 

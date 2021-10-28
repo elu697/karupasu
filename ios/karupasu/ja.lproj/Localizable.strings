@@ -9,8 +9,10 @@
 "MuchMatch" = "マッチマッチ";
 
 "Team code" = "チームコード";
-"Team code message" = "招待されたチームコードを入力してください";
+"Team code message" = "マッチマッチへようこそ!\n招待されたチームコードを入力してね";
 "Team code dammy" = "0123456789";
+
+"Match message" = "おめでとうございます！\n参加人数が集まったため、開催が決定しました！\nグループチャットを開きましょう!。";
 
 "Sign up" = "新規登録";
 "Name" = "氏名";
@@ -33,9 +35,9 @@
 "Participant" = "参加者";
 "Applying" = "参加希望済み";
 "Online" = "オンライン";
-"Offline" = "オフライン";
+"Offline" = "対面";
 "Confirm" = "確定";
-"Event" = "企画";
+//"Event" = "企画";
 
 "Detail" = "詳細";
 

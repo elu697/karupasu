@@ -29,11 +29,11 @@ extension TalkRoomViewStream {
     }
     
     struct Output: OutputType {
-        let reloadDatasource: Observable<[ChatModel.Room]>
+        let reloadDatasource: Observable<[RoomModel.Room]>
     }
     
     struct State: StateType {
-        let currentRooms = BehaviorRelay<[ChatModel.Room]>(value: [])
+        let currentRooms = BehaviorRelay<[RoomModel.Room]>(value: [])
     }
     
     struct Extra: ExtraType {
@@ -44,13 +44,19 @@ extension TalkRoomViewStream {
         let input = dependency.inputObservables
         let state = dependency.state
         let karupasu = dependency.extra.karupasu
-        let reloadDatasource = BehaviorRelay<[ChatModel.Room]>(value: [])
+        let reloadDatasource = BehaviorRelay<[RoomModel.Room]>(value: [])
         
-        karupasu.chatModel.rooms
+        karupasu.roomModel.rooms
+            .map({ rooms in
+                rooms.filter { room in
+                    let ud = AppData()
+                    return ud.roomIds.contains(room.roomId)
+                }
+            })
             .bind(to: state.currentRooms)
             .disposed(by: disposeBag)
         
-        state.currentRooms.accept([.init(roomId: 1, title: "富士山行きたい", prefecture: "関東", participantsCount: 2, imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/FujiSunriseKawaguchiko2025WP.jpg/275px-FujiSunriseKawaguchiko2025WP.jpg", users: [])])
+//        state.currentRooms.accept([.init(roomId: 1, title: "富士山行きたい", prefecture: "関東", participantsCount: 2, imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/FujiSunriseKawaguchiko2025WP.jpg/275px-FujiSunriseKawaguchiko2025WP.jpg", users: [])])
         
         state.currentRooms
             .bind(to: reloadDatasource)

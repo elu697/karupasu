@@ -92,9 +92,9 @@ extension UIViewController {
     }
 
     internal func hideNavigationWhenSwipeView() {
-        let _: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(dissmissView))
+        let _: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(dismissView))
 
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dissmissView))
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissView))
         swipe.direction = .down
         swipe.cancelsTouchesInView = false
         view.addGestureRecognizer(swipe)
@@ -122,7 +122,7 @@ extension UIViewController {
     }
 
     @objc
-    internal func dissmissView() {
+    internal func dismissView() {
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -155,6 +155,20 @@ extension UIViewController {
 
     var karupasu: Karupasu {
         return appDelegate.karupasu
+    }
+    
+    func getTopViewController() -> UIViewController? {
+        if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
+            var topViewController: UIViewController = rootViewController
+            
+            while let presentedViewController = topViewController.presentedViewController {
+                topViewController = presentedViewController
+            }
+            
+            return topViewController
+        } else {
+            return nil
+        }
     }
 }
 

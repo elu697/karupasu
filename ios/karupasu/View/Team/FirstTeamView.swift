@@ -18,13 +18,15 @@ class FirstTeamView: UIView {
     let messageLbl: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
-        lbl.font = .appFontOfSize(14)
+        lbl.font = .appFontBoldOfSize(14)
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .center
         lbl.text = AppText.teamCodeMessage()
         return lbl
     }()
     
     let logoImageView: UIImageView = {
-        let view = UIImageView(image: AppImage.logo())
+        let view = UIImageView(image: AppImage.ob_1())
         return view
     }()
     
@@ -37,6 +39,8 @@ class FirstTeamView: UIView {
     }
     
     func initLayout() {
+
+        
         teamCodeTxf.snp.makeConstraints { (make) in
             make.width.equalTo(343)
             make.height.equalTo(48)
@@ -46,16 +50,15 @@ class FirstTeamView: UIView {
         
         messageLbl.snp.makeConstraints { (make) in
             make.width.equalTo(teamCodeTxf)
-            make.height.equalTo(26)
+//            make.height.equalTo(26)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(teamCodeTxf.snp.top).offset(-8)
+            make.bottom.equalTo(teamCodeTxf.snp.top).offset(-50)
         }
         
         logoImageView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.width.equalTo(150)
-            make.height.equalTo(170)
-            make.bottom.equalTo(messageLbl.snp.top).offset(-25)
+            make.width.height.equalTo(179)
+            make.bottom.equalTo(messageLbl.snp.top).offset(20)
         }
     }
     

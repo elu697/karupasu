@@ -23,3 +23,14 @@ public extension ClassNameProtocol {
 }
 
 extension NSObject: ClassNameProtocol { }
+
+extension Array where Element: Hashable {
+    func unique() -> Array {
+        var hash = [Element : Bool]()
+        return reduce([], { (array, element) in
+            if hash[element] != nil { return array }
+            hash[element] = true
+            return array + [element]
+        })
+    }
+}
