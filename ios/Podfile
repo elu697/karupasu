@@ -24,6 +24,7 @@ target 'karupasu' do
   pod 'Kingfisher'
   pod 'SVProgressHUD'
   pod 'IQKeyboardManagerSwift'
+  pod 'Eureka'
 
   pod 'paper-onboarding'
   # Chat 実装コスト的にOSS参考

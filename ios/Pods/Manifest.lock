@@ -221,6 +221,7 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.7)
   - Differentiator (4.0.1)
   - ESTabBarController-swift (2.8.0)
+  - Eureka (5.3.4)
   - Firebase (6.34.0):
     - Firebase/Core (= 6.34.0)
   - Firebase/Analytics (6.34.0):
@@ -473,6 +474,7 @@ PODS:
 
 DEPENDENCIES:
   - ESTabBarController-swift
+  - Eureka
   - Firebase
   - Firebase/Analytics
   - Firebase/Auth
@@ -512,6 +514,7 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - Differentiator
     - ESTabBarController-swift
+    - Eureka
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -575,6 +578,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   ESTabBarController-swift: 05593a6ad64700b03c0eb60ff625916370aa4136
+  Eureka: 60cf058f86a8fb3ed26165ba5292b9850361b0a6
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
@@ -624,6 +628,6 @@ SPEC CHECKSUMS:
   Unio: d34bbf35f9d5fa355b9d16ea4da9df9cc73fb6c7
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 65e1d71f97b1f1dbb345b32b7ebb1444c92c967f
+PODFILE CHECKSUM: f8b5911136d01647f8720c8ab283e9b30fc4045e
 
 COCOAPODS: 1.11.2
