@@ -115,6 +115,7 @@ extension RootViewStream {
                                     }
                                     guard let roomTitle = room?.title else { return }
                                     
+                                    
                                     karupasu.eventModel.getEvents(word: roomTitle, genreId: nil, holdingMethod: nil)
                                         .subscribe { events in
                                             events.forEach({ event in

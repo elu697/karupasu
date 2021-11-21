@@ -36,12 +36,13 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         splashFlag = true
-        DispatchQueue.global().async { [weak self] in
-            while self?.splashFlag ?? false {
+        DispatchQueue.global().async {
+//            guard let self = self else { return }
+            while self.splashFlag {
                 DispatchQueue.global().async {
-                    self?.animation()
+                    self.animation()
                 }
-                sleep(UInt32(self?.animationTime ?? 0))
+                sleep(UInt32(self.animationTime))
             }
         }
     }

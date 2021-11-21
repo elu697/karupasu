@@ -749,7 +749,6 @@
 				89D82D1426CBA61A00481B32 /* Frameworks */,
 				89D82D1526CBA61A00481B32 /* Resources */,
 				1572FD1415ABBF254F14766D /* [CP] Embed Pods Frameworks */,
-				5C4DC3CC6FED6391BA56CDC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -836,23 +835,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5C4DC3CC6FED6391BA56CDC8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		89D82D3926CBA75800481B32 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -866,7 +848,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1171,6 +1153,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = tech.miraito.app.karupasu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1198,6 +1181,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = tech.miraito.app.karupasu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -137,8 +137,8 @@ extension EventDetailViewStream {
                 eventModel.getEventDetails(eventId: model.id)
                     .subscribe { (event) in
                         state.currentEvent.accept(event)
-                        reloadView.accept(event)
-                        reloadTable.accept(event)
+//                        reloadView.accept(event)
+//                        reloadTable.accept(event)
                     } onError: { (error) in
                     }.disposed(by: disposeBag)
             }

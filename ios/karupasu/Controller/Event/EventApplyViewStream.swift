@@ -30,6 +30,7 @@ extension EventApplyViewStream {
         let tapPrefecture = PublishRelay<Void>()
         let setOption = PublishRelay<[PrefectureModel.Prefecture]>()
         let tapConfirm = PublishRelay<Void>()
+        let oldOption = PublishRelay<[PrefectureModel.Prefecture]>()
     }
 
     struct Output: OutputType {
@@ -41,6 +42,7 @@ extension EventApplyViewStream {
     struct State: StateType {
         let currenEvent = BehaviorRelay<EventModel.Event?>(value: nil)
         let selectedOption = BehaviorRelay<[PrefectureModel.Prefecture]>(value: [])
+        let oldOption = BehaviorRelay<[PrefectureModel.Prefecture]>(value: [])
     }
 
     struct Extra: ExtraType {
@@ -63,7 +65,19 @@ extension EventApplyViewStream {
         input.setOption
             .bind(to: state.selectedOption)
             .disposed(by: disposeBag)
-
+        
+        input.oldOption
+            .bind(to: state.oldOption)
+            .disposed(by: disposeBag)
+        
+        state.oldOption
+            .skip(1)
+            .debug("DEBUGG")
+            .subscribe { event in
+                
+            }
+            .disposed(by: disposeBag)
+        
         input.tapPrefecture
             .subscribe { (event) in
                 guard let event = state.currenEvent.value else { return }
@@ -74,12 +88,22 @@ extension EventApplyViewStream {
         input.tapConfirm
             .subscribe { (_) in
                 guard let event = state.currenEvent.value else { return }
-                let options = state.selectedOption.value
-                options.forEach { (prefecture) in
-                    karupasu.eventModel.applyEvent(eventId: event.id, prefectureId: prefecture.id)
-                        .subscribe { (isSuccess) in
-                            success.accept(event)
-                        }.disposed(by: disposeBag)
+                let diff = state.selectedOption.value.map{$0.id}.difference(from: state.oldOption.value.map{$0.id})
+                for change in diff {
+                    switch change {
+                        case let .insert(offset, element, associatedWith):
+                            karupasu.eventModel.applyEvent(eventId: event.id, prefectureId: element)
+                                .subscribe { (isSuccess) in
+                                    success.accept(event)
+                                }.disposed(by: disposeBag)
+                            break
+                        case let .remove(offset, element, associatedWith):
+                            karupasu.eventModel.cancelEvent(eventId: event.id, prefectureId: element)
+                                .subscribe { (isSuccess) in
+                                    success.accept(event)
+                                }.disposed(by: disposeBag)
+                            break
+                    }
                 }
             }
             .disposed(by: disposeBag)

@@ -58,8 +58,14 @@ extension EventOptionSelectViewStream {
 
         input.setEvent
             .subscribe({ event in
-                state.currenEvent.accept(event.element)
-                selectOption.accept(state.selectedOption.value)
+                guard let event = event.element else { return }
+                karupasu.eventModel.getEventDetails(eventId: event.id)
+                    .subscribe { event in
+                        state.currenEvent.accept(event)
+                        selectOption.accept(state.selectedOption.value)
+                    } onError: { error in
+                    }
+                    .disposed(by: disposeBag)
             })
             .disposed(by: disposeBag)
 

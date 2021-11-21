@@ -47,11 +47,11 @@ target 'karupasu' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Database'
   pod 'FirebaseFirestoreSwift'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Performance'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/InAppMessaging'
+#  pod 'Firebase/Analytics'
+#  pod 'Firebase/Performance'
+#  pod 'Firebase/Messaging'
+#  pod 'Firebase/InAppMessaging'
 #  pod 'Firebase/AppDistribution'
-  pod 'Firebase/RemoteConfig'
+#  pod 'Firebase/RemoteConfig'
   
 end

@@ -12,7 +12,7 @@ import Firebase
 final public class Karupasu {
     static let shared: Karupasu = .init()
 
-    private let concurrentQueue = DispatchQueue(label: "concurrentQueue", attributes: .concurrent)
+//    private let concurrentQueue = DispatchQueue(label: "concurrentQueue", attributes: .concurrent)
 
     private(set) lazy var userModel: UserModel = .shared
     private(set) lazy var eventModel: EventModel = .shared

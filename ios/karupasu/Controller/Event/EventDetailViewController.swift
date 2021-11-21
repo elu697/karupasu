@@ -113,8 +113,12 @@ final class EventDetailViewController: UIViewController {
                 guard let event = event.element else { return }
                 guard let me = self else { return }
                 me.eventDetailView.thumbnailImage.setImageByKingfisher(with: URL(string: event.imageUrl))
+                
                 if let isJoin = event.isJoined {
                     me.eventDetailView.isJoined = isJoin == 1
+                } else {
+                    let isJoin = event.details?.contains(where: { $0.isJoined == 1 })
+                    me.eventDetailView.isJoined = isJoin ?? false
                 }
                 if let isBookmark = event.isBookmark {
                     me.eventDetailView.bookmarkBtn.isTapped = isBookmark == 1
@@ -166,7 +170,7 @@ final class EventDetailViewController: UIViewController {
         eventApplyViewController.viewStream.output.success
             .subscribe { [weak self] (event) in
                 guard let me = self, let event = event.element else { return }
-                me.viewStream.input.reloadView(())
+//                me.viewStream.input.reloadView(())
             }.disposed(by: disposeBag)
 
         // 多分RxSwiftのバグ?でLayout warningでるから応急処置
@@ -174,7 +178,13 @@ final class EventDetailViewController: UIViewController {
             .subscribe { [weak self] (_) in
                 guard let me = self else { return }
                 me.viewStream.input.reloadView(())
-                me.viewStream.input.reloadTable(())
+//                me.viewStream.input.reloadTable(())
+            }
+            .disposed(by: disposeBag)
+        
+        eventApplyViewController.rx.viewWillDisappear
+            .subscribe { [weak self] _ in
+                self?.viewWillAppear(true)
             }
             .disposed(by: disposeBag)
     }
@@ -182,6 +192,7 @@ final class EventDetailViewController: UIViewController {
     private func showApply(event: EventModel.Event) {
         semiModalPresenter.viewController = eventApplyViewController
         eventApplyViewController.viewStream.input.setEvent(event)
+        eventApplyViewController.optionFlag = true
         present(eventApplyViewController, animated: true, completion: nil)
     }
     
