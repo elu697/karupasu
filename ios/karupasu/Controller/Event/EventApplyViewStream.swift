@@ -72,7 +72,6 @@ extension EventApplyViewStream {
         
         state.oldOption
             .skip(1)
-            .debug("DEBUGG")
             .subscribe { event in
                 
             }
