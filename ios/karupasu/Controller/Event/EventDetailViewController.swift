@@ -30,7 +30,7 @@ enum MemberSectionModel: IdentifiableType, Equatable {
     var identity: String {
         switch self {
         case .detail(let data, _):
-            return String(data.prefecture)
+                return String(data.hashValue)
         }
     }
 }
@@ -170,6 +170,7 @@ final class EventDetailViewController: UIViewController {
         eventApplyViewController.viewStream.output.success
             .subscribe { [weak self] (event) in
                 guard let me = self, let event = event.element else { return }
+                me.viewStream.input.setEvent(event)
 //                me.viewStream.input.reloadView(())
             }.disposed(by: disposeBag)
 
