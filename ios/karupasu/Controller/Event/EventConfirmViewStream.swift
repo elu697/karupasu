@@ -84,10 +84,10 @@ extension EventConfirmViewStream {
             }
             .disposed(by: disposeBag)
 
-        state.current
-            .filterNil()
-            .bind(to: showData)
-            .disposed(by: disposeBag)
+//        state.current
+//            .filterNil()
+//            .bind(to: showData)
+//            .disposed(by: disposeBag)
 
 
         return Output(

@@ -81,6 +81,13 @@ extension RootViewStream {
             }
             .disposed(by: disposeBag)
         
+        karupasu.userModel.isRegistered
+            .distinctUntilChanged()
+            .filter { $0 == false }
+            .subscribe({ (event) in
+                initializedApp.accept(.notLogin)
+            }).disposed(by: disposeBag)
+        
         input.observe
             .subscribe { _ in
                 DispatchQueue.global().async {
@@ -107,6 +114,7 @@ extension RootViewStream {
                                         room.roomId == newElement
                                     }
                                     guard let roomTitle = room?.title else { return }
+                                    
                                     
                                     karupasu.eventModel.getEvents(word: roomTitle, genreId: nil, holdingMethod: nil)
                                         .subscribe { events in

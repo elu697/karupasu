@@ -78,6 +78,7 @@ class UserModel {
                     .subscribe { response in
                         if response.statusCode == 200 {
                             observer.onNext(true)
+                            self.clearUserData()
                         } else {
                             observer.onNext(false)
                         }
@@ -152,6 +153,8 @@ class UserModel {
                 UsereProvider.shared.rx.request(.signIn(email: mail, pass: pass))
                     .subscribe { (response) in
                         if response.statusCode == 200,
+                           let dict = try? JSONSerialization.jsonObject(with: response.data, options: .fragmentsAllowed) as? Dictionary<String, Any>,
+                           let name = (dict["data"] as? Dictionary<String, Any>)?["name"] as? String,
                            let uid = response.response?.headers.dictionary["uid"],
                            let client = response.response?.headers.dictionary["client"],
                            let accessToken = response.response?.headers.dictionary["access-token"] {
@@ -160,11 +163,13 @@ class UserModel {
                             ud.client = client
                             ud.accessToken = accessToken
                             ud.userMailAddress = mail
+                            ud.userName = name
                             ud.userPassword = pass
                             self.uid.accept(uid)
                             self.client.accept(client)
                             self.accessToken.accept(accessToken)
                             self.email.accept(mail)
+                            self.name.accept(name)
                             // TODO FB
                             self.loginUser(email: mail, password: pass)
                             observer.onNext(true)

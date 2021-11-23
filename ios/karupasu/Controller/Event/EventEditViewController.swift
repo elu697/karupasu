@@ -23,10 +23,10 @@ final class EventEditViewController: UIViewController {
         return .init(frame: self.view.frame)
     }()
 
-    private lazy var eventConfirmViewController: EventUpdateConfirmViewController = {
+    private var eventConfirmViewController: EventUpdateConfirmViewController {
         let vc = EventUpdateConfirmViewController()
         return vc
-    }()
+    }
 
     private lazy var eventGenreSelectViewController: EventGenreSelectViewController = {
         let vc = EventGenreSelectViewController()
@@ -171,8 +171,9 @@ final class EventEditViewController: UIViewController {
                 guard let self = self else { return }
                 guard let data = event.element else { return }
                 let updateEvent = (data.0, data.1, data.2, data.3, data.4, self.event?.id ?? 0)
-                self.eventConfirmViewController.viewStream.input.setData(updateEvent)
-                self.navigationController?.pushViewController(self.eventConfirmViewController, animated: true)
+                let vc = self.eventConfirmViewController
+                vc.viewStream.input.setData(updateEvent)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
         

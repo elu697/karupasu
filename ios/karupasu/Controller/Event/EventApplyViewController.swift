@@ -15,6 +15,7 @@ final class EventApplyViewController: UIViewController {
 
     let viewStream: EventApplyViewStreamType = EventApplyViewStream()
     private let disposeBag = DisposeBag()
+    var optionFlag = true
 
     private lazy var eventApplyView: EventApplyView = {
         let view = EventApplyView()
@@ -30,6 +31,11 @@ final class EventApplyViewController: UIViewController {
         super.loadView()
         self.view = eventApplyView
     }
+    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        super.viewWillAppear(animated)
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +69,18 @@ final class EventApplyViewController: UIViewController {
 
         let optionViewStream = prefectureSelectViewController.viewStream
         optionViewStream.output.selectOption
+            .skip(1)
             .subscribe { [weak self] (event) in
                 guard let prefectures = event.element else { return }
                 guard let me = self else { return }
                 let message = prefectures.count == 0 ?
                 "\(AppText.pleaseSelect())": "\(prefectures.map { $0.name }.joined(separator: "・"))"
                 me.eventApplyView.prefectureLbl.text = message
+                
+                if me.optionFlag {
+                    me.viewStream.input.oldOption(prefectures)
+                    me.optionFlag = false
+                }
             }
             .disposed(by: disposeBag)
         

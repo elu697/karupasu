@@ -70,5 +70,11 @@ final class EventConfirmViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewStream.input.loadData(())
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        viewStream.input.loadData(())
     }
 }

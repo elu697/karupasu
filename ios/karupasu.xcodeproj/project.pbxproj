@@ -749,7 +749,6 @@
 				89D82D1426CBA61A00481B32 /* Frameworks */,
 				89D82D1526CBA61A00481B32 /* Resources */,
 				1572FD1415ABBF254F14766D /* [CP] Embed Pods Frameworks */,
-				5C4DC3CC6FED6391BA56CDC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -834,23 +833,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5C4DC3CC6FED6391BA56CDC8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-karupasu/Pods-karupasu-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89D82D3926CBA75800481B32 /* ShellScript */ = {
@@ -1162,7 +1144,7 @@
 				CODE_SIGN_ENTITLEMENTS = karupasu/karupasu.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = karupasu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1170,7 +1152,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = tech.miraito.app.karupasu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1189,7 +1172,7 @@
 				CODE_SIGN_ENTITLEMENTS = karupasu/karupasuRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = karupasu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1197,7 +1180,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = tech.miraito.app.karupasu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

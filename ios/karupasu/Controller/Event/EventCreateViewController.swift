@@ -22,10 +22,10 @@ final class EventCreateViewController: UIViewController {
         return .init(frame: self.view.frame)
     }()
 
-    private lazy var eventConfirmViewController: EventConfirmViewController = {
+    private var eventConfirmViewController: EventConfirmViewController {
         let vc = EventConfirmViewController()
         return vc
-    }()
+    }
 
     private lazy var eventGenreSelectViewController: EventGenreSelectViewController = {
         let vc = EventGenreSelectViewController()
@@ -150,8 +150,9 @@ final class EventCreateViewController: UIViewController {
             .subscribe { [weak self] (event) in
                 guard let self = self else { return }
                 guard let data = event.element else { return }
-                self.eventConfirmViewController.viewStream.input.setData(data)
-                self.navigationController?.pushViewController(self.eventConfirmViewController, animated: true)
+                let vc = self.eventConfirmViewController
+                vc.viewStream.input.setData(data)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
         
